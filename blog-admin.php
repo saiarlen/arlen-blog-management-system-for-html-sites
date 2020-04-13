@@ -1,25 +1,18 @@
 
 <?php
+/*
+ * Login file
+ * This page used for initial user login
+ * @author    Saiarlen
+ * @url       http://saiarlen.com
+ * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
+
 
 require_once("admin/config.php");
 
 
-
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
