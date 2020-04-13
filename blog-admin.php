@@ -1,3 +1,29 @@
+
+<?php
+
+require_once("admin/config.php");
+
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
