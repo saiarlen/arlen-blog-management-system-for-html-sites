@@ -15,8 +15,6 @@ require_once("admin/config.php");
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,14 +56,7 @@ require_once("admin/config.php");
                         <input class="input100" type="password" name="pass">
                         <span class="focus-input100"></span>
                     </div>
-                    <div class="flex-sb-m w-full p-b-48">
-
-                        <div>
-                            <a href="#" class="txt3">
-                                Forgot Password?
-                            </a>
-                        </div>
-                    </div>
+                  
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Login
