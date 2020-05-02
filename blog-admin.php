@@ -8,9 +8,12 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-
-require_once("admin/config.php");
-
+if (file_exists("admin/login.php")){
+    require_once("admin/login.php");
+}
+if (function_exists('arlen_Auth')){
+    arlen_Auth($conn);
+}
 
 ?>
 
@@ -19,57 +22,43 @@ require_once("admin/config.php");
 <html lang="en">
 
 <head>
-    <title>Arlen Blog Management Login</title>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Login Page">
+    <meta name="author" content="saiarlen">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="">
+    <title>Arlen Blog Management Login</title>
+    <!-- Custom CSS -->
+    <link href="admin/deps/css/bootstrap.css" rel="stylesheet">
+    <link href="admin/deps/css/login-style.css" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="admin/deps/img/fav.png" />
-
-    <link rel="stylesheet" type="text/css" href="admin/deps/css/bootstrap.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="admin/deps/css/login.css">
-
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 
 <body>
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-                <form class="login100-form validate-form flex-sb flex-w">
-                    <span class="login100-form-title p-b-32">
-                        Account Login
-                    </span>
-                    <span class="txt1 p-b-11">
-                        Username
-                    </span>
-                    <div class="wrap-input100 validate-input m-b-36" data-validate="Username is required">
-                        <input class="input100" type="text" name="username">
-                        <span class="focus-input100"></span>
-                    </div>
-                    <span class="txt1 p-b-11">
-                        Password
-                    </span>
-                    <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
-                        <span class="btn-show-pass">
-                            <i class="fa fa-eye"></i>
-                        </span>
-                        <input class="input100" type="password" name="pass">
-                        <span class="focus-input100"></span>
-                    </div>
-                  
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Login
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div id="dropDownSelect1"></div>
+    <form class="box" method="POST">
+        <h1>Login</h1>
+        <input class="form-control" type="text" id= "user" name="user" placeholder="Username">
+        <input class="form-control" type="password" id="pass" name="pass" placeholder="Password">
+        <input type="submit" id="login" name="login" value="Login">
+        <div id= "response"></div>
+    </form>
 
-    <script src="admin/deps/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-    <script src="admin/deps/js/login.js" type="text/javascript"></script>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="admin/deps/js/jquery-3.2.1.min.js"></script>
+    <script src="admin/deps/js/popper.min.js"></script>
+    <script src="admin/deps/js/bootstrap.min.js"></script>
+    <script src="admin/deps/js/arlen-script.js"></script>
 
 
 </body>
