@@ -10,14 +10,13 @@ if (file_exists("admin/config.php")){
     require_once("admin/config.php");
 }
 function arlen_Auth($conn){
-    session_start();
-    
+   
 
-   /*  if(isset($_SESSION["username"])) {
-        session_destroy();
+    if(isset($_SESSION["username"])) {
+        
         header ("location: admin/dashboard.php");
 
-    } */
+    } 
     if(isset($_POST["login"])){
         if(empty($_POST["user"]) || empty($_POST["pass"])){
             echo "<div class='field_wrong'><p>Something Went Wrong </p></div>";
