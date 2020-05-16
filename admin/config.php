@@ -22,6 +22,6 @@ function db_Connect($host, $user, $pass, $db) {
     return $mysqli;
 
 }
-
+session_start();
 $conn = db_Connect($host, $user, $pass, $database);
 

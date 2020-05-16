@@ -1,8 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+/* Login css */
+
+*,
+ :after,
+ :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: initial;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
     background: #191919;
     font-family: 'Nunito Sans', sans-serif;
 }

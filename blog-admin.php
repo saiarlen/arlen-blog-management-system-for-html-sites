@@ -29,7 +29,7 @@ if (function_exists('arlen_Auth')){
     <meta name="description" content="Login Page">
     <meta name="author" content="saiarlen">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="">
+    <link rel="icon" type="image/png" sizes="16x16" href="admin/deps/img/fav.png">
     <title>Arlen Blog Management Login</title>
     <!-- Custom CSS -->
     <link href="admin/deps/css/bootstrap.css" rel="stylesheet">
@@ -55,9 +55,10 @@ if (function_exists('arlen_Auth')){
     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
-    <script src="admin/deps/js/jquery-3.2.1.min.js"></script>
+    <script src="admin/deps/js/jquery.min.js"></script>
     <script src="admin/deps/js/popper.min.js"></script>
     <script src="admin/deps/js/bootstrap.min.js"></script>
+    <script src="admin/deps/js/perfect-scrollbar.jquery.min.js"></script>
     <script src="admin/deps/js/arlen-script.js"></script>
 
 

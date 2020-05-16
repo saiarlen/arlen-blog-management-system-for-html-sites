@@ -10,14 +10,13 @@ if (file_exists("admin/config.php")){
     require_once("admin/config.php");
 }
 function arlen_Auth($conn){
-    session_start();
-    
+   
 
-   /*  if(isset($_SESSION["username"])) {
-        session_destroy();
-        header ("location: admin/dashboard.php");
+    if(isset($_SESSION["username"])) {
+        
+        header ("location: admin/home.php");
 
-    } */
+    } 
     if(isset($_POST["login"])){
         if(empty($_POST["user"]) || empty($_POST["pass"])){
             echo "<div class='field_wrong'><p>Something Went Wrong </p></div>";
@@ -29,7 +28,7 @@ function arlen_Auth($conn){
             $final = $conn-> query($arlen_sql);
             if(mysqli_num_rows($final) > 0){
                 $_SESSION["username"] = $username;
-                header ("location: admin/dashboard.php");
+                header ("location: admin/home.php");
             }else {
                 echo "<script> window.onload = function() { $('#response').html(" .'"<p class=' . "'field_empty'" . '>You entered an incorrect username or password</p>"' . ").fadeIn(1000);}</script>";
             }
