@@ -129,7 +129,6 @@ $(document).ready(function() {
         });
     });
 
-<<<<<<< HEAD
 
     //****************************
     /* This is for dynamic page load*/
@@ -152,6 +151,4 @@ $(document).ready(function() {
 
 
 
-=======
->>>>>>> 7efabee05ee350fd9a9a193038769e4491f01986
 });
