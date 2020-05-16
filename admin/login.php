@@ -14,7 +14,11 @@ function arlen_Auth($conn){
 
     if(isset($_SESSION["username"])) {
         
+<<<<<<< HEAD
         header ("location: admin/home.php");
+=======
+        header ("location: admin/dashboard.php");
+>>>>>>> 7efabee05ee350fd9a9a193038769e4491f01986
 
     } 
     if(isset($_POST["login"])){

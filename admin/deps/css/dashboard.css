@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 /* Dashboard css */
 
+=======
+>>>>>>> 7efabee05ee350fd9a9a193038769e4491f01986
 html[dir=ltr] body .m-t-5 {
     margin-top: 5px
 }
@@ -2685,6 +2688,7 @@ label {
 
 .topbar .top-navbar .navbar-header .navbar-brand .logo-icon {
     margin-right: -4px;
+<<<<<<< HEAD
 }
 
 @-webkit-keyframes rotating {
@@ -2712,4 +2716,6 @@ label {
 .rotating {
     -webkit-animation: rotating 4s linear infinite;
     animation: rotating 4s linear infinite;
+=======
+>>>>>>> 7efabee05ee350fd9a9a193038769e4491f01986
 }
