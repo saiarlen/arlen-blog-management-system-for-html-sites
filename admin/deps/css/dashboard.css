@@ -320,8 +320,6 @@ html[dir=ltr] body .p-l-0 {
     padding-left: 0
 }
 
-#main-wrapper {}
-
 #main-wrapper .topbar .top-navbar .navbar-header[data-logobg=skin5] {
     background: #1F262D
 }
@@ -361,14 +359,11 @@ html[dir=ltr] body .p-l-0 {
     padding: 15px 20px
 }
 
-#main-wrapper {}
-
 #main-wrapper[data-sidebartype=full] .page-wrapper {
     margin-left: 250px
 }
 
 @media (min-width:768px) {
-    #main-wrapper {}
     #main-wrapper[data-sidebartype=full] .topbar .top-navbar .navbar-header {
         width: 250px
     }
@@ -414,7 +409,6 @@ html[dir=ltr] body .p-l-0 {
 }
 
 @media (max-width:766px) {
-    #main-wrapper {}
     #main-wrapper[data-sidebartype=mini-sidebar] .page-wrapper {
         margin-left: 0px
     }
@@ -760,7 +754,7 @@ ul.list-style-none li a:hover {
 }
 
 .card-hover:hover {
-    webkit-transform: translateY(-4px) scale(1.01);
+    transform: translateY(-4px) scale(1.01);
     -moz-transform: translateY(-4px) scale(1.01);
     -ms-transform: translateY(-4px) scale(1.01);
     -o-transform: translateY(-4px) scale(1.01);
@@ -932,6 +926,7 @@ ul.list-style-none li a:hover {
     z-index: 10;
     border: 5px solid #da542e;
     border-radius: 70px;
+    animation: heartbit 1s ease-out;
     -moz-animation: heartbit 1s ease-out;
     -moz-animation-iteration-count: infinite;
     -o-animation: heartbit 1s ease-out;
@@ -972,6 +967,29 @@ ul.list-style-none li a:hover {
     }
     to {
         -moz-transform: scale(1);
+        opacity: 0.0
+    }
+}
+
+@keyframes heartbit {
+    0% {
+        -webkit-transform: scale(0);
+        opacity: 0.0
+    }
+    25% {
+        -webkit-transform: scale(0.1);
+        opacity: 0.1
+    }
+    50% {
+        -webkit-transform: scale(0.5);
+        opacity: 0.3
+    }
+    75% {
+        -webkit-transform: scale(0.8);
+        opacity: 0.5
+    }
+    to {
+        -webkit-transform: scale(1);
         opacity: 0.0
     }
 }
@@ -1255,10 +1273,6 @@ ul.list-style-none li a:hover {
     position: relative
 }
 
-.sidebar-nav ul {}
-
-.sidebar-nav ul .sidebar-item {}
-
 .sidebar-nav ul .sidebar-item .sidebar-link {
     color: #fff;
     padding: 14px 15px;
@@ -1330,8 +1344,6 @@ ul.list-style-none li a:hover {
     line-height: 30px;
     margin: 0 5px
 }
-
-.sidebar-nav>#sidebarnav>.sidebar-item>.sidebar-link:hover {}
 
 .sidebar-nav ul {
     margin: 0px;
@@ -1499,7 +1511,8 @@ html body .waves-notransition {
     height: 2.5em;
     line-height: 2.5em;
     border-radius: 50%;
-    -webkit-mask-image: none
+    mask-image: none;
+    -webkit-mask-image: none;
 }
 
 .waves-input-wrapper {
@@ -1901,7 +1914,7 @@ body .jqstooltip {
     padding: 10px 20px;
     background: #2255a4;
     color: #fff;
-    ext-align: center;
+    text-align: center;
     pointer-events: none;
     z-index: 1;
     -webkit-transition: opacity .2s linear;
@@ -2509,6 +2522,7 @@ label {
 }
 
 .el-element-overlay .el-card-item .el-overlay-1:hover img {
+    transform: scale(1.2) translateZ(0);
     -ms-transform: scale(1.2) translateZ(0);
     -webkit-transform: scale(1.2) translateZ(0)
 }
