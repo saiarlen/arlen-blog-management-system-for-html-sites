@@ -130,25 +130,4 @@ $(document).ready(function() {
     });
 
 
-    //****************************
-    /* This is for dynamic page load*/
-    //****************************
-    var views = {
-        dashboard: [{
-            selector: "#page-content",
-            templateUrl: 'views/dashboard.php'
-        }, ],
-        defaultView: {
-            view: 'dashboard'
-        }
-    };
-
-    new Via(views);
-
-
-
-
-
-
-
 });
