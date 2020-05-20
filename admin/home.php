@@ -7,7 +7,7 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-
+$page_title= "Dashboard"; //page-title
 require_once("header.php");
 ?>
 

@@ -1,1 +1,22 @@
 /* All Styles */
+
+header.topbar {
+    position: fixed;
+    width: 100%;
+}
+
+aside.left-sidebar {
+    position: fixed;
+}
+
+#main-wrapper .page-wrapper {
+    margin-left: 250px;
+    margin-top: 60px;
+}
+
+@media (max-width: 766px) {
+    #main-wrapper .page-wrapper {
+        margin-left: 0px;
+        margin-top: 60px;
+    }
+}

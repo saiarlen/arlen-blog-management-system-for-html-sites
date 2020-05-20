@@ -7,7 +7,7 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-
+$page_title= "Media"; //page-title
 require_once("header.php");
 ?>
 <!-- ============================================================== -->
@@ -28,5 +28,13 @@ require_once("header.php");
         </div>
     </div>
 </div>
-<iframe id="fancybox-frame" name="fancybox-frame1589709666421" width="100%" height="500px" frameborder="0" hspace="0" scrolling="auto" src="../admin/deps/filemanager/dialog.php?type=0&amp;editor=mce_0"></iframe>
+<script>
+window.onload = function disFunction() {
+  var iframe = document.getElementById("myFrame");
+  var elmnt = iframe.contentWindow.document.getElementsByClassName("ar-sel")[0];
+  elmnt.style.display = "none";
+}
+</script>
+<iframe id="myFrame" src="deps/fileman/media.html" title="filemanager" frameborder="0" style="overflow:hidden;min-height:90vh;height:90vh;width:100%" height="100%" width="100%"></iframe>
+
 <?php require_once("footer.php"); ?>

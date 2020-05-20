@@ -8,10 +8,6 @@
  */ 
 ?>
  
- 
- 
- 
- 
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
@@ -32,8 +28,8 @@
     <!-- ============================================================== -->
     <!-- All Js -->
     <!-- ============================================================== -->
-    <!-- Jquery -->   
-    <script src="deps/js/jquery.min.js"></script>
+    <!-- Jquery -->  
+    <script src="deps/js/jquery.min.js"></script> 
     <script src="deps/js/jquery.ui.touch-punch-improved.js"></script>
     <script src="deps/js/jquery-ui.min.js"></script>
     <!-- Core Javascript -->

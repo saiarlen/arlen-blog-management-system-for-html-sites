@@ -30,7 +30,7 @@ if(!isset($_SESSION["username"])){
     <meta name="author" content="Saiarlen">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="deps/img/fav.png">
-    <title>Arlen | Dashboard</title>
+    <title>Arlen | <?php echo $page_title; ?></title>
     <!-- Custom CSS -->
    
     
@@ -44,6 +44,7 @@ if(!isset($_SESSION["username"])){
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body>
@@ -229,7 +230,7 @@ if(!isset($_SESSION["username"])){
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link active" href="home.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link " href="home.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="media.php" aria-expanded="false"><i class="mdi mdi-folder-image"></i><span class="hide-menu">Media</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil-box"></i><span class="hide-menu">Posts </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
