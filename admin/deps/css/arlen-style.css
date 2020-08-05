@@ -24,3 +24,14 @@ aside.left-sidebar {
 .media-wrapper {
     margin-top: 20px;
 }
+.f-span-text {
+    font-size: 12px;
+    color: #666666;
+    font-style: italic;
+}
+
+.ar-bt-pos {
+    position: absolute;
+    top: 42px;
+    left: 115px;
+}

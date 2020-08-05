@@ -46,6 +46,16 @@
     <!--Custom JavaScript -->
     <script src="deps/js/arlen-script.js"></script>
 
+    <!-- Table Scripts all -->
+    <script src="deps/js/datatable-checkbox-init.js"></script>
+    <script src="deps/js/jquery.multicheck.js"></script>
+    <script src="deps/js/datatables.min.js"></script>
+   <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable();
+    </script>
 </body>
 
 </html>

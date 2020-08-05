@@ -33,7 +33,7 @@ if(!isset($_SESSION["username"])){
     <title>Arlen | <?php echo $page_title; ?></title>
     <!-- Custom CSS -->
    
-    
+    <link href="deps/css/multicheck.css" rel="stylesheet">
     <link href="deps/css/bootstrap.css" rel="stylesheet">
     <link href="deps/css/animate.css" rel="stylesheet">
     <link href="deps/css/dashboard.css" rel="stylesheet">
