@@ -29,7 +29,7 @@ if (function_exists('arlen_Auth')){
     <meta name="description" content="Login Page">
     <meta name="author" content="saiarlen">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="admin/deps/img/fav.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo ARLEN_BASE_URL; ?>/admin/deps/img/fav.png">
     <title>Arlen Blog Management Login</title>
     <!-- Custom CSS -->
     <link href="admin/deps/css/bootstrap.css" rel="stylesheet">

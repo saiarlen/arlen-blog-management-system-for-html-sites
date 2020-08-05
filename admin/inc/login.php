@@ -12,12 +12,11 @@
   
 //}
 function arlen_Auth($conn){
-   
 
 
     if(isset($_SESSION["username"])) {
         
-        header ("location: ../admin/home.php");
+        header ("location:" . ARLEN_BASE_URL ."/admin/home.php");
 
     } 
     if(isset($_POST["login"])){
@@ -31,7 +30,7 @@ function arlen_Auth($conn){
             $final = $conn-> query($arlen_sql);
             if(mysqli_num_rows($final) > 0){
                 $_SESSION["username"] = $username;
-                header ("location: ../admin/home.php");
+                header ("location:" . ARLEN_BASE_URL ."/admin/home.php");
             }else {
                 echo "<script> window.onload = function() { $('#response').html(" .'"<p class=' . "'field_empty'" . '>You entered an incorrect username or password</p>"' . ").fadeIn(1000);}</script>";
             }

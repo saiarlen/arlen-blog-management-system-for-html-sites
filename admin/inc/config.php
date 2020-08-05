@@ -25,4 +25,15 @@ function db_Connect($host, $user, $pass, $db) {
 session_start();
 $conn = db_Connect($host, $user, $pass, $database);
 
+//Base URL
+define("ARLEN_BASE_URL", "http://localhost/blog");
+
+//Season Time Setip
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    // last request was more than 30 minutes ago
+    session_unset();    
+    session_destroy();
+}
+$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+
 
