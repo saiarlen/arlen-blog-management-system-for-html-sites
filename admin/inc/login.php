@@ -6,15 +6,18 @@
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-if (file_exists("admin/config.php")){
-    require_once("admin/config.php");
-}
+//if (file_exists("config.php")){
+    require_once("config.php");
+
+  
+//}
 function arlen_Auth($conn){
    
 
+
     if(isset($_SESSION["username"])) {
         
-        header ("location: admin/home.php");
+        header ("location: ../admin/home.php");
 
     } 
     if(isset($_POST["login"])){
@@ -28,7 +31,7 @@ function arlen_Auth($conn){
             $final = $conn-> query($arlen_sql);
             if(mysqli_num_rows($final) > 0){
                 $_SESSION["username"] = $username;
-                header ("location: admin/home.php");
+                header ("location: ../admin/home.php");
             }else {
                 echo "<script> window.onload = function() { $('#response').html(" .'"<p class=' . "'field_empty'" . '>You entered an incorrect username or password</p>"' . ").fadeIn(1000);}</script>";
             }

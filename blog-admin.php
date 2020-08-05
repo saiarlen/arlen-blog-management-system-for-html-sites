@@ -8,8 +8,8 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-if (file_exists("admin/login.php")){
-    require_once("admin/login.php");
+if (file_exists("admin/inc/login.php")){
+    require_once("admin/inc/login.php");
 }
 if (function_exists('arlen_Auth')){
     arlen_Auth($conn);

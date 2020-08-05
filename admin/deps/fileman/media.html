@@ -15,13 +15,15 @@
 
 <body>
     <table cellpadding="0" cellspacing="0" id="wraper">
+
         <tr>
             <td valign="top" class="pnlDirs" id="dirActions" style="display:none;">
                 <div class="scrollPane">
                     <ul id="pnlDirList"></ul>
                 </div>
             </td>
-            <td valign="top" id="fileActions">
+            <td valign="top" id="fileActions" class="wp-pd">
+
                 <input type="hidden" id="hdViewType" value="list">
                 <input type="hidden" id="hdOrder" value="asc">
                 <div class="actions">
@@ -34,13 +36,13 @@
                     <br>
                     <span data-lang="OrderBy">Order by</span>:
                     <select id="ddlOrder" onchange="sortFiles()">
-        <option value="name" data-lang="Name_asc">&uarr;&nbsp;&nbsp;Name</option>
-        <option value="size" data-lang="Size_asc">&uarr;&nbsp;&nbsp;Size</option>
-        <option value="time" data-lang="Date_asc">&uarr;&nbsp;&nbsp;Date</option>
-        <option value="name_desc" data-lang="Name_desc">&darr;&nbsp;&nbsp;Name</option>
-        <option value="size_desc" data-lang="Size_desc">&darr;&nbsp;&nbsp;Size</option>
-        <option value="time_desc" data-lang="Date_desc">&darr;&nbsp;&nbsp;Date</option>
-      </select>&nbsp;&nbsp;
+                            <option value="name" data-lang="Name_asc">&uarr;&nbsp;&nbsp;Name</option>
+                            <option value="size" data-lang="Size_asc">&uarr;&nbsp;&nbsp;Size</option>
+                            <option value="time" data-lang="Date_asc">&uarr;&nbsp;&nbsp;Date</option>
+                            <option value="name_desc" data-lang="Name_desc">&darr;&nbsp;&nbsp;Name</option>
+                            <option value="size_desc" data-lang="Size_desc">&darr;&nbsp;&nbsp;Size</option>
+                            <option value="time_desc" data-lang="Date_desc">&darr;&nbsp;&nbsp;Date</option>
+                        </select>&nbsp;&nbsp;
                     <input type="button" id="btnListView" class="btnView" value=" " title="List view" onclick="switchView('list')" data-lang-t="T_ListView" />
                     <input type="button" id="btnThumbView" class="btnView" value=" " title="Thumbnails view" onclick="switchView('thumb')" data-lang-t="T_ThumbsView" />&nbsp;&nbsp;
                     <input type="text" id="txtSearch" onkeyup="filterFiles()" onchange="filterFiles()" />
@@ -62,6 +64,7 @@
                 </div>
             </td>
         </tr>
+
         <tr>
 
             <td class="bottomLine">

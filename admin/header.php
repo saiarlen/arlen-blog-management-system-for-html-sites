@@ -8,8 +8,8 @@
  */ 
 
  // Config file
-if (file_exists("config.php")){
-    require_once("config.php");
+if (file_exists("inc/config.php")){
+    require_once("inc/config.php");
 }
 
 // Check user login or not
@@ -72,7 +72,7 @@ if(!isset($_SESSION["username"])){
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="home.php">
                         <!-- Logo icon -->
                         <b class="logo-icon p-l-10">
                            
@@ -238,7 +238,7 @@ if(!isset($_SESSION["username"])){
                                 <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-multiple"></i><span class="hide-menu"> All Posts </span></a></li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-grid"></i><span class="hide-menu">Categories</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="categories.php" aria-expanded="false"><i class="mdi mdi-view-column"></i><span class="hide-menu">Categories</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-tag-multiple"></i><span class="hide-menu">Tags</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-note-text"></i><span class="hide-menu">My Blogs</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-puzzle"></i><span class="hide-menu">Addons</span></a></li>

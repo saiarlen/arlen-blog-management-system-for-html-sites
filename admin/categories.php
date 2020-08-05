@@ -1,7 +1,7 @@
 <?php
 /*
- * Media page
- * This page used for Upload media
+ * Categories page
+ * This page used for managing Categories
  * @author    Saiarlen
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
@@ -16,26 +16,17 @@ require_once("header.php");
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Media Manager</h4>
+            <h4 class="page-title">Categories</h4>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Media</li>
+                        <li class="breadcrumb-item active" aria-current="page">Categories</li>
                     </ol>
                 </nav>
             </div>
         </div>
     </div>
 </div>
-<script>
-window.onload = function disFunction() {
-  var iframe = document.getElementById("myFrame");
-  var elmnt = iframe.contentWindow.document.getElementsByClassName("ar-sel")[0];
-  elmnt.style.display = "none";
-}
-</script>
-<div class="media-wrapper">
-    <iframe id="myFrame" src="deps/fileman/media.html" title="filemanager" frameborder="0" style="overflow:hidden;min-height:75vh;height:75vh;width:100%" height="100%" width="100%"></iframe>
-</div>
+
 <?php require_once("footer.php"); ?>
