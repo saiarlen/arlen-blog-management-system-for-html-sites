@@ -35,6 +35,7 @@ if(isset($_POST["catname"])){
     }
     else {
         echo  $_POST['catname'] . " is added";
+       
     }
  
     //Close connection

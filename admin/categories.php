@@ -94,167 +94,45 @@ require_once("header.php");
                                        
                                     </tr>
                                 </thead>
-                                <tbody class="customtable">
-                                    <tr>
-                                        <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category1</td>
-                                        <td>Category1</td>
-                                        <td>1</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category2</td>
-                                        <td>Category2</td>
-                                        <td>1</td>
-                                         <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category3</td>
-                                        <td>Category3</td>
-                                        <td>0</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category4</td>
-                                        <td>Category4</td>
-                                        <td>1</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category5</td>
-                                        <td>Category5</td>
-                                        <td>1</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category6</td>
-                                        <td>Category6</td>
-                                        <td>0</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                      
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category7</td>
-                                        <td>Category7</td>
-                                        <td>1</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category8</td>
-                                        <td>Category8</td>
-                                        <td>0</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category9</td>
-                                        <td>Category9</td>
-                                        <td>2</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category10</td>
-                                        <td>Category10</td>
-                                        <td>1</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                        
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category11</td>
-                                        <td>Category11</td>
-                                        <td>3</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    <tr>
-                                         <th>
-                                            <label class="customcheckbox">
-                                                <input type="checkbox" class="listCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <td>Category12</td>
-                                        <td>Category12</td>
-                                        <td>0</td>
-                                        <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
-                                       
-                                    </tr>
-                                    
+                               
+
+                                
+                                <tbody  class="customtable">
+                                  
+
                                    
+                                <?php
+                                //Php script for retriving data from database
+                                
+                                    $cat_query = "SELECT * FROM ar_categories ORDER BY id DESC";
+                                    $cat_final_all_data = $conn->query($cat_query);
+
+                                    if ($cat_final_all_data->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $cat_final_all_data->fetch_assoc()) {
+                                        ?>
+
+                                            <tr>
+                                                <th>
+                                                    <label class="customcheckbox">
+                                                        <input type="checkbox" class="listCheckbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </th>
+                                                <td><?php echo $row["cat_name"]; ?></td>
+                                                <td><?php echo $row["cat_slug"]; ?></td>
+                                                <td>1</td>
+                                                <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
+                                                
+                                            </tr>
+                                            
+                                        <?php
+                                        }
+                                    }
+
+                                ?>
+                                 
                                 </tbody>
-                              
                             </table>
                         </div>
 
@@ -272,6 +150,14 @@ require_once("header.php");
 <script>
 $(document).ready(function(){
 
+
+    function catupdateDiv(){ 
+        setTimeout(function() {
+            location.reload(true);
+        }, 1000);
+    }
+
+    //for Submitting data to database
 $('#cat_submit').on('click', function(e) {
         e.preventDefault();
         $("#cat_submit").attr("disabled", "disabled");
@@ -293,7 +179,10 @@ $('#cat_submit').on('click', function(e) {
 						$('#cat_in_form').find('input:text').val('');
 						$("#cat_success").show();
                         $('#cat_success').html(response); 
-                        $('#cat_success').fadeOut(3000).delay(1000);
+                        //$('#cat_success').fadeOut(3000).delay(1000);
+                        catupdateDiv();
+                        
+                        
                         						
 		
                 },
@@ -307,11 +196,14 @@ $('#cat_submit').on('click', function(e) {
 		}
 	});
 
+
+
 });
 
 </script>
 
-
 <?php 
+
+//require_once("inc/core.php");
 
 require_once("footer.php"); ?>
