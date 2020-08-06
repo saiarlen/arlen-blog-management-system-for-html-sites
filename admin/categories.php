@@ -9,6 +9,7 @@
 
 $page_title= "Categories"; //page-title
 require_once("header.php");
+
 ?>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
@@ -33,33 +34,36 @@ require_once("header.php");
 
 <div class="col-md-4">
     <div class="container-fluid">
-        <div class="card">
-            <form class="form-horizontal">
+        <div class="card" style="margin-bottom:0">
+            <form id="cat_in_form" class="form-horizontal" method="POST">
                 <div class="card-body">
                     <h4 class="card-title">Add New Category</h4>
                     <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="fname" placeholder="Category Name Here">
+                            <input type="text" class="form-control" name="catname" id="catname" placeholder="Category Name Here" required>
                             <span class="f-span-text">The name is how it appears on your site.</span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="lname" class="col-sm-3 text-right control-label col-form-label">Slug</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="lname" placeholder="Slug Here" autocomplete="off">
-                            <span class="f-span-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</span>
+                            <input type="text" class="form-control" name="catslgname" id="catslgname" placeholder="Slug Here" autocomplete="off" required>
+                            <span class="f-span-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens. it can be same name as category.</span>
 
                         </div>
                     </div>
                 </div>
                 <div class="border-top">
                     <div class="card-body">
-                        <button type="button" class="btn btn-info">Add New</button>
+                        <button id="cat_submit" type="submit" class="btn btn-info">Add New</button>
                     </div>
+                    
                 </div>
+                
             </form>
         </div>
+        <div class="alert alert-success alert-dismissible" id="cat_success" style="display:none;"></div>
     </div>
     
 </div>
@@ -83,9 +87,9 @@ require_once("header.php");
                                                 <span class="checkmark"></span>
                                             </label>
                                         </th>
-                                        <th>Name</th>
-                                        <th>Slug</th>
-                                        <th>Count</th>
+                                        <th><strong>Name</strong></th>
+                                        <th><strong>Slug</strong></th>
+                                        <th><strong>Count</strong></th>
                                         <th></th>
                                        
                                     </tr>
@@ -264,6 +268,50 @@ require_once("header.php");
 
 </div>
 
+<!-- Js For the Above form -->
+<script>
+$(document).ready(function(){
+
+$('#cat_submit').on('click', function(e) {
+        e.preventDefault();
+        $("#cat_submit").attr("disabled", "disabled");
+		var catname = $('#catname').val();
+		var catslgname = $('#catslgname').val();
+		
+		if(catname!="" && catslgname!=""){
+			$.ajax({
+                type: "POST",
+                url:'inc/ajax-handler.php',
+				data: {
+					"catname": catname,
+					"catslgname": catslgname	
+                },
+
+				success: function(response){
+					
+						$("#cat_submit").removeAttr("disabled");
+						$('#cat_in_form').find('input:text').val('');
+						$("#cat_success").show();
+                        $('#cat_success').html(response); 
+                        $('#cat_success').fadeOut(3000).delay(1000);
+                        						
+		
+                },
+                cache: false,
+            });
+             return false;
+		}
+		else{
+            alert('Please Enter Category or Slug Name !');
+            $("#cat_submit").removeAttr("disabled");
+		}
+	});
+
+});
+
+</script>
 
 
-<?php require_once("footer.php"); ?>
+<?php 
+
+require_once("footer.php"); ?>

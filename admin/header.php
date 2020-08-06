@@ -38,6 +38,9 @@ if(!isset($_SESSION["username"])){
     <link href="deps/css/animate.css" rel="stylesheet">
     <link href="deps/css/dashboard.css" rel="stylesheet">
     <link href="deps/css/arlen-style.css" rel="stylesheet">
+
+    <!-- Jquery -->
+    <script src="deps/js/jquery.min.js"></script> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

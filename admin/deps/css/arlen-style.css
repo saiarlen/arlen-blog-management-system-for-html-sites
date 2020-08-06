@@ -35,3 +35,6 @@ aside.left-sidebar {
     top: 42px;
     left: 115px;
 }
+div#cat_success {
+    margin: 0;
+}

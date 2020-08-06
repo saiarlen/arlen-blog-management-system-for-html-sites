@@ -7,8 +7,12 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
- 
 
+ require_once ("config.php");
+
+ /* Category page core Functions */
+   
+ 
 
 
 
