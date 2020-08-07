@@ -118,7 +118,7 @@ require_once("header.php");
                                                 <td><?php echo $row["cat_name"]; ?></td>
                                                 <td><?php echo $row["cat_slug"]; ?></td>
                                                 <td>1</td>
-                                                <th><button type="button" class="btn btn-dark btn-sm">Edit</button></th>
+                                                <th><a href="edit.php?type=category&id=<?php echo $row["id"]; ?>" class="btn btn-dark btn-sm">Edit</a></th>
                                                 
                                             </tr>
                                             
@@ -247,8 +247,4 @@ $(document).ready(function(){
 
 </script>
 
-<?php 
-
-//require_once("inc/core.php");
-
-require_once("footer.php"); ?>
+<?php require_once("footer.php"); ?>
