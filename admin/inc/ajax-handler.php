@@ -10,7 +10,10 @@
 
  require_once ("config.php");
 
- /* Category page Functions */
+ /* ========================= Category page Functions =================================*/
+ 
+
+ /* Insert categories into the database */
 if(isset($_POST["catname"])){
     $catname=$_POST['catname'];
     $catslgname=$_POST['catslgname'];
@@ -42,7 +45,26 @@ if(isset($_POST["catname"])){
     mysqli_close($conn);
 }
 
+/* For deleting categories */
+if(isset($_POST['catdelbtn'])){
+  if(isset($_POST['catcheckbx'])){
+    foreach($_POST['catcheckbx'] as $deleteid){
+
+      $deleteCat = "DELETE from ar_categories WHERE id=".$deleteid;
+      mysqli_query($conn,$deleteCat);
+    }
+    if(!mysqli_query($conn,$deleteCat)){
+        echo "Could not be deleted please try again";
+    }
+    else {
+        echo "YES";
+    }
+  }
  
+}
+
+  /* ========================= End of Category page Functions =================================*/
+
 
 
 

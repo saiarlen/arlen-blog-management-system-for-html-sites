@@ -76,9 +76,9 @@ require_once("header.php");
                 <div class="card" style="min-height: 600px;">
                     <div class="card-body">
                         <div class="table-responsive">
-                       
+                        <form method="POST" action="">
                             <table id="zero_config" class="table table-striped table-bordered">
-                             <button type="button" class="btn btn-light btn-sm ar-bt-pos">Delete</button>
+                             <button type="submit" value='Delete' name='cat_delete' id="cat_delete" class="btn btn-light btn-sm ar-bt-pos">Delete</button>
                                 <thead>
                                     <tr>
                                        <th>
@@ -115,7 +115,7 @@ require_once("header.php");
                                             <tr>
                                                 <th>
                                                     <label class="customcheckbox">
-                                                        <input type="checkbox" class="listCheckbox">
+                                                        <input type="checkbox" name='delete[]' id="catdel" value="<?php echo $row["id"]; ?>" class="listCheckbox">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </th>
@@ -134,6 +134,7 @@ require_once("header.php");
                                  
                                 </tbody>
                             </table>
+                            </form>
                         </div>
 
                     </div>
@@ -146,19 +147,20 @@ require_once("header.php");
 
 </div>
 
+
 <!-- Js For the Above form -->
 <script>
 $(document).ready(function(){
 
-
+    //for page reload call
     function catupdateDiv(){ 
         setTimeout(function() {
             location.reload(true);
         }, 1000);
     }
 
-    //for Submitting data to database
-$('#cat_submit').on('click', function(e) {
+    //For Submitting categories data to database
+    $('#cat_submit').on('click', function(e) {
         e.preventDefault();
         $("#cat_submit").attr("disabled", "disabled");
 		var catname = $('#catname').val();
@@ -181,10 +183,7 @@ $('#cat_submit').on('click', function(e) {
                         $('#cat_success').html(response); 
                         //$('#cat_success').fadeOut(3000).delay(1000);
                         catupdateDiv();
-                        
-                        
-                        						
-		
+                
                 },
                 cache: false,
             });
@@ -195,6 +194,44 @@ $('#cat_submit').on('click', function(e) {
             $("#cat_submit").removeAttr("disabled");
 		}
 	});
+    // End of submitting data to database
+
+
+    //For delete categories data in database
+    $('#cat_delete').on('click', function(e) {
+        e.preventDefault();
+		var catdelbtn = $('#cat_delete').val();
+		var catcheckbx = [];
+        $("#catdel:checked").each(function(){
+            catcheckbx.push(this.value);
+        });
+		
+			$.ajax({
+                type: "POST",
+                url:'inc/ajax-handler.php',
+				data: {
+					"catdelbtn": catdelbtn,
+					"catcheckbx": catcheckbx	
+                },
+
+				success: function(response){
+					
+						//$("#cat_submit").removeAttr("disabled");
+						//$('#cat_in_form').find('input:text').val('');
+						//$("#cat_success").show();
+                        //$('#cat_success').html(response); 
+                        //$('#cat_success').fadeOut(3000).delay(1000);
+                        //catupdateDiv();
+                         alert(response);
+                
+                },
+                cache: false,
+            });
+             return false;
+		
+		
+	});
+    //End of delete categories data in database
 
 
 
