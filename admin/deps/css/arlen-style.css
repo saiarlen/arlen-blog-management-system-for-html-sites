@@ -39,3 +39,6 @@ aside.left-sidebar {
 div#cat_success {
     margin: 0;
 }
+.catdelcolor {
+    background-color: #ffa394 !important;
+}

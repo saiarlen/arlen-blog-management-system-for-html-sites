@@ -95,12 +95,8 @@ require_once("header.php");
                                     </tr>
                                 </thead>
                                
-
-                                
                                 <tbody  class="customtable">
-                                  
-
-                                   
+                                 
                                 <?php
                                 //Php script for retriving data from database
                                 
@@ -159,6 +155,8 @@ $(document).ready(function(){
         }, 1000);
     }
 
+     
+
     //For Submitting categories data to database
     $('#cat_submit').on('click', function(e) {
         e.preventDefault();
@@ -198,6 +196,13 @@ $(document).ready(function(){
 
 
     //For delete categories data in database
+    $(".customtable :checkbox").change(function () {
+        $(this).parent().parent().parent().toggleClass('ar_cs_del');
+     });
+     $("#mainCheckbox:checkbox").change(function () {
+        $(".customtable tr").toggleClass('ar_cs_del');
+     });//Functions for toggle classes during checkbox select
+
     $('#cat_delete').on('click', function(e) {
         e.preventDefault();
 		var catdelbtn = $('#cat_delete').val();
@@ -205,7 +210,7 @@ $(document).ready(function(){
         $("#catdel:checked").each(function(){
             catcheckbx.push(this.value);
         });
-		
+            if(catcheckbx.length !== 0){
 			$.ajax({
                 type: "POST",
                 url:'inc/ajax-handler.php',
@@ -215,19 +220,22 @@ $(document).ready(function(){
                 },
 
 				success: function(response){
-					
-						//$("#cat_submit").removeAttr("disabled");
-						//$('#cat_in_form').find('input:text').val('');
-						//$("#cat_success").show();
-                        //$('#cat_success').html(response); 
-                        //$('#cat_success').fadeOut(3000).delay(1000);
-                        //catupdateDiv();
-                         alert(response);
-                
+                    //$( "#catdel:checked" ).addClass( "catdelcolor" );
+					if(response == "YES"){
+                        $( ".ar_cs_del" ).addClass( "catdelcolor" );
+                        catupdateDiv();
+                    }else{
+                        alert(response);
+                    }
+
                 },
                 cache: false,
             });
              return false;
+            }
+            else {
+                alert("Please select one to delete");
+            }
 		
 		
 	});
