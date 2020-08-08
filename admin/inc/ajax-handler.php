@@ -89,6 +89,75 @@ if(isset($_POST['cat_update'])){
   /* ========================= End of Category page Functions =================================*/
 
 
+  /* ========================= Tags page Functions =================================*/
+ 
+
+ /* Insert tags into the database */
+if(isset($_POST["taginsertbtn"])){
+    $tagname=$_POST['tagname'];
+   
+
+    $query = mysqli_query($conn,"SELECT * FROM ar_tags WHERE tag_name='$tagname'");
+    $sql = "INSERT INTO ar_tags (tag_name) VALUES ('$tagname')";
+ 
+    //Response
+    //Checking to see if tag already exsist
+    if(mysqli_num_rows($query) > 0) {
+        echo "The name, " . $_POST['tagname'] . ", already exists.";
+        
+    }
+    elseif(!mysqli_query($conn, $sql)) {
+        echo "Could not insert";
+    }
+    else {
+        echo  $_POST['tagname'] . " is added";
+       
+    }
+ 
+    //Close connection
+    mysqli_close($conn);
+}
+
+/* For deleting tags */
+if(isset($_POST['tagdelbtn'])){
+  if(isset($_POST['tagcheckbx'])){
+    foreach($_POST['tagcheckbx'] as $deleteid){
+
+      $deletetag = "DELETE from ar_tags WHERE tag_id=".$deleteid;
+      mysqli_query($conn,$deletetag);
+    }
+    if(!mysqli_query($conn,$deletetag)){
+        echo "Could not be deleted please try again";
+    }
+    else {
+        echo "YES";
+    }
+  }
+ 
+}
+
+/* For updating tags */
+
+if(isset($_POST['tag_update'])){
+    $updatetagid = $_POST['tagid'];
+    $updatetagname=$_POST['tagname'];
+
+
+    $tag_update_dbsql = "UPDATE ar_tags SET tag_name='$updatetagname' WHERE tag_id=" . $updatetagid;
+
+    if (mysqli_query($conn, $tag_update_dbsql)) {
+    echo "Tag updated successfully";
+    } else {
+    echo "Error updating record: " . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+}
+
+
+  /* ========================= End of Tags page Functions =================================*/
+
+
 
 
 

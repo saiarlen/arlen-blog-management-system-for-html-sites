@@ -52,3 +52,13 @@ div#cat_success {
     width: 100%;
 }
 }
+.ar-min-ht-tag {
+    min-height: 390px;
+    width: 100%;
+}
+@media (max-width: 767px){
+    .ar-min-ht-tag {
+    min-height: 100px;
+    width: 100%;
+}
+}

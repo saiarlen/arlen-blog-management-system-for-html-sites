@@ -35,27 +35,27 @@ require_once("header.php");
 <div class="col-md-4">
     <div class="container-fluid">
         <div class="card" style="margin-bottom:0">
-            <form id="cat_in_form" class="form-horizontal" method="POST">
+            <form id="tag_in_form" class="form-horizontal" method="POST">
                 <div class="card-body">
                     <h4 class="card-title">Add New Tag</h4>
                     <div class="form-group row">
-                        <label for="catname" class="col-sm-3 text-right control-label col-form-label">Name</label>
+                        <label for="tagname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="catname" id="catname" placeholder="Category Name Here" required>
+                            <input type="text" class="form-control" name="tagname" id="tagname" placeholder="Tag Name Here" required>
                             <span class="f-span-text">The tag name is how it appears on your site.</span>
                         </div>
                     </div>
                 </div>
                 <div class="border-top">
                     <div class="card-body">
-                        <button id="cat_submit" type="submit" value="insert" class="btn btn-info">Add New</button>
+                        <button id="tag_submit" type="submit" value="insert" class="btn btn-info">Add New</button>
                     </div>
                     
                 </div>
                 
             </form>
         </div>
-        <div class="alert alert-success alert-dismissible" id="cat_success" style="display:none;"></div>
+        <div class="alert alert-success alert-dismissible" id="tag_success" style="display:none;"></div>
     </div>
     
 </div>
@@ -70,7 +70,7 @@ require_once("header.php");
                         <div class="table-responsive">
                         <form method="POST" action="">
                             <table id="zero_config" class="table table-striped table-bordered">
-                             <button type="submit" value='Delete' name='cat_delete' id="cat_delete" class="btn btn-light btn-sm ar-bt-pos">Delete</button>
+                             <button type="submit" value='Delete' name='tag_delete' id="tag_delete" class="btn btn-light btn-sm ar-bt-pos">Delete</button>
                                 <thead>
                                     <tr>
                                        <th>
@@ -91,24 +91,24 @@ require_once("header.php");
                                 <?php
                                 //Php script for retriving data from database
                                 
-                                    $cat_query = "SELECT * FROM ar_categories ORDER BY id DESC";
-                                    $cat_final_all_data = $conn->query($cat_query);
+                                    $tag_query = "SELECT * FROM ar_tags ORDER BY tag_id DESC";
+                                    $tag_final_all_data = $conn->query($tag_query);
 
-                                    if ($cat_final_all_data->num_rows > 0) {
+                                    if ($tag_final_all_data->num_rows > 0) {
                                         // output data of each row
-                                        while($row = $cat_final_all_data->fetch_assoc()) {
+                                        while($row = $tag_final_all_data->fetch_assoc()) {
                                         ?>
 
                                             <tr>
                                                 <th>
                                                     <label class="customcheckbox">
-                                                        <input type="checkbox" name='delete[]' id="catdel" value="<?php echo $row["id"]; ?>" class="listCheckbox">
+                                                        <input type="checkbox" name='delete[]' id="tagdel" value="<?php echo $row["tag_id"]; ?>" class="listCheckbox">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </th>
-                                                <td><?php echo $row["cat_name"]; ?></td>
+                                                <td><?php echo $row["tag_name"]; ?></td>
                                                 <td>1</td>
-                                                <th><a href="edit.php?type=category&id=<?php echo $row["id"]; ?>" class="btn btn-dark btn-sm">Edit</a></th>
+                                                <th><a href="tag-edit.php?type=tag&id=<?php echo $row["tag_id"]; ?>" class="btn btn-dark btn-sm">Edit</a></th>
                                                 
                                             </tr>
                                             
@@ -139,41 +139,36 @@ require_once("header.php");
 $(document).ready(function(){
 
     //for page reload call
-    function catupdateDiv(){ 
+    function tagupdateDiv(){ 
         setTimeout(function() {
             location.reload(true);
         }, 1000);
     }
 
-     
-
-    //For Submitting categories data to database
-    $('#cat_submit').on('click', function(e) {
+    //For Submitting tags data to database
+    $('#tag_submit').on('click', function(e) {
         e.preventDefault();
-        $("#cat_submit").attr("disabled", "disabled");
-		var catname = $('#catname').val();
-		var catslgname = $('#catslgname').val();
-        var catinsertbtn = $('#cat_submit').val();
+        $("#tag_submit").attr("disabled", "disabled");
+		var tagname = $('#tagname').val();
+        var taginsertbtn = $('#tag_submit').val();
 
 		
-		if(catname!="" && catslgname!=""){
+		if(tagname!=""){
 			$.ajax({
                 type: "POST",
                 url:'inc/ajax-handler.php',
 				data: {
-                    "catinsertbtn": catinsertbtn,
-					"catname": catname,
-					"catslgname": catslgname	
+                    "taginsertbtn": taginsertbtn,
+					"tagname": tagname	
                 },
 
 				success: function(response){
 					
-						$("#cat_submit").removeAttr("disabled");
-						$('#cat_in_form').find('input:text').val('');
-						$("#cat_success").show();
-                        $('#cat_success').html(response); 
-                        //$('#cat_success').fadeOut(3000).delay(1000);
-                        catupdateDiv();
+						$("#tag_submit").removeAttr("disabled");
+						$('#tag_in_form').find('input:text').val('');
+						$("#tag_success").show();
+                        $('#tag_success').html(response); 
+                        tagupdateDiv();
                         
                 
                 },
@@ -182,14 +177,14 @@ $(document).ready(function(){
              return false;
 		}
 		else{
-            alert('Please Enter Category or Slug Name !');
-            $("#cat_submit").removeAttr("disabled");
+            alert('Please Enter Tag Name !');
+            $("#tag_submit").removeAttr("disabled");
 		}
 	});
     // End of submitting data to database
 
 
-    //For delete categories data in database
+    //For delete tags data in database
     $(".customtable :checkbox").change(function () {
         $(this).parent().parent().parent().toggleClass('ar_cs_del');
      });
@@ -197,27 +192,26 @@ $(document).ready(function(){
         $(".customtable tr").toggleClass('ar_cs_del');
      });//Functions for toggle classes during checkbox select
 
-    $('#cat_delete').on('click', function(e) {
+    $('#tag_delete').on('click', function(e) {
         e.preventDefault();
-		var catdelbtn = $('#cat_delete').val();
-		var catcheckbx = [];
-        $("#catdel:checked").each(function(){
-            catcheckbx.push(this.value);
+		var tagdelbtn = $('#tag_delete').val();
+		var tagcheckbx = [];
+        $("#tagdel:checked").each(function(){
+            tagcheckbx.push(this.value);
         });
-            if(catcheckbx.length !== 0){
+            if(tagcheckbx.length !== 0){
 			$.ajax({
                 type: "POST",
                 url:'inc/ajax-handler.php',
 				data: {
-					"catdelbtn": catdelbtn,
-					"catcheckbx": catcheckbx	
+					"tagdelbtn": tagdelbtn,
+					"tagcheckbx": tagcheckbx	
                 },
 
 				success: function(response){
-                    //$( "#catdel:checked" ).addClass( "catdelcolor" );
 					if(response == "YES"){
                         $( ".ar_cs_del" ).addClass( "catdelcolor" );
-                        catupdateDiv();
+                        tagupdateDiv();
                     }else{
                         alert(response);
                     }
@@ -233,7 +227,7 @@ $(document).ready(function(){
 		
 		
 	});
-    //End of delete categories data in database
+    //End of delete tags data in database
 
 
 

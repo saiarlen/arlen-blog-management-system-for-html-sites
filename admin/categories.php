@@ -118,7 +118,7 @@ require_once("header.php");
                                                 <td><?php echo $row["cat_name"]; ?></td>
                                                 <td><?php echo $row["cat_slug"]; ?></td>
                                                 <td>1</td>
-                                                <th><a href="edit.php?type=category&id=<?php echo $row["id"]; ?>" class="btn btn-dark btn-sm">Edit</a></th>
+                                                <th><a href="category-edit.php?type=category&id=<?php echo $row["id"]; ?>" class="btn btn-dark btn-sm">Edit</a></th>
                                                 
                                             </tr>
                                             

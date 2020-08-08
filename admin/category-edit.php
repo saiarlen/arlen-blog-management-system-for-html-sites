@@ -64,7 +64,7 @@ mysqli_close($conn);
                     <div class="card-body">
                         <h4 class="card-title">Edit the Category</h4>
                         <div class="form-group row">
-                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Name</label>
+                            <label for="catname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="catname" id="catname" value="<?php echo $cat_update_name ?>" required>
                                 <input type="hidden" class="form-control" name="catid" id="catid" value="<?php echo $cat_update_id ?>" required>
@@ -73,7 +73,7 @@ mysqli_close($conn);
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Slug</label>
+                            <label for="catslgname" class="col-sm-3 text-right control-label col-form-label">Slug</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="catslgname" id="catslgname" value="<?php echo $cat_update_slug ?>" autocomplete="off" required>
                                 <span class="f-span-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens. it can be same name as category.</span>
@@ -161,7 +161,6 @@ $(document).ready(function(){
 <!-- ============================================================== -->
 <!-- End of categories edit -->
 <!-- ============================================================== -->
-
 
 
 
