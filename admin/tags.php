@@ -1,13 +1,13 @@
 <?php
 /*
- * Categories page
- * This page used for managing Categories
+ * Tags page
+ * This page used for managing tags
  * @author    Saiarlen
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-$page_title= "Categories"; //page-title
+$page_title= "Tags"; //page-title
 require_once("header.php");
 
 ?>
@@ -17,12 +17,12 @@ require_once("header.php");
 <div class="page-breadcrumb" style="margin-bottom: 15px;">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Categories</h4>
+            <h4 class="page-title">Tags</h4>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                        <li class="breadcrumb-item active" aria-current="page">Tags</li>
                     </ol>
                 </nav>
             </div>
@@ -37,20 +37,12 @@ require_once("header.php");
         <div class="card" style="margin-bottom:0">
             <form id="cat_in_form" class="form-horizontal" method="POST">
                 <div class="card-body">
-                    <h4 class="card-title">Add New Category</h4>
+                    <h4 class="card-title">Add New Tag</h4>
                     <div class="form-group row">
                         <label for="catname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="catname" id="catname" placeholder="Category Name Here" required>
-                            <span class="f-span-text">The name is how it appears on your site.</span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="catslgname" class="col-sm-3 text-right control-label col-form-label">Slug</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="catslgname" id="catslgname" placeholder="Slug Here" autocomplete="off" required>
-                            <span class="f-span-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens. it can be same name as category.</span>
-
+                            <span class="f-span-text">The tag name is how it appears on your site.</span>
                         </div>
                     </div>
                 </div>
@@ -88,7 +80,6 @@ require_once("header.php");
                                             </label>
                                         </th>
                                         <th><strong>Name</strong></th>
-                                        <th><strong>Slug</strong></th>
                                         <th><strong>Count</strong></th>
                                         <th></th>
                                        
@@ -116,7 +107,6 @@ require_once("header.php");
                                                     </label>
                                                 </th>
                                                 <td><?php echo $row["cat_name"]; ?></td>
-                                                <td><?php echo $row["cat_slug"]; ?></td>
                                                 <td>1</td>
                                                 <th><a href="edit.php?type=category&id=<?php echo $row["id"]; ?>" class="btn btn-dark btn-sm">Edit</a></th>
                                                 

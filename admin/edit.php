@@ -153,7 +153,11 @@ $(document).ready(function(){
 });
 
 </script>
-
+<?php
+}else{
+    echo "<script>alert('Something Went Wrong! Please try Again.');location.href = 'categories.php';</script>";
+}
+?>
 <!-- ============================================================== -->
 <!-- End of categories edit -->
 <!-- ============================================================== -->
@@ -161,8 +165,4 @@ $(document).ready(function(){
 
 
 
-<?php 
-}else{
-    echo "<script>alert('Something Went Wrong! Please try Again.');location.href = 'categories.php';</script>";
-}
-require_once("footer.php"); ?>
+<?php require_once("footer.php"); ?>
