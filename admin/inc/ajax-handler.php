@@ -14,7 +14,7 @@
  
 
  /* Insert categories into the database */
-if(isset($_POST["catname"])){
+if(isset($_POST["catinsertbtn"])){
     $catname=$_POST['catname'];
     $catslgname=$_POST['catslgname'];
     if($catslgname == " "){
@@ -62,6 +62,29 @@ if(isset($_POST['catdelbtn'])){
   }
  
 }
+
+/* For updating categories */
+
+if(isset($_POST['cat_update'])){
+    $updatecatid = $_POST['catid'];
+    $updatecatname=$_POST['catname'];
+    $updatecatslgname=$_POST['catslgname'];
+
+    $catslgnameupdate = strtolower($updatecatslgname);
+    $final_update_catslgname = preg_replace('#[ -]+#', '-', $catslgnameupdate);
+    $final_update_catslgname = urlencode($final_update_catslgname);
+
+    $cat_update_dbsql = "UPDATE ar_categories SET cat_name='$updatecatname', cat_slug='$final_update_catslgname' WHERE id=" . $updatecatid;
+
+    if (mysqli_query($conn, $cat_update_dbsql)) {
+    echo "Category updated successfully";
+    } else {
+    echo "Error updating record: " . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+}
+
 
   /* ========================= End of Category page Functions =================================*/
 

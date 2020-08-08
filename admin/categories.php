@@ -56,7 +56,7 @@ require_once("header.php");
                 </div>
                 <div class="border-top">
                     <div class="card-body">
-                        <button id="cat_submit" type="submit" class="btn btn-info">Add New</button>
+                        <button id="cat_submit" type="submit" value="insert" class="btn btn-info">Add New</button>
                     </div>
                     
                 </div>
@@ -163,12 +163,15 @@ $(document).ready(function(){
         $("#cat_submit").attr("disabled", "disabled");
 		var catname = $('#catname').val();
 		var catslgname = $('#catslgname').val();
+        var catinsertbtn = $('#cat_submit').val();
+
 		
 		if(catname!="" && catslgname!=""){
 			$.ajax({
                 type: "POST",
                 url:'inc/ajax-handler.php',
 				data: {
+                    "catinsertbtn": catinsertbtn,
 					"catname": catname,
 					"catslgname": catslgname	
                 },
@@ -181,6 +184,7 @@ $(document).ready(function(){
                         $('#cat_success').html(response); 
                         //$('#cat_success').fadeOut(3000).delay(1000);
                         catupdateDiv();
+                        
                 
                 },
                 cache: false,

@@ -42,3 +42,13 @@ div#cat_success {
 .catdelcolor {
     background-color: #ffa394 !important;
 }
+.ar-min-ht {
+    min-height: 280px;
+    width: 100%;
+}
+@media (max-width: 767px){
+    .ar-min-ht {
+    min-height: 80px;
+    width: 100%;
+}
+}
