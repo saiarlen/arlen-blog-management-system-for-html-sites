@@ -37,6 +37,8 @@ if(!isset($_SESSION["username"])){
     <link href="deps/css/bootstrap.css" rel="stylesheet">
     <link href="deps/css/animate.css" rel="stylesheet">
     <link href="deps/css/dashboard.css" rel="stylesheet">
+     <link href="deps/css/select2.min.css" rel="stylesheet">
+    <link href="deps/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="deps/css/arlen-style.css" rel="stylesheet">
 
     <!-- Jquery -->
@@ -237,7 +239,7 @@ if(!isset($_SESSION["username"])){
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="media.php" aria-expanded="false"><i class="mdi mdi-folder-image"></i><span class="hide-menu">Media</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil-box"></i><span class="hide-menu">Posts </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Add New </span></a></li>
+                                <li class="sidebar-item"><a href="post-add-new.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Add New </span></a></li>
                                 <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-multiple"></i><span class="hide-menu"> All Posts </span></a></li>
                             </ul>
                         </li>

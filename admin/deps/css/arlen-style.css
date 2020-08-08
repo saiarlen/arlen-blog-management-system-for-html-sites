@@ -1,64 +1,99 @@
 /* All Styles */
 
 header.topbar {
-    position: fixed;
-    width: 100%;
+  position: fixed;
+  width: 100%;
 }
 
 aside.left-sidebar {
-    position: fixed;
+  position: fixed;
 }
 
 #main-wrapper .page-wrapper {
-    margin-left: 250px;
-    margin-top: 60px;
+  margin-left: 250px;
+  margin-top: 60px;
 }
 
 @media (max-width: 766px) {
-    #main-wrapper .page-wrapper {
-        margin-left: 0px;
-        margin-top: 60px;
-    }
+  #main-wrapper .page-wrapper {
+    margin-left: 0px;
+    margin-top: 60px;
+  }
 }
 
 .media-wrapper {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 .f-span-text {
-    font-size: 12px;
-    color: #666666;
-    font-style: italic;
+  font-size: 12px;
+  color: #666666;
+  font-style: italic;
 }
 
 .ar-bt-pos {
-    position: absolute;
-    top: 42px;
-    left: 115px;
-    z-index: 1;
+  position: absolute;
+  top: 42px;
+  left: 115px;
+  z-index: 1;
 }
 div#cat_success {
-    margin: 0;
+  margin: 0;
 }
 .catdelcolor {
-    background-color: #ffa394 !important;
+  background-color: #ffa394 !important;
 }
 .ar-min-ht {
-    min-height: 280px;
-    width: 100%;
+  min-height: 280px;
+  width: 100%;
 }
-@media (max-width: 767px){
-    .ar-min-ht {
+@media (max-width: 767px) {
+  .ar-min-ht {
     min-height: 80px;
     width: 100%;
-}
+  }
 }
 .ar-min-ht-tag {
-    min-height: 390px;
-    width: 100%;
+  min-height: 390px;
+  width: 100%;
 }
-@media (max-width: 767px){
-    .ar-min-ht-tag {
+@media (max-width: 767px) {
+  .ar-min-ht-tag {
     min-height: 100px;
     width: 100%;
+  }
 }
+.select2-container--classic .select2-selection--single,
+.select2-container--default .select2-selection--multiple,
+.select2-container--default .select2-selection--single,
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__arrow,
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__rendered {
+  border-color: #e9ecef;
+  height: 40px;
+  color: #3e5569;
+  line-height: 40px;
+}
+.select2-container--default .select2-selection--multiple {
+  line-height: 27px;
+}
+.select2-container--classic
+  .select2-selection--multiple
+  .select2-selection__choice,
+.select2-container--default
+  .select2-selection--multiple
+  .select2-selection__choice,
+.select2-container--default
+  .select2-selection--multiple
+  .select2-selection__choice__remove {
+  background-color: #2255a4;
+  border-color: #2255a4;
+  color: #fff;
+}
+.post-btn {
+    float: right;
+    margin-top: 20px;
+    margin-left: 10px;
 }
