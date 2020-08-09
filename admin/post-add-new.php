@@ -50,25 +50,39 @@ require_once("header.php");
                         <div class="form-group row">
                             <label>Select Categories</label>
                             <select class="select2 form-control m-t-15" multiple="multiple" name="p-cat[]" id="p-cat" style="height: 36px;width: 100%;">
-                                <optgroup label="Pacific Time Zone">
-                                    <option value="CA">California</option>
-                                    <option value="NV">Nevada</option>
-                                    <option value="OR">Oregon</option>
-                                    <option value="WA">Washington</option>
-                                </optgroup>
-                
+                             <?php 
+                                $cat_query = "SELECT * FROM ar_categories ORDER BY id DESC";
+                                $cat_final_all_data = $conn->query($cat_query);
+
+                                if ($cat_final_all_data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $cat_final_all_data->fetch_assoc()) {
+                             ?>  
+                                    <option value="<?php echo $row["id"]; ?>"><?php echo $row["cat_name"]; ?></option>
+                            <?php
+                                    }
+                                }
+                            ?>
                             </select>
                         </div>
                             <div class="form-group row">
                             <label>Select Tags</label>
                             <select class="select2 form-control m-t-15" multiple="multiple" name="p-tag[]" id="p-tag" style="height: 36px;width: 100%;">
-                                <optgroup label="Pacific Time Zone">
-                                    <option value="CA">California</option>
-                                    <option value="NV">Nevada</option>
-                                    <option value="OR">Oregon</option>
-                                    <option value="WA">Washington</option>
-                                </optgroup>
-                
+                                <?php
+                                    $tag_query = "SELECT * FROM ar_tags ORDER BY tag_id DESC";
+                                    $tag_final_all_data = $conn->query($tag_query);
+
+                                    if ($tag_final_all_data->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $tag_final_all_data->fetch_assoc()) {
+                                ?>
+                                    <option value="<?php echo $row["tag_id"]; ?>"><?php echo $row["tag_name"]; ?></option>
+                                
+                                <?php
+                                        }
+                                    }
+                                ?>
+                               
                             </select>
                         </div>
                     </div> 
@@ -120,8 +134,8 @@ require_once("header.php");
                             <div class="col-md-8">
                                 <label>Set Featured Image</label>
                                 <div class="input-group">
-                                    <input type="text" id="txtSelectedFile" name="p-image" class="form-control" placeholder="Post Image" onclick="openCustomRoxy2()">
-                                <!--  <label class="custom-file-label" for="validatedCustomFile">Choose file...</label> -->
+                                    <input type="text" id="txtSelectedFile" name="p-image" placeholder="Post Image" class="form-control">
+                               
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="basic-addon2"></span>
                                     </div>
@@ -132,13 +146,13 @@ require_once("header.php");
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <img src="deps/img/tumb.jpg" id="post-tmb" alt="post">
+                                <img src="deps/img/tumb.jpg" id="postTumb" alt="post">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <a href="all-posts.php" class="btn btn-secondary post-btn">View All Posts</a>
-                        <button id="post_submit" type="submit" value="post_insert" class="btn btn-info post-btn">Add New</button>
+                        <button id="post_submit" type="submit" name="post_submit" value="post_insert" class="btn btn-info post-btn">Add New</button>
                         
                     </div>
                 </div>
@@ -156,7 +170,9 @@ require_once("header.php");
 <script src="deps/js/select2.min.js"></script>
 <script src="deps/js/bootstrap-datepicker.min.js"></script>
 <script src="deps/ckeditor/ckeditor.js"></script>
+
 <script>
+
     $(".select2").select2();
     $('#datepicker-autoclose').datepicker({
         autoclose: true,
@@ -164,12 +180,17 @@ require_once("header.php");
     });
 
     //file browser init
-    function openCustomRoxy2(){
-    $('#roxyCustomPanel2').dialog({modal:true, width:700,height:500});
-    }
+
+
+    $('#txtSelectedFile').click(function(){
+        $('#roxyCustomPanel2').dialog({modal:true, width:700,height:500});
+         
+    });
     function closeCustomRoxy2(){
     $('#roxyCustomPanel2').dialog('close');
-    }
+      var inputVal = $('#txtSelectedFile').val();
+      $('#postTumb').attr('src', inputVal);
+    };
 
     //CKEDIT init
     var roxyFileman = 'deps/fileman/media.html'; 
@@ -178,9 +199,11 @@ require_once("header.php");
         filebrowserImageBrowseUrl:roxyFileman+'?type=image',
         removeDialogTabs: 'link:upload;image:upload'}); 
     });
-    
-     
+
 </script>
+
+
+
 
 
 

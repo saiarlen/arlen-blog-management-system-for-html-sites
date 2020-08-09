@@ -100,7 +100,7 @@ div#cat_success {
 .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
     height: 0 !important;
     top: -614.3px !important;
-    z-index: 1 !important;
+    z-index: 10 !important;
 }
 button.ui-dialog-titlebar-close::before {
     content: "\F156";
@@ -135,6 +135,6 @@ button.ui-dialog-titlebar-close{
     transform: translate(0, 0);
 }
 
-img#post-tmb {
+img#postTumb {
     height: 75px;
 }
