@@ -38,9 +38,9 @@ require_once("header.php");
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="GET">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group row">
@@ -75,7 +75,7 @@ require_once("header.php");
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-5">
                  <div class="card">
                     <div class="card-body">
                         <div class="form-group row">
@@ -116,18 +116,24 @@ require_once("header.php");
                 <div class="row ">
             
                     <div class="col-md-6">
-                        <div class="form-group row">
-                            <label>Set Featured Image</label>
-                           
-                            <div class="custom-file">
-                                <input type="text" class="custom-file-input" id="txtSelectedFile" required>
-                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                                <div id="roxyCustomPanel2" style="display: none;">
-                                <iframe src="deps/fileman/media.html?integration=custom&type=files&txtFieldId=txtSelectedFile" style="width:100%;height:100%" frameborder="0">
-                                </iframe>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label>Set Featured Image</label>
+                                <div class="input-group">
+                                    <input type="text" id="txtSelectedFile" name="p-image" class="form-control" placeholder="Post Image" onclick="openCustomRoxy2()">
+                                <!--  <label class="custom-file-label" for="validatedCustomFile">Choose file...</label> -->
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2"></span>
+                                    </div>
+                                    <div id="roxyCustomPanel2" style="display: none;">
+                                        <iframe src="deps/fileman/media.html?integration=custom&type=files&txtFieldId=txtSelectedFile" style="width:100%;height:100%" frameborder="0">
+                                        </iframe>
+                                    </div>
                                 </div>
                             </div>
-                            
+                            <div class="col-md-4">
+                                <img src="deps/img/tumb.jpg" id="post-tmb" alt="post">
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -156,15 +162,22 @@ require_once("header.php");
         autoclose: true,
         todayHighlight: true
     });
+
+    //file browser init
     function openCustomRoxy2(){
-    $('#roxyCustomPanel2').dialog({modal:true, width:875,height:600});
+    $('#roxyCustomPanel2').dialog({modal:true, width:700,height:500});
     }
     function closeCustomRoxy2(){
     $('#roxyCustomPanel2').dialog('close');
     }
 
     //CKEDIT init
-    CKEDITOR.replace( 'editor1' );
+    var roxyFileman = 'deps/fileman/media.html'; 
+    $(function(){
+    CKEDITOR.replace( 'editor1',{filebrowserBrowseUrl:roxyFileman,
+        filebrowserImageBrowseUrl:roxyFileman+'?type=image',
+        removeDialogTabs: 'link:upload;image:upload'}); 
+    });
     
      
 </script>

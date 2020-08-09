@@ -97,3 +97,44 @@ div#cat_success {
     margin-top: 20px;
     margin-left: 10px;
 }
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
+    height: 0 !important;
+    top: -614.3px !important;
+    z-index: 1 !important;
+}
+button.ui-dialog-titlebar-close::before {
+    content: "\F156";
+    display: inline-block;
+    font: normal normal normal 24px/1 "Material Design Icons";
+    font-size: inherit;
+    text-rendering: auto;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+
+button.ui-dialog-titlebar-close{
+  
+    border-radius: 0px;
+    color: #fff;
+    background-color: #da542e;
+    border-color: #da542e;
+    border: none !important;
+    outline: none;;
+}
+#basic-addon2::before {
+  content: "\F21F";
+  display: inline-block;
+    font: normal normal normal 24px/1 "Material Design Icons";
+    font-size: inherit;
+    text-rendering: auto;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+
+img#post-tmb {
+    height: 75px;
+}

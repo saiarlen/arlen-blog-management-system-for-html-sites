@@ -36,6 +36,6 @@ window.onload = function disFunction() {
 }
 </script>
 <div class="media-wrapper">
-    <iframe id="myFrame" src="deps/fileman/media.html" title="filemanager" frameborder="0" style="overflow:hidden;min-height:75vh;height:75vh;width:100%" height="100%" width="100%"></iframe>
+    <iframe id="myFrame" src="deps/fileman/media.html" title="filemanager" frameborder="0" style="overflow:hidden;min-height:80vh;height:75vh;width:100%" height="100%" width="100%"></iframe>
 </div>
 <?php require_once("footer.php"); ?>

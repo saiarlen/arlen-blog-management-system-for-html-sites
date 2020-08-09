@@ -8,7 +8,7 @@
     "PREVIEW_THUMB_HEIGHT": "80",
     "MAX_IMAGE_WIDTH": "1000",
     "MAX_IMAGE_HEIGHT": "1000",
-    "INTEGRATION": "custom",
+    "INTEGRATION": "ckeditor",
     "DIRLIST": "php/dirtree.php",
     "CREATEDIR": "php/createdir.php",
     "DELETEDIR": "php/deletedir.php",
