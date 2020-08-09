@@ -104,15 +104,7 @@ require_once("header.php");
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Quill Editor</h4>
-                        <!-- Create the editor container -->
-                        <div id="editor" style="height: 300px;">
-                            <p>Hello World!</p>
-                            <p>Some initial <strong>bold</strong> text</p>
-                            <p>
-                                <br>
-                            </p>
-                        </div>
+                       <textarea name="editor1"></textarea>
                     </div>
                 </div>
             </div>
@@ -128,9 +120,12 @@ require_once("header.php");
                             <label>Set Featured Image</label>
                            
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                <input type="text" class="custom-file-input" id="txtSelectedFile" required>
                                 <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                                <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                <div id="roxyCustomPanel2" style="display: none;">
+                                <iframe src="deps/fileman/media.html?integration=custom&type=files&txtFieldId=txtSelectedFile" style="width:100%;height:100%" frameborder="0">
+                                </iframe>
+                                </div>
                             </div>
                             
                         </div>
@@ -154,12 +149,24 @@ require_once("header.php");
 <script src="deps/js/select2.full.min.js"></script>
 <script src="deps/js/select2.min.js"></script>
 <script src="deps/js/bootstrap-datepicker.min.js"></script>
+<script src="deps/ckeditor/ckeditor.js"></script>
 <script>
     $(".select2").select2();
     $('#datepicker-autoclose').datepicker({
         autoclose: true,
         todayHighlight: true
     });
+    function openCustomRoxy2(){
+    $('#roxyCustomPanel2').dialog({modal:true, width:875,height:600});
+    }
+    function closeCustomRoxy2(){
+    $('#roxyCustomPanel2').dialog('close');
+    }
+
+    //CKEDIT init
+    CKEDITOR.replace( 'editor1' );
+    
+     
 </script>
 
 
