@@ -69,7 +69,7 @@ mysqli_close($conn);
                                 <input type="text" class="form-control" name="catname" id="catname" value="<?php echo $cat_update_name ?>" required>
                                 <input type="hidden" class="form-control" name="catid" id="catid" value="<?php echo $cat_update_id ?>" required>
 
-                                <span class="f-span-text">The name is how it appears on your site.</span>
+                                <span class="f-span-text">The name is how it appears on your site. Special characters not allowed</span>
                             </div>
                         </div>
                         <div class="form-group row">

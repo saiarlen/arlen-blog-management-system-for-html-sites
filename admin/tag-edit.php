@@ -71,7 +71,7 @@ mysqli_close($conn);
                                 <input type="text" class="form-control" name="tagname" id="tagname" value="<?php echo $tag_update_name ?>" required>
                                 <input type="hidden" class="form-control" name="tagid" id="tagid" value="<?php echo $tag_update_id ?>" required>
 
-                                <span class="f-span-text">The name is how it appears on your site.</span>
+                                <span class="f-span-text">The name is how it appears on your site. Special characters not allowed</span>
                             </div>
                         </div>
                     </div>

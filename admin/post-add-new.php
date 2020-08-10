@@ -103,7 +103,7 @@ require_once("header.php");
                         <div class="row">
                             <label>Select Post Date <small class="text-muted">Optional</small></label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="datepicker-autoclose" id="datepicker-autoclose" placeholder="mm/dd/yyyy">
+                                <input type="text" class="form-control" name="datepicker-autoclose" id="datepicker-autoclose" placeholder="yyyy/dd/mm">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -176,7 +176,8 @@ require_once("header.php");
     $(".select2").select2();
     $('#datepicker-autoclose').datepicker({
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        format: 'yyyy/dd/mm',
     });
 
     //file browser init
@@ -205,56 +206,61 @@ require_once("header.php");
 <?php 
 /* Insert post into the database */
 if(isset($_POST["post_submit"])){
-    $p_title=$_POST['p-title'];
-    $p_cats=$_POST['p-cat'];
-    $p_tags=$_POST['p-tag'];
-    $p_kws=$_POST['p-keywords'];
-    $p_des=$_POST['p-des'];
-    $p_date=$_POST['datepicker-autoclose'];
-    $p_content=$_POST['editor1'];
-    $p_img=$_POST['p-image'];
+    $p_title = mysqli_real_escape_string($conn, $_POST['p-title']);
+
+    if(!empty($_POST['p-cat'])){
+        $p_cats = $_POST['p-cat'];
+        $p_catarray = implode(', ', $p_cats);
+    }else{
+        $p_catarray = NULL;
+    }
+    if(!empty($_POST['p-tag'])){
+        $p_tags = $_POST['p-tag'];
+        $p_tagarray = implode(', ', $p_tags);
+    }else{
+        $p_tagarray = NULL;
+    }
+
+    $p_kws = mysqli_real_escape_string($conn, $_POST['p-keywords']);
+    $p_des = mysqli_real_escape_string($conn, $_POST['p-des']);
+    $p_date = $_POST['datepicker-autoclose'];
+    $p_content = $_POST['editor1'];
+    $p_img = $_POST['p-image'];
 
     //test the received values if empty
     if(empty($p_title)){
         $p_title = "Unnamed Post" . rand(1,100);
     }
-    if(empty($p_cats)){
-        $p_cats = "";
-    }
-    if(empty($p_tags)){
-        $p_tags = "";
-    }
-    if(empty($p_date)){
-        $p_date = date("m/d/y");
+    if($p_date == ""){
+        $p_date = date("y/d/m");
     }
     if(empty($p_content)){
         $p_content = "Need to add some content";
     }
 
+
     //Url Conversion
     $pa_url = strtolower($p_title);
-    $p_url = preg_replace('#[ -]+#', '-', $pa_url);
-    $p_url = urlencode($p_url);
+    $p_url = preg_replace("/[^a-z0-9_\s-]/", "", $pa_url);
+    $p_url = preg_replace("/[\s-]+/", " ", $p_url);
+    $p_url = preg_replace("/[\s_]/", "-", $p_url);
 
-    //$p_catarray = implode(',', $p_cats);
-    //$p_tagarray = implode(',', $$p_tags);
-    print_r($p_cats);
 
     $psql = "INSERT INTO ar_posts (
         post_title, 
-        post_url, 
-        post_category, 
-        post_tags, 
+        post_url,
+        post_category,
+        post_tags,
         post_kws, 
         post_des, 
         post_date, 
         post_content, 
         post_img) 
         VALUES (
-            $p_title', 
-            '$p_url', 
-            '" . $p_catarray . "',
-            '" . $p_tagarray . "',
+            '$p_title', 
+            '$p_url',
+            '$p_catarray',
+            '$p_tagarray',
             '$p_kws',
             '$p_des',
             '$p_date',
@@ -262,7 +268,7 @@ if(isset($_POST["post_submit"])){
             '$p_img')";
  
     if(!mysqli_query($conn, $psql)) {
-        echo "Could not insert";
+        echo "Could not insert" . mysqli_error($conn);
     }
     else {
         echo  "done";

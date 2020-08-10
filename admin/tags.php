@@ -42,7 +42,7 @@ require_once("header.php");
                         <label for="tagname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="tagname" id="tagname" placeholder="Tag Name Here" required>
-                            <span class="f-span-text">The tag name is how it appears on your site.</span>
+                            <span class="f-span-text">The tag name is how it appears on your site. Special characters not allowed</span>
                         </div>
                     </div>
                 </div>

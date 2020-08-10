@@ -42,7 +42,7 @@ require_once("header.php");
                         <label for="catname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="catname" id="catname" placeholder="Category Name Here" required>
-                            <span class="f-span-text">The name is how it appears on your site.</span>
+                            <span class="f-span-text">The name is how it appears on your site. Special characters not allowed </span>
                         </div>
                     </div>
                     <div class="form-group row">
