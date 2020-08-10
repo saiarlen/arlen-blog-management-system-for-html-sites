@@ -38,7 +38,8 @@ require_once("header.php");
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-    <form class="form-horizontal" method="POST">
+    <div id="post_res" class="alert alert-success" role="alert" style="display:none;">Post Saved Successfully</div>
+    <form id="post_form" class="form-horizontal" method="POST">
         <div class="row">
             <div class="col-md-7">
                 <div class="card">
@@ -182,7 +183,6 @@ require_once("header.php");
 
     //file browser init
 
-
     $('#txtSelectedFile').click(function(){
         $('#roxyCustomPanel2').dialog({modal:true, width:700,height:500});
          
@@ -200,6 +200,22 @@ require_once("header.php");
         filebrowserImageBrowseUrl:roxyFileman+'?type=image',
         removeDialogTabs: 'link:upload;image:upload'}); 
     });
+
+    //for response oon submit
+
+    function postResponse() {
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+            }
+        $('#post_form')[0].reset();
+        $("#post_res").show();
+        setTimeout(
+            function() 
+            {
+                $('#post_res').fadeOut(500);
+            }, 3000);
+        
+    };
 
 </script>
 
@@ -271,7 +287,7 @@ if(isset($_POST["post_submit"])){
         echo "Could not insert" . mysqli_error($conn);
     }
     else {
-        echo  "done";
+        echo  "<script>postResponse();</script>";
        
     }
  
