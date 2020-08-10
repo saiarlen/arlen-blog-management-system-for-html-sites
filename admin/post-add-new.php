@@ -38,7 +38,7 @@ require_once("header.php");
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-    <form class="form-horizontal" method="GET">
+    <form class="form-horizontal" method="POST">
         <div class="row">
             <div class="col-md-7">
                 <div class="card">
@@ -202,8 +202,78 @@ require_once("header.php");
 
 </script>
 
+<?php 
+/* Insert post into the database */
+if(isset($_POST["post_submit"])){
+    $p_title=$_POST['p-title'];
+    $p_cats=$_POST['p-cat'];
+    $p_tags=$_POST['p-tag'];
+    $p_kws=$_POST['p-keywords'];
+    $p_des=$_POST['p-des'];
+    $p_date=$_POST['datepicker-autoclose'];
+    $p_content=$_POST['editor1'];
+    $p_img=$_POST['p-image'];
 
+    //test the received values if empty
+    if(empty($p_title)){
+        $p_title = "Unnamed Post" . rand(1,100);
+    }
+    if(empty($p_cats)){
+        $p_cats = "";
+    }
+    if(empty($p_tags)){
+        $p_tags = "";
+    }
+    if(empty($p_date)){
+        $p_date = date("m/d/y");
+    }
+    if(empty($p_content)){
+        $p_content = "Need to add some content";
+    }
 
+    //Url Conversion
+    $pa_url = strtolower($p_title);
+    $p_url = preg_replace('#[ -]+#', '-', $pa_url);
+    $p_url = urlencode($p_url);
+
+    //$p_catarray = implode(',', $p_cats);
+    //$p_tagarray = implode(',', $$p_tags);
+    print_r($p_cats);
+
+    $psql = "INSERT INTO ar_posts (
+        post_title, 
+        post_url, 
+        post_category, 
+        post_tags, 
+        post_kws, 
+        post_des, 
+        post_date, 
+        post_content, 
+        post_img) 
+        VALUES (
+            $p_title', 
+            '$p_url', 
+            '" . $p_catarray . "',
+            '" . $p_tagarray . "',
+            '$p_kws',
+            '$p_des',
+            '$p_date',
+            '$p_content',
+            '$p_img')";
+ 
+    if(!mysqli_query($conn, $psql)) {
+        echo "Could not insert";
+    }
+    else {
+        echo  "done";
+       
+    }
+ 
+    //Close connection
+    mysqli_close($conn);
+}
+
+?>
 
 
 
