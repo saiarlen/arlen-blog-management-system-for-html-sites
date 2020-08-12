@@ -240,17 +240,17 @@ if(!isset($_SESSION["username"])){
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil-box"></i><span class="hide-menu">Posts </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="post-add-new.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Add New </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-multiple"></i><span class="hide-menu"> All Posts </span></a></li>
+                                <li class="sidebar-item"><a href="all-posts.php" class="sidebar-link"><i class="mdi mdi-note-multiple"></i><span class="hide-menu"> All Posts </span></a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="categories.php" aria-expanded="false"><i class="mdi mdi-view-column"></i><span class="hide-menu">Categories</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tags.php" aria-expanded="false"><i class="mdi mdi-tag-multiple"></i><span class="hide-menu">Tags</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-note-text"></i><span class="hide-menu">My Blogs</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-puzzle"></i><span class="hide-menu">Addons</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-note-text"></i><span class="hide-menu">My Blogs</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-puzzle"></i><span class="hide-menu">Addons</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Help </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-file"></i><span class="hide-menu">Documentation</span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-email"></i><span class="hide-menu"> Support </span></a></li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="mdi mdi-file"></i><span class="hide-menu">Documentation</span></a></li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="mdi mdi-email"></i><span class="hide-menu"> Support </span></a></li>
                             </ul>
                         </li>
                        
