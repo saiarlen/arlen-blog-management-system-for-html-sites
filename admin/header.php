@@ -12,6 +12,7 @@ if (file_exists("inc/config.php")){
     require_once("inc/config.php");
 }
 
+
 // Check user login or not
 if(!isset($_SESSION["username"])){
     header('Location: ../blog-admin.php');

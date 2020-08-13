@@ -138,3 +138,21 @@ button.ui-dialog-titlebar-close{
 img#postTumb {
     height: 75px;
 }
+ .searchhidden {
+    display: none !important;
+}
+.info-none-text {
+    text-align: center;
+    position: absolute;
+    top: 110px;
+    left: auto;
+    right: auto;
+    width: 100%;
+}
+@media(max-width: 600px){
+  .info-none-text {
+   
+    top: 130px;
+   
+}
+}

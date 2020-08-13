@@ -56,6 +56,12 @@
          ****************************************/
         $('#zero_config').DataTable();
     </script>
+    <?php 
+        if($page_scripts == True){
+            csAllposts();
+        }
+    
+    ?>
 </body>
 
 </html>
