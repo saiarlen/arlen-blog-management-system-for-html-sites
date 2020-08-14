@@ -156,3 +156,6 @@ img#postTumb {
    
 }
 }
+.pag-dis{
+  display: none !important;
+}

@@ -68,7 +68,21 @@ $page_scripts = TRUE; //For Enabling Custom Scripts in footer
     .pg-nav {
         float: right;
     }
-   
+    ul.pagination {
+        margin-bottom: 0;
+    }
+    nav.pg-nav {
+        display: flex;
+    }
+    .pag-disable{
+        z-index: 2;
+        color: #381be7;
+        text-decoration: none;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+
+
    
 </style>
 <!-- ============================================================== -->
@@ -96,7 +110,7 @@ $page_scripts = TRUE; //For Enabling Custom Scripts in footer
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row">
+                <div class="page-pag row">
                     <div class="col-md-12">
                         <div class="info-none-text">
                             <h5>No Posts Avaliable</h5>
@@ -123,7 +137,7 @@ $page_scripts = TRUE; //For Enabling Custom Scripts in footer
                             </div>
                             <div class="comment-widgets scrollable">
                                 <!-- Post Row -->
-                                <div data-filter-item data-filter-name="apple" class="d-flex flex-row comment-row">
+                                <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="apple" >
                                     <!-- Check Box Child -->
                                      <label class="customcheckbox cs-child">
                                         <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
@@ -147,7 +161,7 @@ $page_scripts = TRUE; //For Enabling Custom Scripts in footer
                                     </div>
                                 </div>
                                 <!-- Post Row -->
-                                <div data-filter-item data-filter-name="mango" class="d-flex flex-row comment-row" >
+                                <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="mango"  >
                                      <label class="customcheckbox cs-child">
                                         <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
                                         <span class="checkmark"></span>
@@ -156,7 +170,53 @@ $page_scripts = TRUE; //For Enabling Custom Scripts in footer
                                         <img src="https://dummyimage.com/600x600/666666/fff" alt="user" width="50" class="rounded-circle">
                                     </div>
                                     <div class="comment-text w-100">
-                                        <h6 class="font-medium">James Anderson</h6>
+                                        <h6 class="font-medium">James Anderson Lorem Ipsm</h6>
+                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                                        <div class="comment-footer">
+                                            <span class="text-muted float-right">
+                                                April 14, 2016<br>
+                                                By: Admin
+                                            </span> 
+                                            <button type="button" class="btn btn-cyan btn-sm">Edit</button>
+                                            <button type="button" class="btn btn-success btn-sm">View</button>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Post Row -->
+                                <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="mango"  >
+                                     <label class="customcheckbox cs-child">
+                                        <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <div class="p-2">
+                                        <img src="https://dummyimage.com/600x600/666666/fff" alt="user" width="50" class="rounded-circle">
+                                    </div>
+                                    <div class="comment-text w-100">
+                                        <h6 class="font-medium">James Anderson Lorem Ipsm1</h6>
+                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                                        <div class="comment-footer">
+                                            <span class="text-muted float-right">
+                                                April 14, 2016<br>
+                                                By: Admin
+                                            </span> 
+                                            <button type="button" class="btn btn-cyan btn-sm">Edit</button>
+                                            <button type="button" class="btn btn-success btn-sm">View</button>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Post Row -->
+                                <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="mango"  >
+                                     <label class="customcheckbox cs-child">
+                                        <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <div class="p-2">
+                                        <img src="https://dummyimage.com/600x600/666666/fff" alt="user" width="50" class="rounded-circle">
+                                    </div>
+                                    <div class="comment-text w-100">
+                                        <h6 class="font-medium">James Anderson Lorem Ipsm2</h6>
                                         <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
                                         <div class="comment-footer">
                                             <span class="text-muted float-right">
@@ -180,25 +240,25 @@ $page_scripts = TRUE; //For Enabling Custom Scripts in footer
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <nav class="pg-nav" aria-label="Page navigation example">
-                            <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
+                        
+                        <nav class="pg-nav" aria-label="Page navigation">
+                            <span class="page-item">
+                                <a class="pre page-link" href="javascript:void(0)" aria-label="Previous" disabled>
                                 <span aria-hidden="true">«</span>
                                 <span class="sr-only">Previous</span>
                                 </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
+                            </span>
+                            <ul class="pagination">
+                               
+                            </ul>
+                            <span class="page-item">
+                                <a class="nex page-link" href="javascript:void(0)" aria-label="Next">
                                 <span aria-hidden="true">»</span>
                                 <span class="sr-only">Next</span>
                                 </a>
-                            </li>
-                            </ul>
+                            </span>
                         </nav>
+                        
                     </div>
                 </div>
                 
