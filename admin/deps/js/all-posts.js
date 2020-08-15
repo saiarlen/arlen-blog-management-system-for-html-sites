@@ -10,15 +10,9 @@ $(document).ready(function () {
         if (searchVal != "") {
             filterItems.addClass("searchhidden");
             $(
-                '[data-filter-item][data-filter-name*="' +
-                searchVal.toLowerCase() +
-                '"]'
-            ).removeClass("searchhidden");
+                '[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass("searchhidden");
             $(
-                '[data-filter-item][data-filter-name*="' +
-                searchVal.toLowerCase() +
-                '"]'
-            ).removeClass("pag-dis");
+                '[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass("pag-dis");
         } else {
             filterItems.removeClass("searchhidden");
             $(".page-item.active a").trigger("click"); //trigger pagination box when search val empty
@@ -36,16 +30,12 @@ $(document).ready(function () {
 
         for (var i = 0; i < pageCount; i++) {
             if (i == 0) {
-                $(".pagination").append(
-                    '<li class="page-item active"><a class="page-link" href="javascript:void(0)">' +
-                    (i + 1) +
+                $(".pagination").append('<li class="page-item active"><a class="page-link" href="javascript:void(0)">' + (i + 1) +
                     "</a></li>"
                 );
                 $(".pre").addClass("pag-disable"); // For adding Arrow disable on load
             } else {
-                $(".pagination").append(
-                    '<li class="page-item"><a class="page-link" href="javascript:void(0)">' +
-                    (i + 1) +
+                $(".pagination").append('<li class="page-item"><a class="page-link" href="javascript:void(0)">' + (i + 1) +
                     "</a></li>"
                 );
             }
@@ -76,11 +66,7 @@ $(document).ready(function () {
 
     $(".nex").click(function () {
         if ($(".pagination li").next().length != 0) {
-            $(".page-item.active")
-                .next()
-                .addClass("active")
-                .prev()
-                .removeClass("active");
+            $(".page-item.active").next().addClass("active").prev().removeClass("active");
             $(".page-item.active a").trigger("click");
         } else {
             $(".pagination li").removeClass("active");
@@ -91,11 +77,7 @@ $(document).ready(function () {
 
     $(".pre").click(function () {
         if ($(".pagination li").prev().length != 0) {
-            $(".page-item.active")
-                .prev()
-                .addClass("active")
-                .next()
-                .removeClass("active");
+            $(".page-item.active").prev().addClass("active").next().removeClass("active");
             $(".page-item.active a").trigger("click");
         } else {
             $(".pagination li").removeClass("active");
