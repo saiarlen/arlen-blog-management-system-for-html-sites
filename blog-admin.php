@@ -1,4 +1,3 @@
-
 <?php
 /*
  * Login file
@@ -46,10 +45,10 @@ if (function_exists('arlen_Auth')){
 <body>
     <form class="box" method="POST">
         <h1>Login</h1>
-        <input class="form-control" type="text" id= "user" name="user" placeholder="Username">
+        <input class="form-control" type="text" id="user" name="user" placeholder="Username">
         <input class="form-control" type="password" id="pass" name="pass" placeholder="Password">
         <input type="submit" id="login" name="login" value="Login">
-        <div id= "response"></div>
+        <div id="response"></div>
     </form>
 
     <!-- ============================================================== -->

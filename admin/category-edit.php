@@ -1,7 +1,7 @@
 <?php
 /*
- * All edits page
- * This page used for editing fields
+ * Category edits page
+ * This page used for editing category fields
  * @author    Saiarlen
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
@@ -23,7 +23,8 @@ require_once("header.php");
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit <?php echo ucfirst($_GET["type"]) ?></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit <?php echo ucfirst($_GET["type"]) ?>
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -66,29 +67,37 @@ mysqli_close($conn);
                         <div class="form-group row">
                             <label for="catname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="catname" id="catname" value="<?php echo $cat_update_name ?>" required>
-                                <input type="hidden" class="form-control" name="catid" id="catid" value="<?php echo $cat_update_id ?>" required>
+                                <input type="text" class="form-control" name="catname" id="catname"
+                                    value="<?php echo $cat_update_name ?>" required>
+                                <input type="hidden" class="form-control" name="catid" id="catid"
+                                    value="<?php echo $cat_update_id ?>" required>
 
-                                <span class="f-span-text">The name is how it appears on your site. Special characters not allowed</span>
+                                <span class="f-span-text">The name is how it appears on your site. Special characters
+                                    not allowed</span>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="catslgname" class="col-sm-3 text-right control-label col-form-label">Slug</label>
+                            <label for="catslgname"
+                                class="col-sm-3 text-right control-label col-form-label">Slug</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="catslgname" id="catslgname" value="<?php echo $cat_update_slug ?>" autocomplete="off" required>
-                                <span class="f-span-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens. it can be same name as category.</span>
+                                <input type="text" class="form-control" name="catslgname" id="catslgname"
+                                    value="<?php echo $cat_update_slug ?>" autocomplete="off" required>
+                                <span class="f-span-text">The “slug” is the URL-friendly version of the name. It is
+                                    usually all lowercase and contains only letters, numbers, and hyphens. it can be
+                                    same name as category.</span>
 
                             </div>
                         </div>
                     </div>
                     <div class="border-top">
                         <div class="card-body">
-                            <button id="cat_submit" type="submit" value="cat_update" class="btn btn-info">Update</button>
+                            <button id="cat_submit" type="submit" value="cat_update"
+                                class="btn btn-info">Update</button>
                             <a href="categories.php" class="btn btn-secondary">Return</a>
                         </div>
-                        
+
                     </div>
-                    
+
                 </form>
             </div>
             <div class="alert alert-success alert-dismissible" id="cat_success" style="display:none;"></div>
@@ -100,10 +109,10 @@ mysqli_close($conn);
 
 
 <script>
-$(document).ready(function(){
+$(document).ready(function() {
 
     //for page reload call
-    function catupdateDiv(){ 
+    function catupdateDiv() {
         setTimeout(function() {
             location.reload(true);
         }, 1000);
@@ -114,44 +123,42 @@ $(document).ready(function(){
         e.preventDefault();
         $("#cat_submit").attr("disabled", "disabled");
         var catid = $('#catid').val();
-		var catname = $('#catname').val();
-		var catslgname = $('#catslgname').val();
+        var catname = $('#catname').val();
+        var catslgname = $('#catslgname').val();
         var cat_update = $('#cat_submit').val();
-		
-		if(catname!="" && catslgname!=""){
-			$.ajax({
+
+        if (catname != "" && catslgname != "") {
+            $.ajax({
                 type: "POST",
-                url:'inc/ajax-handler.php',
-				data: {
+                url: 'inc/ajax-handler.php',
+                data: {
                     "catid": catid,
                     "cat_update": cat_update,
-					"catname": catname,
-					"catslgname": catslgname	
+                    "catname": catname,
+                    "catslgname": catslgname
                 },
 
-				success: function(response){
-					
-						$("#cat_submit").removeAttr("disabled");
-						$('#cat_in_form').find('input:text').val('');
-						$("#cat_success").show();
-                        $('#cat_success').html(response); 
-                        $('#cat_success').fadeOut(3000).delay(1000);
-                        catupdateDiv();
-                
+                success: function(response) {
+
+                    $("#cat_submit").removeAttr("disabled");
+                    $('#cat_in_form').find('input:text').val('');
+                    $("#cat_success").show();
+                    $('#cat_success').html(response);
+                    $('#cat_success').fadeOut(3000).delay(1000);
+                    catupdateDiv();
+
                 },
                 cache: false,
             });
-             return false;
-		}
-		else{
+            return false;
+        } else {
             alert('Please Enter Category or Slug Name !');
             $("#cat_submit").removeAttr("disabled");
-		}
-	});
+        }
+    });
     // End of Updating data to database
 
 });
-
 </script>
 <?php
 }else{

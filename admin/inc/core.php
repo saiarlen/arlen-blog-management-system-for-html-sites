@@ -10,7 +10,7 @@
 
  require_once ("config.php");
 
- /* Category page core Functions */
+ /*  */
    
 
 

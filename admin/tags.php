@@ -32,63 +32,66 @@ require_once("header.php");
 
 <div class="row">
 
-<div class="col-md-4">
-    <div class="container-fluid">
-        <div class="card" style="margin-bottom:0">
-            <form id="tag_in_form" class="form-horizontal" method="POST">
-                <div class="card-body">
-                    <h4 class="card-title">Add New Tag</h4>
-                    <div class="form-group row">
-                        <label for="tagname" class="col-sm-3 text-right control-label col-form-label">Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="tagname" id="tagname" placeholder="Tag Name Here" required>
-                            <span class="f-span-text">The tag name is how it appears on your site. Special characters not allowed</span>
+    <div class="col-md-4">
+        <div class="container-fluid">
+            <div class="card" style="margin-bottom:0">
+                <form id="tag_in_form" class="form-horizontal" method="POST">
+                    <div class="card-body">
+                        <h4 class="card-title">Add New Tag</h4>
+                        <div class="form-group row">
+                            <label for="tagname" class="col-sm-3 text-right control-label col-form-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="tagname" id="tagname"
+                                    placeholder="Tag Name Here" required>
+                                <span class="f-span-text">The tag name is how it appears on your site. Special
+                                    characters not allowed</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="border-top">
-                    <div class="card-body">
-                        <button id="tag_submit" type="submit" value="insert" class="btn btn-info">Add New</button>
-                    </div>
-                    
-                </div>
-                
-            </form>
-        </div>
-        <div class="alert alert-success alert-dismissible" id="tag_success" style="display:none;"></div>
-    </div>
-    
-</div>
+                    <div class="border-top">
+                        <div class="card-body">
+                            <button id="tag_submit" type="submit" value="insert" class="btn btn-info">Add New</button>
+                        </div>
 
-<div class="col-md-8">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-            
-                <div class="card" style="min-height: 600px;">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                        <form method="POST" action="">
-                            <table id="zero_config" class="table table-striped table-bordered">
-                             <button type="submit" value='Delete' name='tag_delete' id="tag_delete" class="btn btn-light btn-sm ar-bt-pos">Delete</button>
-                                <thead>
-                                    <tr>
-                                       <th>
-                                            <label class="customcheckbox m-b-20">
-                                                <input type="checkbox" id="mainCheckbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <th><strong>Name</strong></th>
-                                        <th><strong>Count</strong></th>
-                                        <th></th>
-                                       
-                                    </tr>
-                                </thead>
-                               
-                                <tbody  class="customtable">
-                                 
-                                <?php
+                    </div>
+
+                </form>
+            </div>
+            <div class="alert alert-success alert-dismissible" id="tag_success" style="display:none;"></div>
+        </div>
+
+    </div>
+
+    <div class="col-md-8">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card" style="min-height: 600px;">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <form method="POST" action="">
+                                    <table id="zero_config" class="table table-striped table-bordered">
+                                        <button type="submit" value='Delete' name='tag_delete' id="tag_delete"
+                                            class="btn btn-light btn-sm ar-bt-pos">Delete</button>
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <label class="customcheckbox m-b-20">
+                                                        <input type="checkbox" id="mainCheckbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </th>
+                                                <th><strong>Name</strong></th>
+                                                <th><strong>Count</strong></th>
+                                                <th></th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody class="customtable">
+
+                                            <?php
                                 //Php script for retriving data from database
                                 
                                     $tag_query = "SELECT * FROM ar_tags ORDER BY tag_id DESC";
@@ -102,44 +105,46 @@ require_once("header.php");
                                             <tr>
                                                 <th>
                                                     <label class="customcheckbox">
-                                                        <input type="checkbox" name='delete[]' id="tagdel" value="<?php echo $row["tag_id"]; ?>" class="listCheckbox">
+                                                        <input type="checkbox" name='delete[]' id="tagdel"
+                                                            value="<?php echo $row["tag_id"]; ?>" class="listCheckbox">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </th>
                                                 <td><?php echo $row["tag_name"]; ?></td>
                                                 <td>1</td>
-                                                <th><a href="tag-edit.php?type=tag&id=<?php echo $row["tag_id"]; ?>" class="btn btn-dark btn-sm">Edit</a></th>
-                                                
+                                                <th><a href="tag-edit.php?type=tag&id=<?php echo $row["tag_id"]; ?>"
+                                                        class="btn btn-dark btn-sm">Edit</a></th>
+
                                             </tr>
-                                            
-                                        <?php
+
+                                            <?php
                                         }
                                     }
 
                                 ?>
-                                 
-                                </tbody>
-                            </table>
-                            </form>
-                        </div>
 
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-        
     </div>
-</div>
 
 </div>
 
 
 <!-- Js For the Above form -->
 <script>
-$(document).ready(function(){
+$(document).ready(function() {
 
     //for page reload call
-    function tagupdateDiv(){ 
+    function tagupdateDiv() {
         setTimeout(function() {
             location.reload(true);
         }, 1000);
@@ -149,90 +154,87 @@ $(document).ready(function(){
     $('#tag_submit').on('click', function(e) {
         e.preventDefault();
         $("#tag_submit").attr("disabled", "disabled");
-		var tagname = $('#tagname').val();
+        var tagname = $('#tagname').val();
         var taginsertbtn = $('#tag_submit').val();
 
-		
-		if(tagname!=""){
-			$.ajax({
+
+        if (tagname != "") {
+            $.ajax({
                 type: "POST",
-                url:'inc/ajax-handler.php',
-				data: {
+                url: 'inc/ajax-handler.php',
+                data: {
                     "taginsertbtn": taginsertbtn,
-					"tagname": tagname	
+                    "tagname": tagname
                 },
 
-				success: function(response){
-					
-						$("#tag_submit").removeAttr("disabled");
-						$('#tag_in_form').find('input:text').val('');
-						$("#tag_success").show();
-                        $('#tag_success').html(response); 
-                        tagupdateDiv();
-                        
-                
+                success: function(response) {
+
+                    $("#tag_submit").removeAttr("disabled");
+                    $('#tag_in_form').find('input:text').val('');
+                    $("#tag_success").show();
+                    $('#tag_success').html(response);
+                    tagupdateDiv();
+
+
                 },
                 cache: false,
             });
-             return false;
-		}
-		else{
+            return false;
+        } else {
             alert('Please Enter Tag Name !');
             $("#tag_submit").removeAttr("disabled");
-		}
-	});
+        }
+    });
     // End of submitting data to database
 
 
     //For delete tags data in database
-    $(".customtable :checkbox").change(function () {
+    $(".customtable :checkbox").change(function() {
         $(this).parent().parent().parent().toggleClass('ar_cs_del');
-     });
-     $("#mainCheckbox:checkbox").change(function () {
+    });
+    $("#mainCheckbox:checkbox").change(function() {
         $(".customtable tr").toggleClass('ar_cs_del');
-     });//Functions for toggle classes during checkbox select
+    }); //Functions for toggle classes during checkbox select
 
     $('#tag_delete').on('click', function(e) {
         e.preventDefault();
-		var tagdelbtn = $('#tag_delete').val();
-		var tagcheckbx = [];
-        $("#tagdel:checked").each(function(){
+        var tagdelbtn = $('#tag_delete').val();
+        var tagcheckbx = [];
+        $("#tagdel:checked").each(function() {
             tagcheckbx.push(this.value);
         });
-            if(tagcheckbx.length !== 0){
-			$.ajax({
+        if (tagcheckbx.length !== 0) {
+            $.ajax({
                 type: "POST",
-                url:'inc/ajax-handler.php',
-				data: {
-					"tagdelbtn": tagdelbtn,
-					"tagcheckbx": tagcheckbx	
+                url: 'inc/ajax-handler.php',
+                data: {
+                    "tagdelbtn": tagdelbtn,
+                    "tagcheckbx": tagcheckbx
                 },
 
-				success: function(response){
-					if(response == "YES"){
-                        $( ".ar_cs_del" ).addClass( "catdelcolor" );
+                success: function(response) {
+                    if (response == "YES") {
+                        $(".ar_cs_del").addClass("catdelcolor");
                         tagupdateDiv();
-                    }else{
+                    } else {
                         alert(response);
                     }
 
                 },
                 cache: false,
             });
-             return false;
-            }
-            else {
-                alert("Please select one to delete");
-            }
-		
-		
-	});
+            return false;
+        } else {
+            alert("Please select one to delete");
+        }
+
+
+    });
     //End of delete tags data in database
 
 
 
 });
-
 </script>
 
 <?php require_once("footer.php"); ?>

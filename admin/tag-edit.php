@@ -1,7 +1,7 @@
 <?php
 /*
- * All edits page
- * This page used for editing fields
+ * Tag edits page
+ * This page used for editing tag page fields
  * @author    Saiarlen
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
@@ -23,7 +23,8 @@ require_once("header.php");
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit <?php echo ucfirst($_GET["type"]) ?></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit <?php echo ucfirst($_GET["type"]) ?>
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -68,21 +69,25 @@ mysqli_close($conn);
                         <div class="form-group row">
                             <label for="tagname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="tagname" id="tagname" value="<?php echo $tag_update_name ?>" required>
-                                <input type="hidden" class="form-control" name="tagid" id="tagid" value="<?php echo $tag_update_id ?>" required>
+                                <input type="text" class="form-control" name="tagname" id="tagname"
+                                    value="<?php echo $tag_update_name ?>" required>
+                                <input type="hidden" class="form-control" name="tagid" id="tagid"
+                                    value="<?php echo $tag_update_id ?>" required>
 
-                                <span class="f-span-text">The name is how it appears on your site. Special characters not allowed</span>
+                                <span class="f-span-text">The name is how it appears on your site. Special characters
+                                    not allowed</span>
                             </div>
                         </div>
                     </div>
                     <div class="border-top">
                         <div class="card-body">
-                            <button id="tag_submit" type="submit" value="tag_update" class="btn btn-info">Update</button>
+                            <button id="tag_submit" type="submit" value="tag_update"
+                                class="btn btn-info">Update</button>
                             <a href="tags.php" class="btn btn-secondary">Return</a>
                         </div>
-                        
+
                     </div>
-                    
+
                 </form>
             </div>
             <div class="alert alert-success alert-dismissible" id="tag_success" style="display:none;"></div>
@@ -94,10 +99,10 @@ mysqli_close($conn);
 
 
 <script>
-$(document).ready(function(){
+$(document).ready(function() {
 
     //for page reload call
-    function tagupdateDiv(){ 
+    function tagupdateDiv() {
         setTimeout(function() {
             location.reload(true);
         }, 1000);
@@ -108,43 +113,41 @@ $(document).ready(function(){
         e.preventDefault();
         $("#tag_submit").attr("disabled", "disabled");
         var tagid = $('#tagid').val();
-		var tagname = $('#tagname').val();
+        var tagname = $('#tagname').val();
         var tag_update = $('#tag_submit').val();
-		
-		if(tagname!=""){
-			$.ajax({
+
+        if (tagname != "") {
+            $.ajax({
                 type: "POST",
-                url:'inc/ajax-handler.php',
-				data: {
+                url: 'inc/ajax-handler.php',
+                data: {
                     "tagid": tagid,
                     "tag_update": tag_update,
-					"tagname": tagname,
-	
+                    "tagname": tagname,
+
                 },
 
-				success: function(response){
-					
-						$("#tag_submit").removeAttr("disabled");
-						$('#tag_in_form').find('input:text').val('');
-						$("#tag_success").show();
-                        $('#tag_success').html(response); 
-                        $('#tag_success').fadeOut(3000).delay(1000);
-                        tagupdateDiv();
-                
+                success: function(response) {
+
+                    $("#tag_submit").removeAttr("disabled");
+                    $('#tag_in_form').find('input:text').val('');
+                    $("#tag_success").show();
+                    $('#tag_success').html(response);
+                    $('#tag_success').fadeOut(3000).delay(1000);
+                    tagupdateDiv();
+
                 },
                 cache: false,
             });
-             return false;
-		}
-		else{
+            return false;
+        } else {
             alert('Please Enter Tag Name !');
             $("#tag_submit").removeAttr("disabled");
-		}
-	});
+        }
+    });
     // End of Updating data to database
 
 });
-
 </script>
 <?php
 }else{
