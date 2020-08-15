@@ -35,4 +35,4 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     session_destroy();
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
-$page_scripts = TRUE; //Defult Value for page scripts
+$page_scripts = FALSE; //Defult Value for page scripts
