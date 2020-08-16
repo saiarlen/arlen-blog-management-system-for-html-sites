@@ -12,6 +12,11 @@ if (file_exists("inc/config.php")){
     require_once("inc/config.php");
 }
 
+//Core Functions
+if (file_exists("inc/core.php")){
+    require_once("inc/core.php");
+}
+
 
 // Check user login or not
 if(!isset($_SESSION["username"])){
