@@ -126,7 +126,7 @@ nav.pg-nav {
             <div class="info-none-text">
                 <h5>No Posts Avaliable</h5>
             </div>
-            <form>
+            <form id="pos_in_form" class="form-horizontal" method="POST">
                 <div class="card">
                 
                     <div class="card-body row">
@@ -141,7 +141,7 @@ nav.pg-nav {
                         </div>
 
                         <div class="col">
-                            <button type="submit" value="Delete" name="cat_delete" id="cat_delete" class="btn btn-light btn-sm">Delete</button>
+                            <button type="submit" value="Delete" name="pos_delete" id="pos_delete" class="btn btn-light btn-sm">Delete</button>
                         
                         </div>
                         <div class="col">
@@ -165,11 +165,11 @@ nav.pg-nav {
                                 <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="<?php echo strtolower($row["post_title"]); ?>">
                                     <!-- Check Box Child -->
                                     <label class="customcheckbox cs-child">
-                                        <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
+                                        <input type="checkbox" name='delete[]' id="posdel" value="<?php echo $row["post_id"]; ?>" class="listCheckbox">
                                         <span class="checkmark"></span>
                                     </label>
                                     <div class="p-2">
-                                        <img src="<?php echo $row["post_img"]; ?>" alt="<?php echo $row["post_imgalt"]; ?>" width="60" height="60"
+                                        <img src="<?php echo $row["post_img"]; ?>" alt="<?php echo $row["post_imgalt"]; ?>" width="50" height="50"
                                             class="rounded-circle">
                                     </div>
                                     <div class="comment-text w-100">

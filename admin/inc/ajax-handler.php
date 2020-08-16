@@ -158,8 +158,26 @@ if(isset($_POST['tag_update'])){
   /* ========================= End of Tags page Functions =================================*/
 
 
+/* ========================= All Post page Functions =================================*/
 
+/* For deleting categories */
+if(isset($_POST['posdelbtn'])){
+  if(isset($_POST['poscheckbx'])){
+    foreach($_POST['poscheckbx'] as $deletepid){
 
+      $deletepos = "DELETE from ar_posts WHERE post_id=".$deletepid;
+      mysqli_query($conn,$deletepos);
+    }
+    if(!mysqli_query($conn,$deletepos)){
+        echo "Could not be deleted please try again";
+        print_r ($_POST['poscheckbx']);
+    }
+    else {
+        echo "YES";
+    }
+  }
+ 
+}
 
 
 
