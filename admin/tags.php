@@ -214,7 +214,7 @@ $(document).ready(function() {
 
                 success: function(response) {
                     if (response == "YES") {
-                        $(".ar_cs_del").addClass("catdelcolor");
+                        $(".ar_cs_del").addClass("delcolor");
                         tagupdateDiv();
                     } else {
                         alert(response);
