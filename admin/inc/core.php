@@ -10,8 +10,22 @@
 
  require_once ("config.php");
 
- /* General Fuctions */
+ /* -- ============================================================== -->
+    <!-- All General Functions -->
+-- ============================================================== */
 
+/* For Generate Rando String */
+ function arRandomString($length = 4) {
+    $ar_characters = '0123456789';
+    $ar_charactersLength = strlen($ar_characters);
+    $ar_randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $ar_randomString .= $ar_characters[rand(0, $ar_charactersLength - 1)];
+    }
+    return $ar_randomString;
+}
+
+ /* For  Excerpt Word Limit */
  function limit_excerpt($text, $limit) {
     if (str_word_count($text, 0) > $limit) {
         $words = str_word_count($text, 2);
