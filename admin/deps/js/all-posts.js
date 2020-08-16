@@ -9,10 +9,8 @@ $(document).ready(function () {
 
         if (searchVal != "") {
             filterItems.addClass("searchhidden");
-            $(
-                '[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass("searchhidden");
-            $(
-                '[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass("pag-dis");
+            $('[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass("searchhidden");
+            $('[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass("pag-dis");
         } else {
             filterItems.removeClass("searchhidden");
             $(".page-item.active a").trigger("click"); //trigger pagination box when search val empty
@@ -23,7 +21,7 @@ $(document).ready(function () {
     // For Pagination Scrip
     // ==============================================================
 
-    pageSize = 1;
+    pageSize = 4;
 
     $(function () {
         var pageCount = $(".comment-row").length / pageSize;

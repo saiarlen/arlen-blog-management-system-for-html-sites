@@ -94,7 +94,7 @@ div#cat_success {
 }
 .post-btn {
     float: right;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-left: 10px;
 }
 .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
@@ -158,4 +158,23 @@ img#postTumb {
 }
 .pag-dis{
   display: none !important;
+}
+
+.alt-input {
+  display: block;
+    width: auto;
+    padding: 2px 5px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #4F5467;
+    margin-top: 5px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e9ecef;
+    border-radius: 2px;
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }

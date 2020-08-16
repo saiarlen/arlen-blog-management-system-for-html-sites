@@ -102,7 +102,7 @@ nav.pg-nav {
 <div class="page-breadcrumb" style="margin-bottom: 15px;">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">All Posts</h4>
+            <h4 class="page-title">All Your Posts</h4>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -126,132 +126,81 @@ nav.pg-nav {
             <div class="info-none-text">
                 <h5>No Posts Avaliable</h5>
             </div>
-            <div class="card">
-                <div class="card-body row">
+            <form>
+                <div class="card">
+                
+                    <div class="card-body row">
 
-                    <div class="col" style="max-width: 35px;">
-                        <!-- Check Box parent -->
-                        <label class="customcheckbox m-b-20">
-                            <input type="checkbox" id="mainCheckbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-
-                    <div class="col">
-                        <h4 class="card-title m-b-0">Your Posts</h4>
-                    </div>
-                    <div class="col">
-                        <div class="sf-left">
-                            <input type="text" placeholder="search" data-search />
+                        <div class="col" style="max-width: 35px; padding-top: 4px;">
+                            <!-- Check Box parent -->
+                            <label class="customcheckbox m-b-20">
+                                <input type="checkbox" id="mainCheckbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
                         </div>
+
+                        <div class="col">
+                            <button type="submit" value="Delete" name="cat_delete" id="cat_delete" class="btn btn-light btn-sm">Delete</button>
+                        
+                        </div>
+                        <div class="col">
+                            <div class="sf-left">
+                                <input type="text" placeholder="search" data-search />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-widgets scrollable">
+                        <!-- Post Row -->
+                        <?php
+                        //Php script for retriving data from database
+                        
+                            $post_query = "SELECT * FROM ar_posts ORDER BY post_id DESC";
+                            $post_final_all_data = $conn->query($post_query);
+
+                            if ($post_final_all_data->num_rows > 0) {
+                                // output data of each row
+                                while($row = $post_final_all_data->fetch_assoc()) {
+                                ?>
+                                <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="<?php echo strtolower($row["post_title"]); ?>">
+                                    <!-- Check Box Child -->
+                                    <label class="customcheckbox cs-child">
+                                        <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <div class="p-2">
+                                        <img src="<?php echo $row["post_img"]; ?>" alt="<?php echo $row["post_imgalt"]; ?>" width="60" height="60"
+                                            class="rounded-circle">
+                                    </div>
+                                    <div class="comment-text w-100">
+                                        <h5 class="font-medium"><?php echo $row["post_title"]; ?></h5>
+                                        <span class="m-b-15 d-block"><?php echo limit_excerpt($row["post_exp"], 10); ?></span>
+                                        <div class="comment-footer">
+                                            <span class="text-muted float-right">
+                                            <?php //echo $row["post_date"]; 
+
+                                            $dis_date = new DateTime($row["post_date"]);
+                                            $date=$dis_date->format("F d, Y");
+                                            echo $date;
+                                            
+                                            ?><br>
+                                                By: Admin
+                                            </span>
+                                            <button type="button" class="btn btn-cyan btn-sm">Edit</button>
+                                            <button type="button" class="btn btn-success btn-sm">View</button>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                                }
+                            }
+
+                        ?>
+
                     </div>
                 </div>
-                <div class="comment-widgets scrollable">
-                    <!-- Post Row -->
-                    <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="apple">
-                        <!-- Check Box Child -->
-                        <label class="customcheckbox cs-child">
-                            <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <div class="p-2">
-                            <img src="https://dummyimage.com/600x600/666666/fff" alt="user" width="50"
-                                class="rounded-circle">
-                        </div>
-                        <div class="comment-text w-100">
-                            <h6 class="font-medium">James Anderson</h6>
-                            <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type
-                                setting industry. </span>
-                            <div class="comment-footer">
-                                <span class="text-muted float-right">
-                                    April 14, 2016<br>
-                                    By: Admin
-                                </span>
-                                <button type="button" class="btn btn-cyan btn-sm">Edit</button>
-                                <button type="button" class="btn btn-success btn-sm">View</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Post Row -->
-                    <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="mango">
-                        <label class="customcheckbox cs-child">
-                            <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <div class="p-2">
-                            <img src="https://dummyimage.com/600x600/666666/fff" alt="user" width="50"
-                                class="rounded-circle">
-                        </div>
-                        <div class="comment-text w-100">
-                            <h6 class="font-medium">James Anderson Lorem Ipsm</h6>
-                            <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type
-                                setting industry. </span>
-                            <div class="comment-footer">
-                                <span class="text-muted float-right">
-                                    April 14, 2016<br>
-                                    By: Admin
-                                </span>
-                                <button type="button" class="btn btn-cyan btn-sm">Edit</button>
-                                <button type="button" class="btn btn-success btn-sm">View</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Post Row -->
-                    <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="mango">
-                        <label class="customcheckbox cs-child">
-                            <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <div class="p-2">
-                            <img src="https://dummyimage.com/600x600/666666/fff" alt="user" width="50"
-                                class="rounded-circle">
-                        </div>
-                        <div class="comment-text w-100">
-                            <h6 class="font-medium">James Anderson Lorem Ipsm1</h6>
-                            <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type
-                                setting industry. </span>
-                            <div class="comment-footer">
-                                <span class="text-muted float-right">
-                                    April 14, 2016<br>
-                                    By: Admin
-                                </span>
-                                <button type="button" class="btn btn-cyan btn-sm">Edit</button>
-                                <button type="button" class="btn btn-success btn-sm">View</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Post Row -->
-                    <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="mango">
-                        <label class="customcheckbox cs-child">
-                            <input type="checkbox" name='delete[]' id="catdel" value="" class="listCheckbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <div class="p-2">
-                            <img src="https://dummyimage.com/600x600/666666/fff" alt="user" width="50"
-                                class="rounded-circle">
-                        </div>
-                        <div class="comment-text w-100">
-                            <h6 class="font-medium">James Anderson Lorem Ipsm2</h6>
-                            <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type
-                                setting industry. </span>
-                            <div class="comment-footer">
-                                <span class="text-muted float-right">
-                                    April 14, 2016<br>
-                                    By: Admin
-                                </span>
-                                <button type="button" class="btn btn-cyan btn-sm">Edit</button>
-                                <button type="button" class="btn btn-success btn-sm">View</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
+            </form>
 
 
         </div>
