@@ -282,7 +282,7 @@ if(isset($_POST["post_submit"])){
 
     //test the received values if empty
     if(empty($p_title)){
-        $p_title = "Unnamed Post" . rand(1,100);
+        $p_title = "Unnamed Post" . " " . arRandomString();
     }
     if($p_date == ""){
         $p_date = date("d-m-Y");
