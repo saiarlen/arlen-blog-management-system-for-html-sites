@@ -170,13 +170,28 @@ if(isset($_POST['posdelbtn'])){
     }
     if(!mysqli_query($conn,$deletepos)){
         echo "Could not be deleted please try again";
-        print_r ($_POST['poscheckbx']);
+       
     }
     else {
         echo "YES";
     }
   }
  
+}
+
+//Single button del 
+if(isset($_POST['singleposdel'])){
+
+      $deletepos = "DELETE from ar_posts WHERE post_id=".$_POST['singleposdel'];
+      mysqli_query($conn,$deletepos);
+
+    if(!mysqli_query($conn,$deletepos)){
+        echo "Could not be deleted please try again";
+    }
+    else {
+        echo "YES";
+    }
+
 }
 
 

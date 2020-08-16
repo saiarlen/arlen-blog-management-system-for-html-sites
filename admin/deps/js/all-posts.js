@@ -112,10 +112,7 @@ $(document).ready(function () {
         $(this).parent().parent().toggleClass('ar_ps_del');
     });
     $("#mainCheckbox:checkbox").change(function() {
-        $(".pag-dis #posdel").prop("checked", false);
-
-        
-
+        $(".pag-dis #posdel").prop("checked", false); //for uncheck the next page checkboxes
 
         $(".comment-row").toggleClass('ar_ps_del');
     }); //Functions for toggle classes during checkbox select
@@ -153,8 +150,35 @@ $(document).ready(function () {
         } else {
             alert("Please select one to delete");
         }
+    });
 
+    $('#del_btn_single').on('click', function(e) { //for single del button click
+        e.preventDefault();
+        var singleposdel = $('#del_btn_single').val();
+        if(confirm("Are you sure you want to delete this?")){
+            $.ajax({
+                type: "POST",
+                url: 'inc/ajax-handler.php',
+                data: {
+                    "singleposdel": singleposdel,
+                },
+                success: function(response) {
+                    if (response == "YES") {
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 500);
+                    } else {
+                        alert(response);
+                    }
 
+                },
+                cache: false,
+            });
+            return false;
+        }
+        else{
+            return false;
+        }  
     });
     //End of delete post data in database
 
