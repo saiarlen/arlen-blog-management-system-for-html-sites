@@ -130,7 +130,7 @@ require_once("header.php");
             </div>
         </div>
 
-        <!-- submit button-->
+        <!-- Post Iamge and Excerpt Section-->
         <div class="card">
             <div class="card-body">
                 <div class="row ">
@@ -153,6 +153,7 @@ require_once("header.php");
                                         </iframe>
                                     </div>
                                 </div>
+                                <input class="alt-input" type="text" name="img-alt" id="img-alt" placeholder="Image Alt Text">
                             </div>
                             <div class="col-md-4">
                                 <img src="deps/img/tumb.jpg" id="postTumb" alt="post">
@@ -160,11 +161,30 @@ require_once("header.php");
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="p-des">Post Excerpt <small class="text-muted">Optional</small></label>
+                            <textarea class="form-control" name="p-exp" id="p-exp"></textarea>
+                            <span class="f-span-text">Excerpt is a short description about the post. You can use first para of post content</span>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Post Submit -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row ">
+
+                    <div class="col-md-12">
+                       
                         <a href="all-posts.php" class="btn btn-secondary post-btn">View All Posts</a>
                         <button id="post_submit" type="submit" name="post_submit" value="post_insert"
                             class="btn btn-info post-btn">Add New</button>
 
                     </div>
+
                 </div>
             </div>
         </div>
@@ -186,7 +206,7 @@ $(".select2").select2();
 $('#datepicker-autoclose').datepicker({
     autoclose: true,
     todayHighlight: true,
-    format: 'yyyy/dd/mm',
+    format: 'dd-mm-yyyy',
 });
 
 //file browser init
@@ -233,6 +253,8 @@ function postResponse() {
 </script>
 
 <?php 
+//date_default_timezone_set('Asia/Kolkata');
+
 /* Insert post into the database */
 if(isset($_POST["post_submit"])){
     $p_title = mysqli_real_escape_string($conn, $_POST['p-title']);
@@ -255,17 +277,30 @@ if(isset($_POST["post_submit"])){
     $p_date = $_POST['datepicker-autoclose'];
     $p_content = $_POST['editor1'];
     $p_img = $_POST['p-image'];
+    $p_excerpt = mysqli_real_escape_string($conn, $_POST['p-exp']);
+    $p_imalt = $_POST['img-alt'];
 
     //test the received values if empty
     if(empty($p_title)){
         $p_title = "Unnamed Post" . rand(1,100);
     }
     if($p_date == ""){
-        $p_date = date("y/d/m");
+        $p_date = date("d-m-Y");
     }
     if(empty($p_content)){
         $p_content = "Need to add some content";
     }
+    if(empty($p_excerpt)){
+        $p_excerpt = "Please add some Excerpt to see content here.";
+    }
+    if(empty($p_imalt)){
+        $p_imalt = "Blog Image";
+    }
+
+    //Date And Time Setup
+
+    $pt_date = $p_date . " " . date("H:i:s");
+
 
 
     //Url Conversion
@@ -284,7 +319,9 @@ if(isset($_POST["post_submit"])){
         post_des, 
         post_date, 
         post_content, 
-        post_img) 
+        post_img,
+        post_exp,
+        post_imgalt) 
         VALUES (
             '$p_title', 
             '$p_url',
@@ -292,9 +329,11 @@ if(isset($_POST["post_submit"])){
             '$p_tagarray',
             '$p_kws',
             '$p_des',
-            '$p_date',
+            '$pt_date',
             '$p_content',
-            '$p_img')";
+            '$p_img',
+            '$p_excerpt',
+            '$p_imalt')";
  
     if(!mysqli_query($conn, $psql)) {
         echo "Could not insert" . mysqli_error($conn);
