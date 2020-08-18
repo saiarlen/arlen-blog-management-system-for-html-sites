@@ -186,7 +186,7 @@ nav.pg-nav {
                                             ?><br>
                                                 By: Admin
                                             </span>
-                                            <a href="#" class="btn btn-cyan btn-sm">Edit</a>
+                                            <a href="post-edit.php?type=post&id=<?php echo $row["post_id"]; ?>" class="btn btn-cyan btn-sm">Edit</a>
                                             <a href="#" class="btn btn-success btn-sm">View</a>
                                             <button type="submit" id="del_btn_single" name="del_btn_single" value="<?php echo $row["post_id"]; ?>" class="btn btn-danger btn-sm">Delete</button>
                                         </div>
