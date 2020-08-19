@@ -133,9 +133,9 @@ if(!isset($_SESSION["username"])){
                                 <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">New Post</a>
-                                <a class="dropdown-item" href="#">New Category</a>
-                                <a class="dropdown-item" href="#">New Tag</a>
+                                <a class="dropdown-item" href="post-add-new.php">New Post</a>
+                                <a class="dropdown-item" href="categories.php">New Category</a>
+                                <a class="dropdown-item" href="tags.php">New Tag</a>
                             </div>
                         </li>
 
@@ -148,7 +148,7 @@ if(!isset($_SESSION["username"])){
                         <!-- Setting icon -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link waves-effect waves-dark" href="" aria-expanded="false">
+                            <a class="nav-link waves-effect waves-dark" href="settings.php" aria-expanded="false">
                                 <div class="mdi mdi-settings font-24 rotating"></div>
                             </a>
                         </li>
@@ -230,12 +230,12 @@ if(!isset($_SESSION["username"])){
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
                                     src="deps/img/4.jpg" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i
+                                <a class="dropdown-item" href="my-profile.php"><i
                                         class="fas fa-user m-r-5 m-l-5"></i> My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
+                                <a class="dropdown-item" href="add-new-profile.php"><i
                                         class="fas fa-user-plus m-r-5 m-l-5"></i> Add New Profile</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
+                                <a class="dropdown-item" href="settings.php"><i
                                         class=" fas fa-cog m-r-5 m-l-5"></i> Settings</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="inc/logout.php"><i
