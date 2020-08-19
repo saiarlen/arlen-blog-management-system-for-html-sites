@@ -162,13 +162,13 @@ $(document).ready(function () {
                 data: {
                     "singleposdel": singleposdel,
                 },
-                success: function(response) {
-                    if (response == "YES") {
+                success: function(sresponse) {
+                    if (sresponse == "YES") {
                         setTimeout(function() {
                             location.reload(true);
                         }, 500);
                     } else {
-                        alert(response);
+                        alert(sresponse);
                     }
 
                 },
