@@ -1,7 +1,7 @@
 <?php 
 /*
  * Ajax Form Part part of the application
- * This page used for Ajax Form functions to the application
+ * This page used for Ajax Form handle to the application
  * @author    Saiarlen
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
@@ -10,7 +10,7 @@
 
  require_once ("config.php");
 
- /* ========================= Category page Functions =================================*/
+ /* ========================= Category page handle =================================*/
  
 
  /* Insert categories into the database */
@@ -86,10 +86,10 @@ if(isset($_POST['cat_update'])){
 }
 
 
-  /* ========================= End of Category page Functions =================================*/
+  /* ========================= End of Category page handle =================================*/
 
 
-  /* ========================= Tags page Functions =================================*/
+  /* ========================= Tags page handle =================================*/
  
 
  /* Insert tags into the database */
@@ -155,10 +155,10 @@ if(isset($_POST['tag_update'])){
 }
 
 
-  /* ========================= End of Tags page Functions =================================*/
+  /* ========================= End of Tags page handle =================================*/
 
 
-/* ========================= All Post page Functions =================================*/
+/* ========================= All Post page handle =================================*/
 
 /* For deleting categories */
 if(isset($_POST['posdelbtn'])){
@@ -194,11 +194,7 @@ if(isset($_POST['singleposdel'])){
 
 }
 
-
-
-
-
-
+/* ========================= End of All Post page handle =================================*/
 
 
 
