@@ -6,11 +6,9 @@
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-//if (file_exists("config.php")){
-    require_once("config.php");
 
-  
-//}
+ require_once("config.php");
+
 function arlen_Auth($conn){
 
 

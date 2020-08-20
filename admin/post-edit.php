@@ -38,108 +38,14 @@ require_once("header.php");
 <!-- ============================================================== -->
 <?php
 
-$response_msg = FALSE;
+
 
 if($_GET["type"] == "post"){ 
 
-    /* update post into the database */
-    if(isset($_POST["post_submit"])){
-        $p_title = mysqli_real_escape_string($conn, $_POST['p-title']);
+    ar_updatePost($conn);//update handle
+    $response_msg =  ar_updatePost($conn);
 
-        $post_uniq_id = $_POST['post-uniq-id'];
-
-        if(!empty($_POST['p-cat'])){
-            $p_cats = $_POST['p-cat'];
-            $p_catarray = implode(', ', $p_cats);
-        }else{
-            $p_catarray = NULL;
-        }
-        if(!empty($_POST['p-tag'])){
-            $p_tags = $_POST['p-tag'];
-            $p_tagarray = implode(', ', $p_tags);
-        }else{
-            $p_tagarray = NULL;
-        }
-
-        $p_kws = mysqli_real_escape_string($conn, $_POST['p-keywords']);
-        $p_des = mysqli_real_escape_string($conn, $_POST['p-des']);
-        $p_date = $_POST['datepicker-autoclose'];
-        $p_content = $_POST['editor1'];
-        $p_img = $_POST['p-image'];
-        $p_excerpt = mysqli_real_escape_string($conn, $_POST['p-exp']);
-        $p_imalt = $_POST['img-alt'];
-
-        //test the received values if empty
-        if(empty($p_title)){
-            $p_title = "Unnamed Post" . " " . arRandomString();
-        }
-        if($p_date == ""){
-            $p_date = date("d-m-Y");
-        }
-        if(empty($p_content)){
-            $p_content = "Need to add some content";
-        }
-        if(empty($p_excerpt)){
-            $p_excerpt = "Please add some Excerpt to see content here.";
-        }
-        if(empty($p_imalt)){
-            $p_imalt = "Blog Image";
-        }
-
-        //Date And Time Setup
-
-        $pt_date = $p_date . " " . date("H:i:s");
-
-
-
-        //Url Conversion
-        $pa_url = strtolower($p_title);
-        $p_url = preg_replace("/[^a-z0-9_\s-]/", "", $pa_url);
-        $p_url = preg_replace("/[\s-]+/", " ", $p_url);
-        $p_url = preg_replace("/[\s_]/", "-", $p_url);
-
-
-        $psql = "UPDATE ar_posts SET 
-            post_title = '$p_title', 
-            post_url = '$p_url',
-            post_category = '$p_catarray',
-            post_tags = '$p_tagarray',
-            post_kws = '$p_kws', 
-            post_des = '$p_des', 
-            post_date = '$pt_date', 
-            post_content = '$p_content', 
-            post_img = '$p_img',
-            post_exp = '$p_excerpt',
-            post_imgalt = '$p_imalt' WHERE post_id=" . $post_uniq_id;
-        
-    
-        if(!mysqli_query($conn, $psql)) {
-            echo "<script>";
-            echo "alert(Could not insert" . mysqli_error($conn) . ");location.href = 'all-posts.php';";
-            echo "</script>";
-
-        }
-        else {
-            $response_msg = TRUE;
-        }
-    
-        
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //retrieve data
     $pos_id = $_GET["id"];
     $pos_update_sql = "SELECT * FROM ar_posts WHERE post_id=" . $pos_id;
     $posupdate_result = mysqli_query($conn, $pos_update_sql);
@@ -175,10 +81,9 @@ if($_GET["type"] == "post"){
     $ar_pos_update_tags = explode(",", $pos_update_tags);
 
     
-
     ?>
 
-    <!-- ============================================================== -->
+<!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
@@ -217,7 +122,6 @@ if($_GET["type"] == "post"){
                                             else {
                                                 $ar_catup_sel = "";
                                             }
-                                        
                                         
                              ?>
                                 <option value="<?php echo $row["id"]; ?>" <?php echo $ar_catup_sel; ?>><?php echo $row["cat_name"]; ?></option>
@@ -424,9 +328,8 @@ function postResponse() {
 </script>
 
 <?php 
-//date_default_timezone_set('Asia/Kolkata');
 
-if($response_msg == TRUE){
+if($response_msg == 1){
     echo "<script>postResponse();</script>";
 }
 
@@ -436,13 +339,11 @@ if($response_msg == TRUE){
 }else{
     echo "<script>alert('Something Went Wrong! Please try Again.');location.href = 'all-posts.php';</script>";
 }
-//Close connection
+    //Close connection
     mysqli_close($conn);
 ?>
 <!-- ============================================================== -->
-<!-- End of categories edit -->
+<!-- End of Post edit -->
 <!-- ============================================================== -->
-
-
 
 <?php require_once("footer.php"); ?>
