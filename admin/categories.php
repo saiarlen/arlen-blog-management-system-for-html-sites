@@ -107,7 +107,7 @@ require_once("header.php");
                                             <?php
                                             //Php script for retriving data from database
                                             
-                                                $cat_query = "SELECT * FROM ar_categories ORDER BY id DESC";
+                                                $cat_query = "SELECT * FROM ar_categories ORDER BY cat_id DESC";
                                                 $cat_final_all_data = $conn->query($cat_query);
 
                                                 if ($cat_final_all_data->num_rows > 0) {
@@ -119,14 +119,14 @@ require_once("header.php");
                                                             <th>
                                                                 <label class="customcheckbox">
                                                                     <input type="checkbox" name='delete[]' id="catdel"
-                                                                        value="<?php echo $row["id"]; ?>" class="listCheckbox">
+                                                                        value="<?php echo $row["cat_id"]; ?>" class="listCheckbox">
                                                                     <span class="checkmark"></span>
                                                                 </label>
                                                             </th>
                                                             <td><?php echo $row["cat_name"]; ?></td>
                                                             <td><?php echo $row["cat_slug"]; ?></td>
                                                             <td>1</td>
-                                                            <th><a href="category-edit.php?type=category&id=<?php echo $row["id"]; ?>"
+                                                            <th><a href="category-edit.php?type=category&id=<?php echo $row["cat_id"]; ?>"
                                                                     class="btn btn-dark btn-sm">Edit</a></th>
 
                                                         </tr>

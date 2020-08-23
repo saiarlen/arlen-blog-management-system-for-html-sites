@@ -54,14 +54,14 @@ require_once("header.php");
                             <select class="select2 form-control m-t-15" multiple="multiple" name="p-cat[]" id="p-cat"
                                 style="height: 36px;width: 100%;">
                                 <?php 
-                                $cat_query = "SELECT * FROM ar_categories ORDER BY id DESC";
+                                $cat_query = "SELECT * FROM ar_categories ORDER BY cat_id DESC";
                                 $cat_final_all_data = $conn->query($cat_query);
 
                                 if ($cat_final_all_data->num_rows > 0) {
                                     // output data of each row
                                     while($row = $cat_final_all_data->fetch_assoc()) {
                              ?>
-                                <option value="<?php echo $row["id"]; ?>"><?php echo $row["cat_name"]; ?></option>
+                                <option value="<?php echo $row["cat_id"]; ?>"><?php echo $row["cat_name"]; ?></option>
                                 <?php
                                     }
                                 }
@@ -254,5 +254,5 @@ function postResponse() {
 
 
 <?php 
-ar_addNewPost($conn);
+arAddNewPost($conn);
 require_once("footer.php"); ?>

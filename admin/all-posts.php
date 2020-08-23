@@ -174,7 +174,7 @@ nav.pg-nav {
                                     </div>
                                     <div class="comment-text w-100">
                                         <h5 class="font-medium"><?php echo $row["post_title"]; ?></h5>
-                                        <span class="m-b-15 d-block"><?php echo limit_excerpt($row["post_exp"], 10); ?></span>
+                                        <span class="m-b-15 d-block"><?php echo arLimitExcerpt($row["post_exp"], 10); ?></span>
                                         <div class="comment-footer">
                                             <span class="text-muted float-right">
                                             <?php //echo $row["post_date"]; 

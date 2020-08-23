@@ -39,7 +39,7 @@ require_once("header.php");
 if($_GET["type"] == "category"){
 
 $cat_id = $_GET["id"];
-$cat_update_sql = "SELECT * FROM ar_categories WHERE id=" . $cat_id;
+$cat_update_sql = "SELECT * FROM ar_categories WHERE cat_id=" . $cat_id;
 $catupdate_result = mysqli_query($conn, $cat_update_sql);
 
 if (mysqli_num_rows($catupdate_result) > 0 && mysqli_num_rows($catupdate_result) <= 1) {
@@ -47,7 +47,7 @@ if (mysqli_num_rows($catupdate_result) > 0 && mysqli_num_rows($catupdate_result)
   while($cat_update_row = mysqli_fetch_assoc($catupdate_result)) {
     $cat_update_name =  $cat_update_row['cat_name'];
     $cat_update_slug = $cat_update_row['cat_slug'];
-    $cat_update_id = $cat_update_row['id'];
+    $cat_update_id = $cat_update_row['cat_id'];
   }
 } else {
     echo "<script>alert('Selected Category not found! Please try Again.');location.href = 'categories.php';</script>";
