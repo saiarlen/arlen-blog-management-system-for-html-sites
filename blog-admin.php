@@ -7,13 +7,9 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-if (file_exists("admin/inc/login.php")){
-    require_once("admin/inc/login.php");
-}
-if (function_exists('arlen_Auth')){
-    arlen_Auth($conn);
-}
-
+if(isset($_SESSION["arlenUserTest"])) {     
+    header ("location:" . "admin/home.php");
+} 
 ?>
 
 
@@ -28,7 +24,7 @@ if (function_exists('arlen_Auth')){
     <meta name="description" content="Login Page">
     <meta name="author" content="saiarlen">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo ARLEN_BASE_URL; ?>/admin/deps/img/fav.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="admin/deps/img/fav.png">
     <title>Arlen Blog Management Login</title>
     <!-- Custom CSS -->
     <link href="admin/deps/css/bootstrap.css" rel="stylesheet">
@@ -43,13 +39,118 @@ if (function_exists('arlen_Auth')){
 </head>
 
 <body>
-    <form class="box" method="POST">
-        <h1>Login</h1>
-        <input class="form-control" type="text" id="user" name="user" placeholder="Username">
-        <input class="form-control" type="password" id="pass" name="pass" placeholder="Password">
-        <input type="submit" id="login" name="login" value="Login">
-        <div id="response"></div>
-    </form>
+ 
+
+
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+            <div class="auth-box bg-dark border-top border-secondary">
+                <div id="loginform">
+                    <div class="text-center p-t-20 p-b-20">
+                        <span class="db"><img src="admin/deps/img/text-logo.png" /></span>
+                    </div>
+                    <!-- Form -->
+                    <form class="form-horizontal m-t-20" id="arloginform" method="POST">
+                        <div class="row p-b-30">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="aruser" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-warning text-white" id="login-username"><i class="ti-pencil"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="login-password" id="arpass" required>
+                                </div>
+                                <div toggle="#arpass" class="fa fa-fw fa-eye eyefield-icon toggle-password"></div>
+                            </div>
+                        </div>
+                        <div class="row border-top border-secondary">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="p-t-20">
+                                        <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i> Lost password?</button>
+                                        <button class="btn btn-success float-right" type="submit" value="login" id="arlogsub">Login</button>
+                                    </div>
+                                </div>
+                                <div class="response-wrapper">
+                                    <div class="load-wrapp"><!-- Loader -->
+                                        <div class="arload">
+                                            <div class="bar"></div>
+                                        </div>
+                                    </div>
+                                    <div id="arlogresponse"></div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ============================================================== -->
+                <!-- Recover form -->
+                <!-- ============================================================== -->
+                <div id="recoverform">
+                    <div class="text-center m-t-10">
+                        <span class="text-white ">Enter your e-mail address below and we will send you instructions how to recover a password.</span>
+                    </div>
+                    <div class="row m-t-20">
+                        <!-- Form -->
+                        <form class="col-12" action="">
+                            <!-- email -->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <!-- pwd -->
+                            <div class="row m-t-20 p-t-20 border-top border-secondary">
+                                <div class="col-12">
+                                    <a class="btn btn-success" href="#" id="to-login" name="action">Back To Login</a>
+                                    <button class="btn btn-info float-right" type="button" value="recover" id="arrecsub" >Recover</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+
+
+
+
 
     <!-- ============================================================== -->
     <!-- All Required js -->
@@ -60,6 +161,10 @@ if (function_exists('arlen_Auth')){
     <script src="admin/deps/js/perfect-scrollbar.jquery.min.js"></script>
     <script src="admin/deps/js/arlen-script.js"></script>
 
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(".preloader").fadeOut();
+    </script>
 
 </body>
 

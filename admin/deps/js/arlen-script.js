@@ -1,18 +1,79 @@
 $(document).ready(function() {
-    //Login Form Handler
-    $("#login").click(function(e) {
 
-        var username = $("#user").val();
-        var password = $("#pass").val();
+      //For Login Page
+      $('#arlogsub').on('click', function(e) {
+        e.preventDefault();
+        $("#arlogsub").attr("disabled", "disabled");
+        var arusername =  $("#aruser").val();
+        var arpass = $("#arpass").val();
+        var arlogsub = $("#arlogsub").val();
 
-        // ============================================================== 
-        // Validation
-        // ==============================================================     
-        if (username == "" || password == "") {
-            e.preventDefault();
-            $('#response').html("<p class='field_empty'>!All fields are required</p>").fadeIn(1000).delay(3000).fadeOut("slow");
+
+        if (arusername == "" || arpass == "") {
+            $('#arlogresponse').html("<p class='field_empty'>!All fields are required</p>").fadeIn(500).delay(4000).fadeOut("slow");
+            $("#arlogsub").removeAttr("disabled");
+            
+        } else {
+            $(".load-wrapp").show();
+            $.ajax({
+                type: "POST",
+                url: 'admin/inc/ajax-handler.php',
+                data: {
+                    "arlogsub": arlogsub,
+                    "arusername": arusername,
+                    "arpass": arpass
+                    
+                },
+
+                success: function(response) {
+                    $(".load-wrapp").hide();
+                    if (response === "true"){
+                        window.location.href = "admin/home.php";
+                    }
+                    else {
+                        $('#arlogresponse').html("<p class='field_res'>" + response + "</p>").fadeIn(500).delay(5000).fadeOut("slow");
+                    } 
+                    $("#arlogsub").removeAttr("disabled");
+                    //$('#arloginform')[0].reset();
+                  
+
+                },
+                cache: false,
+            });
+            return false;
+            
         }
     });
+    
+   
+    // ============================================================== 
+    // Password  visibility
+    // ============================================================== 
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        }
+      });
+    // ============================================================== 
+    // Login and Recover Password 
+    // ============================================================== 
+    $('#to-recover').on("click", function() {
+        $("#arloginform").hide();
+        $("#recoverform").fadeIn();
+    });
+    $('#to-login').click(function(){
+        
+        $("#recoverform").hide();
+        $("#arloginform").fadeIn();
+    });
+
+    // End of login page
+
 
 
     //Dashboard script
@@ -89,10 +150,6 @@ $(document).ready(function() {
             wheelPropagation: !0
         });
 
-        /*var ps = new PerfectScrollbar('.message-body');
-        var ps = new PerfectScrollbar('.notifications');
-        var ps = new PerfectScrollbar('.scroll-sidebar');
-        var ps = new PerfectScrollbar('.customizer-body');*/
 
         // ============================================================== 
         // Resize all elements
@@ -101,9 +158,9 @@ $(document).ready(function() {
         $(".page-wrapper").show();
 
 
-        //****************************
+        //=========================================================
         /* This is for the mini-sidebar if width is less then 1170*/
-        //**************************** 
+        //=========================================================
         var setsidebartype = function() {
             var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
             if (width < 1170) {
@@ -114,9 +171,9 @@ $(document).ready(function() {
         };
         $(window).ready(setsidebartype);
         $(window).on("resize", setsidebartype);
-        //****************************
+        //==================================================
         /* This is for sidebartoggler*/
-        //****************************
+        //==================================================
         $('.sidebartoggler').on("click", function() {
             $("#main-wrapper").toggleClass("mini-sidebar");
             if ($("#main-wrapper").hasClass("mini-sidebar")) {

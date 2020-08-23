@@ -19,7 +19,7 @@ if (file_exists("inc/core.php")){
 
 
 // Check user login or not
-if(!isset($_SESSION["username"])){
+if(!isset($_SESSION["arlenUserTest"])){
     header('Location: ../blog-admin.php');
 }
 ?>

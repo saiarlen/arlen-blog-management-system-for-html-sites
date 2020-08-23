@@ -1,4 +1,11 @@
 /* All Styles */
+* {
+  outline: none;
+}
+.btn {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
 
 header.topbar {
   position: fixed;
@@ -24,6 +31,7 @@ aside.left-sidebar {
 .media-wrapper {
   margin-top: 20px;
 }
+
 .f-span-text {
   font-size: 12px;
   color: #666666;
@@ -36,145 +44,173 @@ aside.left-sidebar {
   left: 115px;
   z-index: 1;
 }
+
 div#cat_success {
   margin: 0;
 }
+
 .delcolor {
   background-color: #ffa394 !important;
 }
+
 .ar-min-ht {
   min-height: 280px;
   width: 100%;
 }
+
 @media (max-width: 767px) {
   .ar-min-ht {
     min-height: 80px;
     width: 100%;
   }
 }
+
 .ar-min-ht-tag {
   min-height: 390px;
   width: 100%;
 }
+
 @media (max-width: 767px) {
   .ar-min-ht-tag {
     min-height: 100px;
     width: 100%;
   }
+
+
 }
+
+@media (min-width: 860px) {
+  .ar-common-minheight {
+    min-height: 570px;
+  }
+}
+
 .select2-container--classic .select2-selection--single,
 .select2-container--default .select2-selection--multiple,
 .select2-container--default .select2-selection--single,
-.select2-container--default
-  .select2-selection--single
-  .select2-selection__arrow,
-.select2-container--default
-  .select2-selection--single
-  .select2-selection__rendered {
+.select2-container--default .select2-selection--single .select2-selection__arrow,
+.select2-container--default .select2-selection--single .select2-selection__rendered {
   border-color: #e9ecef;
   height: 40px;
   color: #3e5569;
   line-height: 40px;
 }
+
 .select2-container--default .select2-selection--multiple {
   line-height: 27px;
 }
-.select2-container--classic
-  .select2-selection--multiple
-  .select2-selection__choice,
-.select2-container--default
-  .select2-selection--multiple
-  .select2-selection__choice,
-.select2-container--default
-  .select2-selection--multiple
-  .select2-selection__choice__remove {
+
+.select2-container--classic .select2-selection--multiple .select2-selection__choice,
+.select2-container--default .select2-selection--multiple .select2-selection__choice,
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
   background-color: #2255a4;
   border-color: #2255a4;
   color: #fff;
 }
+
 .post-btn {
-    float: right;
-    /* margin-top: 20px; */
-    margin-left: 10px;
-}
-.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
-    height: 0 !important;
-    top: -614.3px !important;
-    z-index: 10 !important;
-}
-button.ui-dialog-titlebar-close::before {
-    content: "\F156";
-    display: inline-block;
-    font: normal normal normal 24px/1 "Material Design Icons";
-    font-size: inherit;
-    text-rendering: auto;
-    line-height: inherit;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    transform: translate(0, 0);
+  float: right;
+  /* margin-top: 20px; */
+  margin-left: 10px;
 }
 
-button.ui-dialog-titlebar-close{
-  
-    border-radius: 0px;
-    color: #fff;
-    background-color: #da542e;
-    border-color: #da542e;
-    border: none !important;
-    outline: none;;
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
+  height: 0 !important;
+  top: -614.3px !important;
+  z-index: 10 !important;
 }
+
+button.ui-dialog-titlebar-close::before {
+  content: "\F156";
+  display: inline-block;
+  font: normal normal normal 24px/1 "Material Design Icons";
+  font-size: inherit;
+  text-rendering: auto;
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+
+button.ui-dialog-titlebar-close {
+
+  border-radius: 0px;
+  color: #fff;
+  background-color: #da542e;
+  border-color: #da542e;
+  border: none !important;
+  outline: none;
+  ;
+}
+
 #basic-addon2::before {
   content: "\F21F";
   display: inline-block;
-    font: normal normal normal 24px/1 "Material Design Icons";
-    font-size: inherit;
-    text-rendering: auto;
-    line-height: inherit;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    transform: translate(0, 0);
+  font: normal normal normal 24px/1 "Material Design Icons";
+  font-size: inherit;
+  text-rendering: auto;
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
 }
 
 img#postTumb {
-    height: 75px;
+  height: 75px;
 }
- .searchhidden {
-    display: none !important;
+
+.searchhidden {
+  display: none !important;
 }
+
 .info-none-text {
-    text-align: center;
-    position: absolute;
-    top: 110px;
-    left: auto;
-    right: auto;
-    width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 110px;
+  left: auto;
+  right: auto;
+  width: 100%;
 }
-@media(max-width: 600px){
+
+@media(max-width: 600px) {
   .info-none-text {
-   
+
     top: 130px;
-   
+
+  }
 }
-}
-.pag-dis{
+
+.pag-dis {
   display: none !important;
 }
 
 .alt-input {
   display: block;
-    width: auto;
-    padding: 2px 5px;
-    font-size: 13px;
-    line-height: 1.5;
-    color: #4F5467;
-    margin-top: 5px;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #e9ecef;
-    border-radius: 2px;
-    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  width: auto;
+  padding: 2px 5px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #4F5467;
+  margin-top: 5px;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e9ecef;
+  border-radius: 2px;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.change-pass a {
+  float: right;
+}
+
+.change-pass {
+  margin-bottom: 40px;
+}
+
+#disabledTextUser {
+  cursor: not-allowed;
 }

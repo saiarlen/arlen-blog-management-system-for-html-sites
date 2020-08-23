@@ -10,6 +10,27 @@
 
  require_once ("config.php");
 
+ /* ========================= Login handle =================================*/
+ if(isset($_POST["arlogsub"])){
+  if(empty($_POST["arusername"]) || empty($_POST["arpass"])){
+      echo "Something Went Wrong! Some fields are empty";
+  }else{
+      $ar_user = $conn-> real_escape_string($_POST['arusername']);
+      $ar_pass = $conn-> real_escape_string($_POST['arpass']);
+      $ar_pass = md5($ar_pass);
+      $arlen_sql = "SELECT * FROM ar_admin WHERE ar_username = '$ar_user' AND ar_password = '$ar_pass'";
+      $final = $conn-> query($arlen_sql);
+      if(mysqli_num_rows($final) > 0){
+          $_SESSION["arlenUserTest"] = $ar_user;
+          //header ("location:" . ARLEN_BASE_URL ."/admin/home.php");
+          echo "true";
+      }else {
+          echo "You entered an incorrect username or password";
+      }
+  }
+}
+
+
  /* ========================= Category page handle =================================*/
  
 
