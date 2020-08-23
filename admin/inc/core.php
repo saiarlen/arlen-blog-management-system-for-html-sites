@@ -27,7 +27,7 @@
 
 
  /* -------------------------- For  Excerpt Word Limit --------------------*/
- function limit_excerpt($text, $limit) {
+ function arLimitExcerpt($text, $limit) {
     if (str_word_count($text, 0) > $limit) {
         $words = str_word_count($text, 2);
         $pos   = array_keys($words);
@@ -39,7 +39,7 @@
 
 /* ------------------------------ Adding new post submit handle function ----------------- */
 
-function ar_addNewPost($conn){
+function arAddNewPost($conn){
     //date_default_timezone_set('Asia/Kolkata');
 
  // Insert post into the database
@@ -135,7 +135,7 @@ if(isset($_POST["post_submit"])){
 
 /* ------------------------------ Updating Post handle function ----------------- */
 
-function ar_updatePost($conn){
+function arUpdatePost($conn){
       /* update post into the database */
       if(isset($_POST["post_submit"])){
         $p_title = mysqli_real_escape_string($conn, $_POST['p-title']);

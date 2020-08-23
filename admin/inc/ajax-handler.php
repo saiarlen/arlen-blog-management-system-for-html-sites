@@ -50,7 +50,7 @@ if(isset($_POST['catdelbtn'])){
   if(isset($_POST['catcheckbx'])){
     foreach($_POST['catcheckbx'] as $deleteid){
 
-      $deleteCat = "DELETE from ar_categories WHERE id=".$deleteid;
+      $deleteCat = "DELETE from ar_categories WHERE cat_id=".$deleteid;
       mysqli_query($conn,$deleteCat);
     }
     if(!mysqli_query($conn,$deleteCat)){
@@ -74,7 +74,7 @@ if(isset($_POST['cat_update'])){
     $final_update_catslgname = preg_replace('#[ -]+#', '-', $catslgnameupdate);
     $final_update_catslgname = urlencode($final_update_catslgname);
 
-    $cat_update_dbsql = "UPDATE ar_categories SET cat_name='$updatecatname', cat_slug='$final_update_catslgname' WHERE id=" . $updatecatid;
+    $cat_update_dbsql = "UPDATE ar_categories SET cat_name='$updatecatname', cat_slug='$final_update_catslgname' WHERE cat_id=" . $updatecatid;
 
     if (mysqli_query($conn, $cat_update_dbsql)) {
     echo "Category updated successfully";

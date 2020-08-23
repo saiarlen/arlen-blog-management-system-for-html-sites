@@ -42,8 +42,8 @@ require_once("header.php");
 
 if($_GET["type"] == "post"){ 
 
-    ar_updatePost($conn);//update handle
-    $response_msg =  ar_updatePost($conn);
+    arUpdatePost($conn);//update handle
+    $response_msg =  arUpdatePost($conn);
 
     //retrieve data
     $pos_id = $_GET["id"];
@@ -114,7 +114,7 @@ if($_GET["type"] == "post"){
                                     while($row = $cat_final_all_data->fetch_assoc()) {
                                         $ar_catup_sel = "selected";
 
-                                            if (in_array($row["id"], $ar_pos_update_cats)) {
+                                            if (in_array($row["cat_id"], $ar_pos_update_cats)) {
 
                                                 $ar_catup_sel = "selected";
                                                 
@@ -124,7 +124,7 @@ if($_GET["type"] == "post"){
                                             }
                                         
                              ?>
-                                <option value="<?php echo $row["id"]; ?>" <?php echo $ar_catup_sel; ?>><?php echo $row["cat_name"]; ?></option>
+                                <option value="<?php echo $row["cat_id"]; ?>" <?php echo $ar_catup_sel; ?>><?php echo $row["cat_name"]; ?></option>
                                 <?php
                                     }
                                 }
