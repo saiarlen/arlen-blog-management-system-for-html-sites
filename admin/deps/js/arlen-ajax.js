@@ -1,6 +1,8 @@
 
 $(function($) {
     "use strict";
+
+
 // ============================================================== 
 // Create New Profile Page Ajax
 // ============================================================== 
@@ -60,7 +62,10 @@ $('#authsubmit').on('click', function(e) { //For Submitting data
                 var result = JSON.parse(response);
                 arSubmitResponse(result[0], result[1]);
                 $("#authsubmit").removeAttr("disabled");
-                $('#authform')[0].reset();
+                if(result[0] !== "alert"){
+                    $('#authavtar').removeAttr('value');
+                    $('#authform')[0].reset();   
+                }
             },
             cache: false,
         });
