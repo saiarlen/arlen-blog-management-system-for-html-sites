@@ -25,6 +25,20 @@
 <!-- ============================================================== -->
 <!-- End Wrapper -->
 <!-- ============================================================== -->
+<!-- Modal -->
+<div class="modal fade" id="arModal" tabindex="-1" role="dialog" aria-labelledby="arlenSubmissionInfo" aria-hidden="true ">
+    <div class="modal-dialog" role="document ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="arlenSubmissionInfo"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true ">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
 <!-- ============================================================== -->
 <!-- All Js -->
 <!-- ============================================================== -->
@@ -43,8 +57,13 @@
 <script src="deps/js/sidebarmenu.js"></script>
 <!-- this page js -->
 <script src="deps/js/moment.min.js"></script>
-<!--Custom JavaScript -->
-<script src="deps/js/arlen-script.js"></script>
+
+<!--Helpers JavaScript -->
+<script src="deps/js/arlen-helpers.js"></script>
+<!--dashboard JavaScript -->
+<script src="deps/js/arlen-dashboard.js"></script>
+<!--ajax JavaScript -->
+<script src="deps/js/arlen-ajax.js"></script>
 
 <!-- Table Scripts all -->
 <script src="deps/js/datatable-checkbox-init.js"></script>
