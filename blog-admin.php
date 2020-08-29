@@ -12,7 +12,6 @@ if(isset($_SESSION["arlenUserTest"])) {
 } 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,9 +38,6 @@ if(isset($_SESSION["arlenUserTest"])) {
 </head>
 
 <body>
- 
-
-
     <div class="main-wrapper">
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
@@ -148,10 +144,6 @@ if(isset($_SESSION["arlenUserTest"])) {
         <!-- ============================================================== -->
     </div>
 
-
-
-
-
     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
@@ -159,13 +151,7 @@ if(isset($_SESSION["arlenUserTest"])) {
     <script src="admin/deps/js/popper.min.js"></script>
     <script src="admin/deps/js/bootstrap.min.js"></script>
     <script src="admin/deps/js/perfect-scrollbar.jquery.min.js"></script>
-    <script src="admin/deps/js/arlen-script.js"></script>
-
-    <script>
-        $('[data-toggle="tooltip"]').tooltip();
-        $(".preloader").fadeOut();
-    </script>
-
+    <script src="admin/deps/js/login.js"></script>
 </body>
 
 </html>
