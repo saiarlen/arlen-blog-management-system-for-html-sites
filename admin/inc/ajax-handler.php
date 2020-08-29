@@ -218,7 +218,65 @@ if(isset($_POST['singleposdel'])){
 /* ========================= End of All Post page handle =================================*/
 
 
+/* ========================= New Profile page handle =================================*/
 
+if(isset($_POST["arnpfsub"])){
+   
+    $arnpfname=$_POST['arnpfname'];
+    $arnpfuser=$_POST['arnpfuser'];
+    $arnpfemail=$_POST['arnpfemail'];
+    $arnpfcomp=$_POST['arnpfcomp'];
+    $arnpfimg=$_POST['arnpfimg'];
+    $arnpfpass=$_POST['arnpfpass'];
+    $arnpfrole=$_POST['arnpfrole'];
+    
+
+    if (empty($arnpfname) || empty($arnpfname) || empty($arnpfemail) || empty($arnpfpass) || empty($arnpfrole) ) {
+       echo json_encode(array("alert", "Error some fields are empty!"));
+        
+    }else {
+        if (empty($arnpfimg)) {
+            $arnpfimg = ARLEN_BASE_URL . "/admin/deps/img/no-photo.jpg";
+        }
+
+        $arnpfpass = md5($arnpfpass);
+
+        $npfquery = mysqli_query($conn,"SELECT * FROM ar_admin WHERE ar_username='$arnpfuser'");
+        $npfsql = "INSERT INTO ar_admin (
+            ar_username, 
+            ar_authemail,
+            ar_password,
+            ar_authorname,
+            ar_company,
+            ar_avatar,
+            ar_role) VALUES (
+                '$arnpfuser', 
+                '$arnpfemail',
+                '$arnpfpass',
+                '$arnpfname', 
+                '$arnpfcomp',
+                '$arnpfimg',
+                '$arnpfrole')";
+     
+        //Checking to see if user already exsist
+        if(mysqli_num_rows($npfquery) > 0) {
+
+            echo json_encode(array("alert", "Username already taken!"));
+            
+        }
+        elseif(!mysqli_query($conn, $npfsql)) {
+            echo json_encode(array("error", "Something went wrong!"));
+        }
+        else {
+            echo json_encode(array("success", "New author successfully created!"));
+        } 
+        //Close connection
+        mysqli_close($conn);
+    }
+
+   
+}
+/* =========================End of New Profile page handle =================================*/
 
 
 
