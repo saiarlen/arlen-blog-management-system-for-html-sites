@@ -233,7 +233,7 @@ if(!isset($_SESSION["arlenUserTest"])){
                                 <a class="dropdown-item" href="my-profile.php"><i
                                         class="fas fa-user m-r-5 m-l-5"></i> My Profile</a>
                                 <a class="dropdown-item" href="add-new-profile.php"><i
-                                        class="fas fa-user-plus m-r-5 m-l-5"></i> Add New Profile</a>
+                                        class="fas fa-user-plus m-r-5 m-l-5"></i> Add New Author</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="settings.php"><i
                                         class=" fas fa-cog m-r-5 m-l-5"></i> Settings</a>
@@ -310,6 +310,7 @@ if(!isset($_SESSION["arlenUserTest"])){
             </div>
             <!-- End Sidebar scroll-->
         </aside>
+        
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
