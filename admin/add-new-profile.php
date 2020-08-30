@@ -45,7 +45,7 @@ require_once("header.php");
             <div class="card">
                 <form id="authform" class="form-horizontal" method="POST">
                     <div class="card-body">
-                        <h4 class="card-title">Your Personal Info</h4>
+                        <h4 class="card-title mb-4">Your Personal Info</h4>
                         <div class="form-group row">
                             <label for="authname" class="col-sm-3 text-right control-label col-form-label">Author
                                 Name</label>

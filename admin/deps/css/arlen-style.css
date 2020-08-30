@@ -242,6 +242,23 @@ img#postTumb {
   opacity: 0.8;
   cursor: not-allowed;
 }
+.btn.disabled:active,
+.btn:disabled:active {
+  pointer-events: none !important;
+}
+.disabled {
+  cursor: not-allowed !important;
+  opacity: .9;
+}
+.disabled:active {
+  pointer-events: none !important;
+}
+
+input.disabled,
+input:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
 
 .reverse-spinner {
   position: relative;
@@ -330,4 +347,14 @@ img#postTumb {
     -webkit-transform: rotate(-720deg);
     transform: rotate(-720deg);
   }
+}
+.chngwrapper {
+  text-align: right;
+  margin-bottom: -10px;
+}
+.chngwrapper span {
+ cursor: pointer;
+}
+#changepsfm, #passupdate{
+  display: none;
 }
