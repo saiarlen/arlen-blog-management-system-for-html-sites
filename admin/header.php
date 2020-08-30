@@ -22,6 +22,7 @@ if (file_exists("inc/core.php")){
 if(!isset($_SESSION["arlenUserTest"])){
     header('Location: ../blog-admin.php');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -225,10 +226,13 @@ if(!isset($_SESSION["arlenUserTest"])){
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                    src="deps/img/4.jpg" alt="user" class="rounded-circle" width="31"></a>
+                        <li  class="nav-item dropdown">
+                           
+                           <a id="imgaload" class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img id="proimg"
+                                    src="<?php arUserIdentifier($conn, $loginuser, 1); ?>" alt="user" class="rounded-circle" width="31" height="31">
+                                </a>
+                          
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="my-profile.php"><i
                                         class="fas fa-user m-r-5 m-l-5"></i> My Profile</a>
