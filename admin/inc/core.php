@@ -10,6 +10,9 @@
 
  require_once ("config.php");
 
+ //All Global Variables
+ $loginuser = $_SESSION["arlenUserTest"];
+
  /* -- ============================================================== -->
     <!-- All General Functions -->
 -- ============================================================== */
@@ -221,16 +224,35 @@ function arUpdatePost($conn){
     }
 }
 
+/* ------------------------------ User handle function ----------------- */
+function arUserIdentifier($conn, $loginuser, $sel){
+    $queryuid = "SELECT ar_authorname, ar_avatar FROM ar_admin WHERE ar_username= '$loginuser' limit 1";
+    $uidresult = mysqli_query($conn, $queryuid);
+    $uidresult = mysqli_fetch_row($uidresult);
+    if($sel == 0){
+        echo $uidresult[0];
+    }elseif($sel == 1){
+        echo $uidresult[1];
+    }
+    
+   
+}
 
+function arUserDataFetch($conn, $loginuser){
+    $user_update_sql = "SELECT * FROM ar_admin WHERE ar_username= '$loginuser' limit 1";
+    $userupdate_result = mysqli_query($conn, $user_update_sql);
 
+    if (mysqli_num_rows($userupdate_result) > 0 && mysqli_num_rows($userupdate_result) <= 1) {
 
+        return mysqli_fetch_assoc($userupdate_result);
+        //echo "saiarlennn";
 
+    } else {
+        echo "<script>alert('Somethng Wrong! Please try Again.');location.href = 'add-new-profile.php';</script>";
+    }
+   
 
-
-
-
-
-
+}
 
 
 
