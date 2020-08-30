@@ -231,7 +231,7 @@ if(isset($_POST["arnpfsub"])){
     $arnpfrole=$_POST['arnpfrole'];
     
 
-    if (empty($arnpfname) || empty($arnpfname) || empty($arnpfemail) || empty($arnpfpass) || empty($arnpfrole) ) {
+    if (empty($arnpfname) || empty($arnpfuser) || empty($arnpfemail) || empty($arnpfpass) || empty($arnpfrole) ) {
        echo json_encode(array("alert", "Error some fields are empty!"));
         
     }else {
@@ -277,6 +277,78 @@ if(isset($_POST["arnpfsub"])){
    
 }
 /* =========================End of New Profile page handle =================================*/
+
+
+/* ========================= Update Profile page handle =================================*/
+
+if(isset($_POST["arupfsub"])){
+   
+    $arupfid=$_POST['arupfid'];
+    $arupfname=$_POST['arupfname'];
+    $arupfemail=$_POST['arupfemail'];
+    $arupfcomp=$_POST['arupfcomp'];
+    $arupfimg=$_POST['arupfimg'];
+   
+
+    if (empty($arupfname) || empty($arupfemail)) {
+       echo json_encode(array("alert", "Error some fields are empty!"));
+        
+    }else {
+        if (empty($arupfimg)) {
+            $arupfimg = ARLEN_BASE_URL . "/admin/deps/img/no-photo.jpg";
+        }
+
+       
+        $upfsql = "UPDATE ar_admin SET ar_authemail='$arupfemail', ar_authorname='$arupfname', ar_company ='$arupfcomp', ar_avatar='$arupfimg' WHERE ar_userid=" . $arupfid;
+      
+        if(!mysqli_query($conn, $upfsql)) {
+            echo json_encode(array("error", "Something went wrong!"));
+        }
+        else {
+            echo json_encode(array("success", "Profile successfully Updated!"));
+        } 
+        //Close connection
+        mysqli_close($conn);
+    }
+}
+
+//change Pass
+if(isset($_POST["aruppsub"])){
+   
+    $aruppid=$_POST['aruppid'];
+    $aruppcnt=$_POST['aruppcnt'];
+    $aruppnew=$_POST['aruppnew'];
+    
+    if (empty($aruppnew)) {
+       echo json_encode(array("alert", "Error some fields are empty!"));
+        
+    }else {
+        //$uppquery = "SELECT "
+        $aruppcnt = md5($aruppcnt);
+        $aruppnew = md5($aruppnew);
+        $uppquery = "SELECT ar_password FROM ar_admin WHERE ar_userid=" . $aruppid . " AND ar_password='$aruppcnt'";
+        $uppresult = mysqli_query($conn, $uppquery);
+
+        if(mysqli_num_rows($uppresult) > 0){
+            $uppsql = "UPDATE ar_admin SET ar_password='$aruppnew' WHERE ar_userid=" . $aruppid;
+      
+            if(!mysqli_query($conn, $uppsql)) {
+                echo json_encode(array("error", "Something went wrong!"));
+            }
+            else {
+                echo json_encode(array("success", "Password successfully Updated!"));
+            } 
+
+        }else {
+            echo json_encode(array("alert", "Old password doesn't match!"));
+        }
+
+        
+        //Close connection
+        mysqli_close($conn);
+    }
+}
+/* =========================End of Update Profile page handle =================================*/
 
 
 
