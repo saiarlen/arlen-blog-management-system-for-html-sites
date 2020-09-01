@@ -7,12 +7,20 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-$page_title = "Profile"; //page-title
+$page_title = "My Profile"; //page-title
 require_once("header.php");
  
-//Calling respective function
-$userupdata = arUserDataFetch($conn, $loginuser);
 
+$user_update_sql = "SELECT * FROM ar_admin WHERE ar_username= '$loginuser' limit 1";
+$userupdate_result = mysqli_query($conn, $user_update_sql);
+
+if (mysqli_num_rows($userupdate_result) > 0) {
+
+    $userupdata =  mysqli_fetch_assoc($userupdate_result);
+} else {
+    echo "<script>alert('Somethng Wrong! Please try Again.');location.href = 'add-new-profile.php';</script>";
+}
+  
 ?>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
