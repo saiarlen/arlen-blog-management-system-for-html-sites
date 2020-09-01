@@ -236,7 +236,9 @@ if(!isset($_SESSION["arlenUserTest"])){
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="my-profile.php"><i
                                         class="fas fa-user m-r-5 m-l-5"></i> My Profile</a>
-                                <a class="dropdown-item" href="add-new-profile.php"><i
+                                <a class="dropdown-item" href="manage-users.php"><i
+                                        class="fas fa-users m-r-5 m-l-5"></i> Manage Users</a>
+                                        <a class="dropdown-item" href="add-new-profile.php"><i
                                         class="fas fa-user-plus m-r-5 m-l-5"></i> Add New Author</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="settings.php"><i
