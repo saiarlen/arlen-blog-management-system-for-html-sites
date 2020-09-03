@@ -350,6 +350,78 @@ if(isset($_POST["aruppsub"])){
 }
 /* =========================End of Update Profile page handle =================================*/
 
+/* ========================= Manage Profile page handle =================================*/
+
+if(isset($_POST["arusrchecked"])){ //For Checked
+   
+    $arusrchecked=$_POST['arusrchecked'];
+    $arusrvalA = $_POST['arusrval'];
+    
+   
+
+    if (empty($arusrchecked) || empty($arusrvalA) || $arusrchecked != "checked" ) {
+       echo json_encode(array("error", "Something went wrong!"));
+        
+    }else {
+       
+        $upusrsqlA = "UPDATE ar_admin SET ar_role='superadmin' WHERE ar_userid=" . $arusrvalA;
+      
+        if(!mysqli_query($conn, $upusrsqlA)) {
+            echo json_encode(array("error", "Something went wrong!"));
+        }
+        else {
+            echo json_encode(array("success", "User rights changed to SUPER ADMIN!"));
+        } 
+        //Close connection
+        mysqli_close($conn);
+    }
+}
+
+if(isset($_POST["arusruncheck"])){ //for Unchecked
+   
+    $arusruncheck=$_POST['arusruncheck'];
+    $arusrvalB = $_POST['arusrval'];
+    
+    if (empty($arusruncheck) || empty($arusrvalB) || $arusruncheck != "unchecked" ) {
+       echo json_encode(array("error", "Something went wrong!"));
+        
+    }else {
+       
+        $upusrsqlB = "UPDATE ar_admin SET ar_role='author' WHERE ar_userid=" . $arusrvalB;
+      
+        if(!mysqli_query($conn, $upusrsqlB)) {
+            echo json_encode(array("error", "Something went wrong!"));
+        }
+        else {
+            echo json_encode(array("success", "User rights changed to AUTHOR!"));
+        } 
+        //Close connection
+        mysqli_close($conn);
+    }
+}
+
+if(isset($_POST["aruserdel"])){ //for deleting User
+   
+    $aruserdel=$_POST['aruserdel'];
+    
+    if (empty($aruserdel) ) {
+       echo "error";
+        
+    }else {
+        $delusrsql = "DELETE FROM ar_admin WHERE ar_userid=" . $aruserdel;
+        if(!mysqli_query($conn, $delusrsql)) {
+            echo "error";
+        }
+        else {
+            echo "yes";
+        } 
+        //Close connection
+        mysqli_close($conn);
+    }
+}
+
+/* ========================= End Profile page handle =================================*/
+
 
 
 

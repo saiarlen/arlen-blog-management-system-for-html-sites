@@ -29,5 +29,11 @@ function arValidateUser(useridin) {  //User validation
         return isValidUser;  
 }
 
+function arUpdateDiv() { // For auto Reloading Page
+    setTimeout(function() {
+        location.reload(true);
+    }, 1000);
+}
+
 //===============================================================
 

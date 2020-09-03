@@ -181,6 +181,85 @@ $('#authorupdate').on('click', function(e) { //For Submitting data
  });
 
 
+// ============================================================== 
+// Manage Profiles Page Ajax
+// ============================================================== 
+
+ $('.switch-input').change(function(){
+    var arusrval = $(this).val();
+    if($(this).is(":checked")){
+        $.ajax({
+            type: "POST",
+            url: 'inc/ajax-handler.php',
+            data: {
+                "arusrchecked": "checked",
+                "arusrval": arusrval
+            },
+            success: function(response) {
+                var result = JSON.parse(response);
+                arSubmitResponse(result[0], result[1]);  
+            },
+            cache: false,
+        });
+        return false; 
+    }
+    else if($(this).is(":not(:checked)")){
+        $.ajax({
+            type: "POST",
+            url: 'inc/ajax-handler.php',
+            data: {
+                "arusruncheck": "unchecked",
+                "arusrval": arusrval
+            },
+            success: function(response) {
+                var result = JSON.parse(response);
+                arSubmitResponse(result[0], result[1]);  
+            },
+            cache: false,
+        });
+        return false; 
+    }
+});
+
+//User Delete
+$('.user-del').on('click', function() { //For Submitting data
+
+     var aruserdel =  $(this).val();
+    
+     if (aruserdel == "") {
+         arSubmitResponse('error', 'User not exist!');
+         
+     } else if(confirm("Are you sure you want to delete user")) {
+         $(this).attr("disabled", "disabled");
+         $(this).parent().parent().addClass("delcolor");
+         console.log($(this).val());
+         $.ajax({
+             type: "POST",
+             url: 'inc/ajax-handler.php',
+             data: {
+                 "aruserdel": aruserdel,
+             },
+             success: function(response) {
+                 if(response == "yes"){
+                    arUpdateDiv();
+                    //$(".card").removeClass("delcolor");
+                    $(".user-del").removeAttr("disabled");
+                 }else{
+                    arSubmitResponse("error", "Something went wrong!"); 
+                    $(".card").removeClass("delcolor");
+                    $(".user-del").removeAttr("disabled");
+                 }
+                
+             },
+             cache: false,
+         });
+         return false; 
+     }else {
+         return false;
+     }
+ });
+
+
 
 
 
