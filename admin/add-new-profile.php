@@ -50,8 +50,7 @@ require_once("header.php");
                             <label for="authname" class="col-sm-3 text-right control-label col-form-label">Author
                                 Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="authname" placeholder="New Author Name Here"
-                                    required>
+                                <input type="text" class="form-control" id="authname" placeholder="New Author Name Here" required>
                             </div>
                         </div>
 
@@ -59,33 +58,27 @@ require_once("header.php");
                             <label for="authusername" class="col-md-3 text-right control-label col-form-label">User Name
                             </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" id="authusername" placeholder="User Name Here"
-                                    required>
+                                <input type="text" class="form-control" id="authusername" placeholder="User Name Here" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="authemail" class="col-sm-3 text-right control-label col-form-label">Email
                                 Id</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="authemail" placeholder="Author Email Here"
-                                    required>
+                                <input type="email" class="form-control" id="authemail" placeholder="Author Email Here" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="authcompany"
-                                class="col-sm-3 text-right control-label col-form-label">Company</label>
+                            <label for="authcompany" class="col-sm-3 text-right control-label col-form-label">Company</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="authcompany"
-                                    placeholder="Company Name Here">
+                                <input type="text" class="form-control" id="authcompany" placeholder="Company Name Here">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="authavtar"
-                                class="col-sm-3 text-right control-label col-form-label">Avatar</label>
+                            <label for="authavtar" class="col-sm-3 text-right control-label col-form-label">Avatar</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="authavtar"
-                                        placeholder="Profile Image Here">
+                                    <input type="text" class="form-control" id="authavtar" placeholder="Profile Image Here">
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="basic-addon2"></span>
                                     </div>
@@ -93,9 +86,7 @@ require_once("header.php");
 
                                 <!--  -->
                                 <div id="roxyCustomPanel2" style="display: none;">
-                                    <iframe
-                                        src="deps/fileman/media.html?integration=custom&type=files&txtFieldId=authavtar"
-                                        style="width:100%;height:100%" frameborder="0">
+                                    <iframe src="deps/fileman/media.html?integration=custom&type=files&txtFieldId=authavtar" style="width:100%;height:100%" frameborder="0">
                                     </iframe>
                                 </div>
                                 <!--  -->
@@ -106,8 +97,7 @@ require_once("header.php");
                             <label for="authpass" class="col-sm-3 text-right control-label col-form-label">New
                                 Password</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="authpass" placeholder="Password Here"
-                                    style="padding-right: 30px;" required>
+                                <input type="password" class="form-control" id="authpass" placeholder="Password Here" style="padding-right: 30px;" required>
                                 <div toggle="#authpass" class="fa fa-fw fa-eye eyefield-icon toggle-password"></div>
                             </div>
 
@@ -116,8 +106,7 @@ require_once("header.php");
                             <label for="authcmpass" class="col-sm-3 text-right control-label col-form-label">Conform
                                 Password</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="authcmpass"
-                                    placeholder="Reenter Password Here" required>
+                                <input type="password" class="form-control" id="authcmpass" placeholder="Reenter Password Here" required>
                                 <div toggle="#authcmpass" class="fa fa-fw fa-eye eyefield-icon toggle-password"></div>
                             </div>
                         </div>
@@ -150,55 +139,55 @@ require_once("header.php");
 </div>
 
 <script>
-//arSubmitResponse('alert', 'Not valid username!');
-//file browser init
-$('#authavtar').click(function() {
-    $('#roxyCustomPanel2').dialog({
-        modal: true,
-        width: 700,
-        height: 500
+    //arSubmitResponse('alert', 'Not valid username!');
+    //file browser init
+    $('#authavtar').click(function() {
+        $('#roxyCustomPanel2').dialog({
+            modal: true,
+            width: 700,
+            height: 500
+        });
+
     });
 
-});
+    function closeCustomRoxy2() {
+        $('#roxyCustomPanel2').dialog('close');
+    };
 
-function closeCustomRoxy2() {
-    $('#roxyCustomPanel2').dialog('close');
-};
+    $("#authusername").on('focus', function() { //remove invalid class if exists
+        if ($(this).hasClass('is-invalid')) {
+            $(this).removeClass('is-invalid');
+        }
+    });
 
-$("#authusername").on('focus', function() { //remove invalid class if exists
-    if ($(this).hasClass('is-invalid')) {
-        $(this).removeClass('is-invalid');
+    $("#authemail").on('focus', function() { //remove invalid class if exists
+        if ($(this).hasClass('is-invalid')) {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    function arPasswordMatch() { // change password box focus color if not match
+        var authpass = $("#authpass").val();
+        var authcmpass = $("#authcmpass").val();
+        if (authpass != authcmpass) {
+            $("#authcmpass").addClass("is-invalid");
+        } else {
+            $("#authcmpass").removeClass("is-invalid");
+        }
     }
-});
-
-$("#authemail").on('focus', function() { //remove invalid class if exists
-    if ($(this).hasClass('is-invalid')) {
-        $(this).removeClass('is-invalid');
-    }
-});
-
-function arPasswordMatch() { // change password box focus color if not match
-    var authpass = $("#authpass").val();
-    var authcmpass = $("#authcmpass").val();
-    if (authpass != authcmpass) {
-        $("#authcmpass").addClass("is-invalid");
-    } else {
-        $("#authcmpass").removeClass("is-invalid");
-    }
-}
-$("#authcmpass").keyup(arPasswordMatch);
+    $("#authcmpass").keyup(arPasswordMatch);
 
 
-$(".toggle-password").click(function() { // Password  visibility
+    $(".toggle-password").click(function() { // Password  visibility
 
-    $(this).toggleClass("fa-eye fa-eye-slash");
-    var input = $($(this).attr("toggle"));
-    if (input.attr("type") == "password") {
-        input.attr("type", "text");
-    } else {
-        input.attr("type", "password");
-    }
-});
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
 </script>
 
 

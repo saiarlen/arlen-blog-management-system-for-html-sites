@@ -7,9 +7,9 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-if(isset($_SESSION["arlenUserTest"])) {     
-    header ("location:" . "admin/home.php");
-} 
+if (isset($_SESSION["arlenUserTest"])) {
+    header("location:" . "admin/home.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -85,19 +85,19 @@ if(isset($_SESSION["arlenUserTest"])) {
                                     </div>
                                 </div>
                                 <div class="response-wrapper">
-                                    <div class="load-wrapp"><!-- Loader -->
+                                    <div class="load-wrapp">
+                                        <!-- Loader -->
                                         <div class="arload">
                                             <div class="bar"></div>
                                         </div>
                                     </div>
                                     <div id="arlogresponse"></div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </form>
                 </div>
-
                 <!-- ============================================================== -->
                 <!-- Recover form -->
                 <!-- ============================================================== -->
@@ -119,7 +119,7 @@ if(isset($_SESSION["arlenUserTest"])) {
                             <div class="row m-t-20 p-t-20 border-top border-secondary">
                                 <div class="col-12">
                                     <a class="btn btn-success" href="#" id="to-login" name="action">Back To Login</a>
-                                    <button class="btn btn-info float-right" type="button" value="recover" id="arrecsub" >Recover</button>
+                                    <button class="btn btn-info float-right" type="button" value="recover" id="arrecsub">Recover</button>
                                 </div>
                             </div>
                         </form>

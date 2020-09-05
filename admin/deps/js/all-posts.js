@@ -100,89 +100,13 @@ $(document).ready(function () {
 
 
     //For delete Post data in database
-
-
-    //for page reload call
-    function arUpdateDiv() {
-        setTimeout(function() {
-            location.reload(true);
-        }, 1000);
-    }
-    $(".comment-widgets :checkbox").change(function() {
+    $(".comment-widgets :checkbox").change(function () {
         $(this).parent().parent().toggleClass('ar_ps_del');
     });
-    $("#mainCheckbox:checkbox").change(function() {
+    $("#mainCheckbox:checkbox").change(function () {
         $(".pag-dis #posdel").prop("checked", false); //for uncheck the next page checkboxes
 
         $(".comment-row").toggleClass('ar_ps_del');
     }); //Functions for toggle classes during checkbox select
 
-    $('#pos_delete').on('click', function(e) {
-        e.preventDefault();
-        var posdelbtn = $('#pos_delete').val();
-        var poscheckbx = [];
-
-        $("#posdel:checked").each(function() {
-            poscheckbx.push(this.value);
-        });
-        if (poscheckbx.length !== 0) {
-            $.ajax({
-                type: "POST",
-                url: 'inc/ajax-handler.php',
-                data: {
-                    "posdelbtn": posdelbtn,
-                    "poscheckbx": poscheckbx
-                },
-
-                success: function(response) {
-                    //$( "#posdel:checked" ).addClass( "posdelcolor" );
-                    if (response == "YES") {
-                        $(".ar_ps_del").addClass("delcolor");
-                        arUpdateDiv();
-                    } else {
-                        alert(response);
-                    }
-
-                },
-                cache: false,
-            });
-            return false;
-        } else {
-            alert("Please select one to delete");
-        }
-    });
-
-    $('#del_btn_single').on('click', function(e) { //for single del button click
-        e.preventDefault();
-        var singleposdel = $('#del_btn_single').val();
-        if(confirm("Are you sure you want to delete this?")){
-            $.ajax({
-                type: "POST",
-                url: 'inc/ajax-handler.php',
-                data: {
-                    "singleposdel": singleposdel,
-                },
-                success: function(sresponse) {
-                    if (sresponse == "YES") {
-                        setTimeout(function() {
-                            location.reload(true);
-                        }, 500);
-                    } else {
-                        alert(sresponse);
-                    }
-
-                },
-                cache: false,
-            });
-            return false;
-        }
-        else{
-            return false;
-        }  
-    });
-    //End of delete post data in database
-
-    // ==============================================================
-    //
-    // ==============================================================
 }); //End Of Document

@@ -5,7 +5,7 @@
  * @author    Saiarlen
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
- */ 
+ */
 ?>
 
 <!-- ============================================================== -->
@@ -69,18 +69,15 @@
 <script src="deps/js/datatable-checkbox-init.js"></script>
 <script src="deps/js/jquery.multicheck.js"></script>
 <script src="deps/js/datatables.min.js"></script>
+
+<!-- All Post page Scripts -->
+<script src="deps/js/all-posts.js"></script>
+
+<!-- Basic Table init -->
 <script>
-/****************************************
- *       Basic Table                   *
- ****************************************/
-$('#zero_config').DataTable();
+    $('#zero_config').DataTable();
 </script>
-<?php 
-        if($page_scripts == TRUE){
-            csAllposts();
-        }
-    
-    ?>
+
 </body>
 
 </html>

@@ -7,94 +7,92 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-$page_title= "All Posts";//page-title
+$page_title = "All Posts"; //page-title
 require_once("header.php");
-$page_scripts = TRUE; //For Enabling Custom Scripts in footer
-
 
 ?>
 <style>
-@Media(min-width: 769px) {
-    #all-posts {
-        min-height: 80vh;
-    }
-}
-
-.comment-widgets .comment-row {
-    padding-left: 21px;
-}
-
-.customcheckbox {
-    padding-left: 28px;
-}
-
-.cs-child {
-    margin-top: 22px;
-}
-
-.d-flex.flex-row.comment-row {
-    border-bottom: solid 1px #e4e0e0;
-}
-
-.comment-widgets:first-child {
-    margin-top: 0;
-}
-
-.d-flex.flex-row.comment-row {
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-span.text-muted.float-right {
-    margin-top: -10px;
-    margin-bottom: 10px;
-}
-
-.sf-left {
-    float: right;
-}
-
-@media (max-width:767px) {
-    img.rounded-circle {
-        display: none;
+    @Media(min-width: 769px) {
+        #all-posts {
+            min-height: 80vh;
+        }
     }
 
-    button.btn {
-        margin-bottom: 3px;
+    .comment-widgets .comment-row {
+        padding-left: 21px;
+    }
+
+    .customcheckbox {
+        padding-left: 28px;
+    }
+
+    .cs-child {
+        margin-top: 22px;
+    }
+
+    .d-flex.flex-row.comment-row {
+        border-bottom: solid 1px #e4e0e0;
+    }
+
+    .comment-widgets:first-child {
+        margin-top: 0;
+    }
+
+    .d-flex.flex-row.comment-row {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    span.text-muted.float-right {
+        margin-top: -10px;
+        margin-bottom: 10px;
     }
 
     .sf-left {
-        float: left;
-        margin-top: 15px;
+        float: right;
     }
-}
 
-input.form-control.form-control-sm {
-    display: inline-block !important;
-    width: auto;
-    margin-left: 6px;
+    @media (max-width:767px) {
+        img.rounded-circle {
+            display: none;
+        }
 
-}
+        button.btn {
+            margin-bottom: 3px;
+        }
 
-.pg-nav {
-    float: right;
-}
+        .sf-left {
+            float: left;
+            margin-top: 15px;
+        }
+    }
 
-ul.pagination {
-    margin-bottom: 0;
-}
+    input.form-control.form-control-sm {
+        display: inline-block !important;
+        width: auto;
+        margin-left: 6px;
 
-nav.pg-nav {
-    display: flex;
-}
+    }
 
-.pag-disable {
-    z-index: 2;
-    color: #381be7;
-    text-decoration: none;
-    background-color: #e9ecef;
-    border-color: #dee2e6;
-}
+    .pg-nav {
+        float: right;
+    }
+
+    ul.pagination {
+        margin-bottom: 0;
+    }
+
+    nav.pg-nav {
+        display: flex;
+    }
+
+    .pag-disable {
+        z-index: 2;
+        color: #381be7;
+        text-decoration: none;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
 </style>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
@@ -128,21 +126,16 @@ nav.pg-nav {
             </div>
             <form id="pos_in_form" class="form-horizontal" method="POST">
                 <div class="card">
-                
                     <div class="card-body row">
-
                         <div class="col" style="max-width: 35px; padding-top: 4px;">
                             <!-- Check Box parent -->
                             <label class="customcheckbox m-b-20">
                                 <input type="checkbox" id="mainCheckbox">
                                 <span class="checkmark"></span>
                             </label>
-                            
                         </div>
-
                         <div class="col">
                             <button type="submit" value="Delete" name="pos_delete" id="pos_delete" class="btn btn-light btn-sm">Delete</button>
-                        
                         </div>
                         <div class="col">
                             <div class="sf-left">
@@ -154,14 +147,14 @@ nav.pg-nav {
                         <!-- Post Row -->
                         <?php
                         //Php script for retriving data from database
-                        
-                            $post_query = "SELECT * FROM ar_posts ORDER BY post_id DESC";
-                            $post_final_all_data = $conn->query($post_query);
 
-                            if ($post_final_all_data->num_rows > 0) {
-                                // output data of each row
-                                while($row = $post_final_all_data->fetch_assoc()) {
-                                ?>
+                        $post_query = "SELECT * FROM ar_posts ORDER BY post_id DESC";
+                        $post_final_all_data = mysqli_query($conn, $post_query);
+
+                        if (mysqli_num_rows($post_final_all_data) > 0) {
+                            // output data of each row
+                            while ($row = mysqli_fetch_assoc($post_final_all_data)) {
+                        ?>
                                 <div class="d-flex flex-row comment-row" data-filter-item data-filter-name="<?php echo strtolower($row["post_title"]); ?>">
                                     <!-- Check Box Child -->
                                     <label class="customcheckbox cs-child">
@@ -169,21 +162,20 @@ nav.pg-nav {
                                         <span class="checkmark"></span>
                                     </label>
                                     <div class="p-2">
-                                        <img src="<?php echo $row["post_img"]; ?>" alt="<?php echo $row["post_imgalt"]; ?>" width="50" height="50"
-                                            class="rounded-circle">
+                                        <img src="<?php echo $row["post_img"]; ?>" alt="<?php echo $row["post_imgalt"]; ?>" width="50" height="50" class="rounded-circle">
                                     </div>
                                     <div class="comment-text w-100">
                                         <h5 class="font-medium"><?php echo $row["post_title"]; ?></h5>
                                         <span class="m-b-15 d-block"><?php echo arLimitExcerpt($row["post_exp"], 10); ?></span>
                                         <div class="comment-footer">
                                             <span class="text-muted float-right">
-                                            <?php //echo $row["post_date"]; 
+                                                <?php //echo $row["post_date"]; 
 
-                                            $dis_date = new DateTime($row["post_date"]);
-                                            $date=$dis_date->format("F d, Y");
-                                            echo $date;
-                                            
-                                            ?><br>
+                                                $dis_date = new DateTime($row["post_date"]);
+                                                $date = $dis_date->format("F d, Y");
+                                                echo $date;
+
+                                                ?><br>
                                                 By: Admin
                                             </span>
                                             <a href="post-edit.php?type=post&id=<?php echo $row["post_id"]; ?>" class="btn btn-cyan btn-sm">Edit</a>
@@ -193,19 +185,16 @@ nav.pg-nav {
                                     </div>
                                 </div>
                         <?php
-                                }
                             }
+                        }
 
                         ?>
-
                     </div>
                 </div>
             </form>
-
-
         </div>
-
     </div>
+
     <div class="row">
         <div class="col-sm-12">
 
@@ -217,7 +206,6 @@ nav.pg-nav {
                     </a>
                 </span>
                 <ul class="pagination">
-
                 </ul>
                 <span class="page-item">
                     <a class="nex page-link" href="javascript:void(0)" aria-label="Next">
@@ -226,21 +214,11 @@ nav.pg-nav {
                     </a>
                 </span>
             </nav>
-
         </div>
     </div>
-
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
-
-<!-- Only This page Script -->
-<?php 
-function csAllposts(){
-    echo '<script src="deps/js/all-posts.js"></script>';
-}
-   
-?>
 
 <?php require_once("footer.php"); ?>

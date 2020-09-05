@@ -11,30 +11,26 @@ $host = "localhost";
 $user = "root";
 $pass = "";
 $database = "blogdata";
+//Base URL
+define("ARLEN_BASE_URL", "http://localhost/blog");
 
-function db_Connect($host, $user, $pass, $db) {
-    $mysqli = new mysqli($host, $user, $pass, $db);
-
-    if($mysqli->connect_error){
-        die('Connect Error (' . mysqli_connect_errno() .')' . mysqli_connect_error() );
+//Main Connection
+function db_Connect($host, $user, $pass, $db){
+    $mysqli = mysqli_connect($host, $user, $pass, $db);
+    if (mysqli_connect_errno()) {
+        die('Connect Error' . mysqli_connect_error());
     }
-    
     return $mysqli;
-
 }
 session_start();
 $conn = db_Connect($host, $user, $pass, $database);
 
-//Base URL
-define("ARLEN_BASE_URL", "http://localhost/blog");
-
 //Season Time Setup
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
     // last request was more than 30 minutes ago
-    session_unset();    
+    session_unset();
     session_destroy();
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
-$page_scripts = FALSE; //Defult Value for page scripts
 
 error_reporting(E_ALL); //error reporting

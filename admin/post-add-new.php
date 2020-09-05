@@ -9,6 +9,7 @@
 
 $page_title= "Add New Post"; //page-title
 require_once("header.php");
+require_once("inc/post-handle.php");
 
 ?>
 <!-- ============================================================== -->
@@ -30,7 +31,6 @@ require_once("header.php");
     </div>
 </div>
 
-
 <!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
@@ -38,7 +38,6 @@ require_once("header.php");
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-    <div id="post_res" class="alert alert-success" role="alert" style="display:none;">Post Saved Successfully</div>
     <form id="post_form" class="form-horizontal" method="POST">
         <div class="row">
             <div class="col-md-7">
@@ -55,17 +54,17 @@ require_once("header.php");
                                 style="height: 36px;width: 100%;">
                                 <?php 
                                 $cat_query = "SELECT * FROM ar_categories ORDER BY cat_id DESC";
-                                $cat_final_all_data = $conn->query($cat_query);
+                                $cat_final_all_data = mysqli_query($conn, $cat_query);
 
-                                if ($cat_final_all_data->num_rows > 0) {
+                                if (mysqli_num_rows($cat_final_all_data) > 0) {
                                     // output data of each row
-                                    while($row = $cat_final_all_data->fetch_assoc()) {
-                             ?>
+                                    while($row = mysqli_fetch_assoc($cat_final_all_data)) {
+                                ?>
                                 <option value="<?php echo $row["cat_id"]; ?>"><?php echo $row["cat_name"]; ?></option>
                                 <?php
+                                        }
                                     }
-                                }
-                            ?>
+                                ?>
                             </select>
                         </div>
                         <div class="form-group row">
@@ -74,19 +73,17 @@ require_once("header.php");
                                 style="height: 36px;width: 100%;">
                                 <?php
                                     $tag_query = "SELECT * FROM ar_tags ORDER BY tag_id DESC";
-                                    $tag_final_all_data = $conn->query($tag_query);
+                                    $tag_final_all_data = mysqli_query($conn, $tag_query);
 
-                                    if ($tag_final_all_data->num_rows > 0) {
+                                    if (mysqli_num_rows($tag_final_all_data) > 0) {
                                         // output data of each row
-                                        while($row = $tag_final_all_data->fetch_assoc()) {
+                                        while($row = mysqli_fetch_assoc($tag_final_all_data)) {
                                 ?>
                                 <option value="<?php echo $row["tag_id"]; ?>"><?php echo $row["tag_name"]; ?></option>
-
                                 <?php
                                         }
                                     }
                                 ?>
-
                             </select>
                         </div>
                     </div>
@@ -153,7 +150,8 @@ require_once("header.php");
                                         </iframe>
                                     </div>
                                 </div>
-                                <input class="alt-input" type="text" name="img-alt" id="img-alt" placeholder="Image Alt Text">
+                                <input class="alt-input" type="text" name="img-alt" id="img-alt"
+                                    placeholder="Image Alt Text">
                             </div>
                             <div class="col-md-4">
                                 <img src="deps/img/tumb.jpg" id="postTumb" alt="post">
@@ -164,9 +162,10 @@ require_once("header.php");
                         <div class="form-group row">
                             <label for="p-des">Post Excerpt <small class="text-muted">Optional</small></label>
                             <textarea class="form-control" name="p-exp" id="p-exp"></textarea>
-                            <span class="f-span-text">Excerpt is a short description about the post. You can use first para of post content</span>
+                            <span class="f-span-text">Excerpt is a short description about the post. You can use first
+                                para of post content</span>
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -178,7 +177,7 @@ require_once("header.php");
                 <div class="row ">
 
                     <div class="col-md-12">
-                       
+
                         <a href="all-posts.php" class="btn btn-secondary post-btn">View All Posts</a>
                         <button id="post_submit" type="submit" name="post_submit" value="post_insert"
                             class="btn btn-info post-btn">Add New</button>
@@ -210,7 +209,6 @@ $('#datepicker-autoclose').datepicker({
 });
 
 //file browser init
-
 $('#txtSelectedFile').click(function() {
     $('#roxyCustomPanel2').dialog({
         modal: true,
@@ -236,23 +234,10 @@ $(function() {
     });
 });
 
-//for response oon submit
-
-function postResponse() {
-    if (window.history.replaceState) {
-        window.history.replaceState(null, null, window.location.href);
-    }
-    $('#post_form')[0].reset();
-    $("#post_res").show();
-    setTimeout(
-        function() {
-            $('#post_res').fadeOut(500);
-        }, 3000);
-
-};
 </script>
 
-
 <?php 
-arAddNewPost($conn);
-require_once("footer.php"); ?>
+
+require_once("footer.php"); 
+arAddNewPost($conn); // Calling Post handle function
+?>

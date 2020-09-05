@@ -7,7 +7,7 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-$page_title= "Dashboard"; //page-title
+$page_title = "Dashboard"; //page-title
 require_once("header.php");
 ?>
 
@@ -146,8 +146,7 @@ require_once("header.php");
                             </div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 81%"
-                                aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 81%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div>
@@ -158,8 +157,7 @@ require_once("header.php");
                             </div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                                style="width: 72%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 72%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div>
@@ -170,8 +168,7 @@ require_once("header.php");
                             </div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 53%"
-                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 53%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div>
@@ -182,8 +179,7 @@ require_once("header.php");
                             </div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                style="width: 3%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 3%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>

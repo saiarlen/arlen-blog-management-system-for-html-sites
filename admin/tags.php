@@ -31,7 +31,6 @@ require_once("header.php");
 </div>
 
 <div class="row">
-
     <div class="col-md-4">
         <div class="container-fluid">
             <div class="card" style="margin-bottom:0">
@@ -52,21 +51,17 @@ require_once("header.php");
                         <div class="card-body">
                             <button id="tag_submit" type="submit" value="insert" class="btn btn-info">Add New</button>
                         </div>
-
                     </div>
-
                 </form>
             </div>
             <div class="alert alert-success alert-dismissible" id="tag_success" style="display:none;"></div>
         </div>
-
     </div>
 
     <div class="col-md-8">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
                     <div class="card" style="min-height: 600px;">
                         <div class="card-body">
                             <div class="table-responsive">
@@ -88,18 +83,16 @@ require_once("header.php");
 
                                             </tr>
                                         </thead>
-
                                         <tbody class="customtable">
-
                                             <?php
                                 //Php script for retriving data from database
                                 
                                     $tag_query = "SELECT * FROM ar_tags ORDER BY tag_id DESC";
-                                    $tag_final_all_data = $conn->query($tag_query);
+                                    $tag_final_all_data = mysqli_query($conn, $tag_query);
 
-                                    if ($tag_final_all_data->num_rows > 0) {
+                                    if (mysqli_num_rows($tag_final_all_data) > 0) {
                                         // output data of each row
-                                        while($row = $tag_final_all_data->fetch_assoc()) {
+                                        while($row = mysqli_fetch_assoc($tag_final_all_data)) {
                                         ?>
 
                                             <tr>
@@ -114,127 +107,33 @@ require_once("header.php");
                                                 <td>1</td>
                                                 <th><a href="tag-edit.php?type=tag&id=<?php echo $row["tag_id"]; ?>"
                                                         class="btn btn-dark btn-sm">Edit</a></th>
-
                                             </tr>
-
                                             <?php
-                                        }
-                                    }
+                                                    }
+                                                }
 
-                                ?>
-
+                                            ?>
                                         </tbody>
                                     </table>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
-
 
 <!-- Js For the Above form -->
 <script>
-$(document).ready(function() {
-
-    //for page reload call
-    function tagupdateDiv() {
-        setTimeout(function() {
-            location.reload(true);
-        }, 1000);
-    }
-
-    //For Submitting tags data to database
-    $('#tag_submit').on('click', function(e) {
-        e.preventDefault();
-        $("#tag_submit").attr("disabled", "disabled");
-        var tagname = $('#tagname').val();
-        var taginsertbtn = $('#tag_submit').val();
-
-
-        if (tagname != "") {
-            $.ajax({
-                type: "POST",
-                url: 'inc/ajax-handler.php',
-                data: {
-                    "taginsertbtn": taginsertbtn,
-                    "tagname": tagname
-                },
-
-                success: function(response) {
-
-                    $("#tag_submit").removeAttr("disabled");
-                    $('#tag_in_form').find('input:text').val('');
-                    $("#tag_success").show();
-                    $('#tag_success').html(response);
-                    tagupdateDiv();
-
-
-                },
-                cache: false,
-            });
-            return false;
-        } else {
-            alert('Please Enter Tag Name !');
-            $("#tag_submit").removeAttr("disabled");
-        }
-    });
-    // End of submitting data to database
-
-
-    //For delete tags data in database
-    $(".customtable :checkbox").change(function() {
-        $(this).parent().parent().parent().toggleClass('ar_cs_del');
-    });
-    $("#mainCheckbox:checkbox").change(function() {
-        $(".customtable tr").toggleClass('ar_cs_del');
-    }); //Functions for toggle classes during checkbox select
-
-    $('#tag_delete').on('click', function(e) {
-        e.preventDefault();
-        var tagdelbtn = $('#tag_delete').val();
-        var tagcheckbx = [];
-        $("#tagdel:checked").each(function() {
-            tagcheckbx.push(this.value);
-        });
-        if (tagcheckbx.length !== 0) {
-            $.ajax({
-                type: "POST",
-                url: 'inc/ajax-handler.php',
-                data: {
-                    "tagdelbtn": tagdelbtn,
-                    "tagcheckbx": tagcheckbx
-                },
-
-                success: function(response) {
-                    if (response == "YES") {
-                        $(".ar_cs_del").addClass("delcolor");
-                        tagupdateDiv();
-                    } else {
-                        alert(response);
-                    }
-
-                },
-                cache: false,
-            });
-            return false;
-        } else {
-            alert("Please select one to delete");
-        }
-
-
-    });
-    //End of delete tags data in database
-
-
-
+//For delete tags data in database
+$(".customtable :checkbox").change(function() {
+    $(this).parent().parent().parent().toggleClass('ar_cs_del');
 });
+$("#mainCheckbox:checkbox").change(function() {
+    $(".customtable tr").toggleClass('ar_cs_del');
+}); //Functions for toggle classes during checkbox select
 </script>
 
 <?php require_once("footer.php"); ?>
