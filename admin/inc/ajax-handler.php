@@ -16,8 +16,8 @@ if (isset($_POST["arlogsub"])) {
     if (empty($_POST["arusername"]) || empty($_POST["arpass"])) {
         echo "Something Went Wrong! Some fields are empty";
     } else {
-        $ar_user = mysqli_real_escape_string($conn, $_POST['arusername']);
-        $ar_pass = mysqli_real_escape_string($conn, $_POST['arpass']);
+        $ar_user = mysqli_real_escape_string($conn, trim($_POST['arusername']));
+        $ar_pass = mysqli_real_escape_string($conn, trim($_POST['arpass']));
         $ar_pass = md5($ar_pass);
         $arlen_sql = "SELECT * FROM ar_admin WHERE ar_username = '$ar_user' AND ar_password = '$ar_pass'";
         $final = mysqli_query($conn, $arlen_sql);
@@ -73,8 +73,8 @@ if (isset($_POST['singleposdel'])) { //Single button del
 // ==============================================================
 
 if (isset($_POST["catinsertbtn"])) { //Insert categories into the database
-    $catname = $_POST['catname'];
-    $catslgname = $_POST['catslgname'];
+    $catname = mysqli_real_escape_string($conn, trim($_POST['catname']));
+    $catslgname = mysqli_real_escape_string($conn, trim($_POST['catslgname']));
     if ($catslgname == " ") {
         $catslgname = $catname;
     }
@@ -115,8 +115,8 @@ if (isset($_POST['catdelbtn'])) { // For deleting categories
 
 if (isset($_POST['cat_update'])) { //For updating categories
     $upcatid = $_POST['catid'];
-    $upcatname = $_POST['catname'];
-    $upcatslgname = $_POST['catslgname'];
+    $upcatname = mysqli_real_escape_string($conn, trim($_POST['catname']));
+    $upcatslgname = mysqli_real_escape_string($conn, trim($_POST['catslgname']));
 
     $catslgnameupdate = strtolower($upcatslgname);
     $fup_catslgname = preg_replace('#[ -]+#', '-', $catslgnameupdate);
@@ -144,8 +144,7 @@ if (isset($_POST['cat_update'])) { //For updating categories
 // ==============================================================
 
 if (isset($_POST["taginsertbtn"])) { //Insert tags into the database
-    $tagname = $_POST['tagname'];
-
+    $tagname = mysqli_real_escape_string($conn, trim($_POST['tagname']));
 
     $query = mysqli_query($conn, "SELECT * FROM ar_tags WHERE tag_name='$tagname'");
     $sql = "INSERT INTO ar_tags (tag_name) VALUES ('$tagname')";
@@ -181,9 +180,9 @@ if (isset($_POST['tagdelbtn'])) { // For deleting tags
 
 if (isset($_POST['tag_update'])) { //For updating tags
     $updatetagid = $_POST['tagid'];
-    $updatetagname = $_POST['tagname'];
+    $updatetagname = mysqli_real_escape_string($conn, trim($_POST['tagname']));
 
-    $tupquery = mysqli_query($conn, "SELECT * FROM ar_tags WHERE tag_name='$updatetagname'");
+    $tupquery = mysqli_query($conn, "SELECT * FROM ar_tags WHERE tag_name='$updatetagname' AND tag_id !=" . $updatetagid);
     $tag_update_dbsql = "UPDATE ar_tags SET tag_name='$updatetagname' WHERE tag_id=" . $updatetagid;
 
     if (mysqli_num_rows($tupquery) > 0) {
@@ -205,12 +204,12 @@ if (isset($_POST['tag_update'])) { //For updating tags
 
 if (isset($_POST["arnpfsub"])) {
 
-    $arnpfname = $_POST['arnpfname'];
-    $arnpfuser = $_POST['arnpfuser'];
-    $arnpfemail = $_POST['arnpfemail'];
-    $arnpfcomp = $_POST['arnpfcomp'];
-    $arnpfimg = $_POST['arnpfimg'];
-    $arnpfpass = $_POST['arnpfpass'];
+    $arnpfname = mysqli_real_escape_string($conn, trim($_POST['arnpfname']));
+    $arnpfuser = mysqli_real_escape_string($conn, trim($_POST['arnpfuser']));
+    $arnpfemail = mysqli_real_escape_string($conn, trim($_POST['arnpfemail']));
+    $arnpfcomp = mysqli_real_escape_string($conn, trim($_POST['arnpfcomp']));
+    $arnpfimg = mysqli_real_escape_string($conn, $_POST['arnpfimg']);
+    $arnpfpass = mysqli_real_escape_string($conn, trim($_POST['arnpfpass']));
     $arnpfrole = $_POST['arnpfrole'];
 
 
@@ -224,6 +223,7 @@ if (isset($_POST["arnpfsub"])) {
         $arnpfpass = md5($arnpfpass);
 
         $npfquery = mysqli_query($conn, "SELECT * FROM ar_admin WHERE ar_username='$arnpfuser'");
+        $npfemquery = mysqli_query($conn, "SELECT * FROM ar_admin WHERE ar_authemail='$arnpfemail'");
         $npfsql = "INSERT INTO ar_admin (
             ar_username, 
             ar_authemail,
@@ -244,6 +244,8 @@ if (isset($_POST["arnpfsub"])) {
         if (mysqli_num_rows($npfquery) > 0) {
 
             echo json_encode(array("alert", "Username already taken!"));
+        }elseif(mysqli_num_rows($npfemquery) > 0){
+            echo json_encode(array("alert", "This email is already registered, please choose another one."));
         } elseif (!mysqli_query($conn, $npfsql)) {
             echo json_encode(array("error", "Something went wrong!"));
         } else {
@@ -264,10 +266,10 @@ if (isset($_POST["arnpfsub"])) {
 if (isset($_POST["arupfsub"])) {
 
     $arupfid = $_POST['arupfid'];
-    $arupfname = $_POST['arupfname'];
-    $arupfemail = $_POST['arupfemail'];
-    $arupfcomp = $_POST['arupfcomp'];
-    $arupfimg = $_POST['arupfimg'];
+    $arupfname = mysqli_real_escape_string($conn, trim($_POST['arupfname']));
+    $arupfemail = mysqli_real_escape_string($conn, trim($_POST['arupfemail']));
+    $arupfcomp = mysqli_real_escape_string($conn, trim($_POST['arupfcomp']));
+    $arupfimg = mysqli_real_escape_string($conn, $_POST['arupfimg']);
 
 
     if (empty($arupfname) || empty($arupfemail)) {
@@ -277,10 +279,13 @@ if (isset($_POST["arupfsub"])) {
             $arupfimg = ARLEN_BASE_URL . "/admin/deps/img/no-photo.jpg";
         }
 
-
+        $upemquery = mysqli_query($conn, "SELECT * FROM ar_admin WHERE ar_authemail='$arupfemail' AND ar_userid !=" . $arupfid);
         $upfsql = "UPDATE ar_admin SET ar_authemail='$arupfemail', ar_authorname='$arupfname', ar_company ='$arupfcomp', ar_avatar='$arupfimg' WHERE ar_userid=" . $arupfid;
 
-        if (!mysqli_query($conn, $upfsql)) {
+        if(mysqli_num_rows($upemquery) > 0){
+            echo json_encode(array("alert", "This email is already registered, please choose another one."));
+        }
+        else if (!mysqli_query($conn, $upfsql)) {
             echo json_encode(array("error", "Something went wrong!"));
         } else {
             echo json_encode(array("success", "Profile successfully Updated!"));
@@ -294,8 +299,8 @@ if (isset($_POST["arupfsub"])) {
 if (isset($_POST["aruppsub"])) {
 
     $aruppid = $_POST['aruppid'];
-    $aruppcnt = $_POST['aruppcnt'];
-    $aruppnew = $_POST['aruppnew'];
+    $aruppcnt = mysqli_real_escape_string($conn, trim($_POST['aruppcnt']));
+    $aruppnew = mysqli_real_escape_string($conn, trim($_POST['aruppnew']));
 
     if (empty($aruppnew)) {
         echo json_encode(array("alert", "Error some fields are empty!"));

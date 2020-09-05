@@ -16,7 +16,7 @@ function arAddNewPost($conn){
 
     // Insert post into the database
     if (isset($_POST["post_submit"])) {
-        $p_title = mysqli_real_escape_string($conn, $_POST['p-title']);
+        $p_title = mysqli_real_escape_string($conn, trim($_POST['p-title']));
 
         if (!empty($_POST['p-cat'])) {
             $p_cats = $_POST['p-cat'];
@@ -31,13 +31,13 @@ function arAddNewPost($conn){
             $p_tagarray = NULL;
         }
 
-        $p_kws = mysqli_real_escape_string($conn, $_POST['p-keywords']);
-        $p_des = mysqli_real_escape_string($conn, $_POST['p-des']);
-        $p_date = $_POST['datepicker-autoclose'];
+        $p_kws = mysqli_real_escape_string($conn, trim($_POST['p-keywords']));
+        $p_des = mysqli_real_escape_string($conn, trim($_POST['p-des']));
+        $p_date = mysqli_real_escape_string($conn, trim($_POST['datepicker-autoclose']));
         $p_content = $_POST['editor1'];
-        $p_img = $_POST['p-image'];
-        $p_excerpt = mysqli_real_escape_string($conn, $_POST['p-exp']);
-        $p_imalt = $_POST['img-alt'];
+        $p_img = mysqli_real_escape_string($conn, $_POST['p-image']);
+        $p_excerpt = mysqli_real_escape_string($conn, trim($_POST['p-exp']));
+        $p_imalt = mysqli_real_escape_string($conn, trim($_POST['img-alt']));
 
         //test the received values if empty
         if (empty($p_title)) {
@@ -109,7 +109,7 @@ function arAddNewPost($conn){
 function arUpdatePost($conn){
     /* update post into the database */
     if (isset($_POST["post_submit"])) {
-        $p_title = mysqli_real_escape_string($conn, $_POST['p-title']);
+        $p_title = mysqli_real_escape_string($conn, trim($_POST['p-title']));
 
         $post_uniq_id = $_POST['post-uniq-id'];
 
@@ -126,13 +126,13 @@ function arUpdatePost($conn){
             $p_tagarray = NULL;
         }
 
-        $p_kws = mysqli_real_escape_string($conn, $_POST['p-keywords']);
-        $p_des = mysqli_real_escape_string($conn, $_POST['p-des']);
-        $p_date = $_POST['datepicker-autoclose'];
+        $p_kws = mysqli_real_escape_string($conn, trim($_POST['p-keywords']));
+        $p_des = mysqli_real_escape_string($conn, trim($_POST['p-des']));
+        $p_date = mysqli_real_escape_string($conn, trim($_POST['datepicker-autoclose']));
         $p_content = $_POST['editor1'];
-        $p_img = $_POST['p-image'];
-        $p_excerpt = mysqli_real_escape_string($conn, $_POST['p-exp']);
-        $p_imalt = $_POST['img-alt'];
+        $p_img = mysqli_real_escape_string($conn, $_POST['p-image']);
+        $p_excerpt = mysqli_real_escape_string($conn, trim($_POST['p-exp']));
+        $p_imalt = mysqli_real_escape_string($conn, trim($_POST['img-alt']));
 
         //test the received values if empty
         if (empty($p_title)) {
