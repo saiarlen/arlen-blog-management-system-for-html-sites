@@ -87,6 +87,7 @@ if ($_GET["type"] == "category") :
                             <div class="card-body">
                                 <button id="catup_submit" type="submit" value="cat_update" class="btn btn-info">Update</button>
                                 <a href="categories.php" class="btn btn-secondary">Return</a>
+                                <div id="ar-loader" class="reverse-spinner"></div>
                             </div>
 
                         </div>

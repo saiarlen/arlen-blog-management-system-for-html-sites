@@ -50,11 +50,11 @@ require_once("header.php");
                     <div class="border-top">
                         <div class="card-body">
                             <button id="tag_submit" type="submit" value="insert" class="btn btn-info">Add New</button>
+                            <div id="ar-loader" class="reverse-spinner"></div>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="alert alert-success alert-dismissible" id="tag_success" style="display:none;"></div>
         </div>
     </div>
 

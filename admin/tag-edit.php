@@ -80,12 +80,11 @@ if ($_GET["type"] == "tag") :
                             <div class="card-body">
                                 <button id="tagup_submit" type="submit" value="tag_update" class="btn btn-info">Update</button>
                                 <a href="tags.php" class="btn btn-secondary">Return</a>
+                                <div id="ar-loader" class="reverse-spinner"></div>
                             </div>
-
                         </div>
                     </form>
                 </div>
-                <div class="alert alert-success alert-dismissible" id="tag_success" style="display:none;"></div>
             </div>
         </div>
         <div class="col-md-3"></div>

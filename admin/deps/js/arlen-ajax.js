@@ -84,6 +84,7 @@ $(function ($) {
 
 
         if (catname != "" && catslgname != "") {
+            $("#ar-loader").addClass("loadershow");
             $.ajax({
                 type: "POST",
                 url: 'inc/ajax-handler.php',
@@ -94,7 +95,7 @@ $(function ($) {
                 },
 
                 success: function (response) {
-
+                    $("#ar-loader").removeClass("loadershow");
                     $("#cat_submit").removeAttr("disabled");
                     var result = JSON.parse(response);
                     arSubmitResponse(result[0], result[1]);
@@ -155,6 +156,7 @@ $(function ($) {
         var cat_update = $('#catup_submit').val();
 
         if (catname != "" && catslgname != "") {
+            $("#ar-loader").addClass("loadershow");
             $.ajax({
                 type: "POST",
                 url: 'inc/ajax-handler.php',
@@ -166,6 +168,7 @@ $(function ($) {
                 },
 
                 success: function (response) {
+                    $("#ar-loader").removeClass("loadershow");
                     $("#catup_submit").removeAttr("disabled");
                     var result = JSON.parse(response);
                     arSubmitResponse(result[0], result[1]);
@@ -194,6 +197,7 @@ $(function ($) {
         var taginsertbtn = $('#tag_submit').val();
 
         if (tagname != "") {
+            $("#ar-loader").addClass("loadershow");
             $.ajax({
                 type: "POST",
                 url: 'inc/ajax-handler.php',
@@ -203,7 +207,7 @@ $(function ($) {
                 },
 
                 success: function (response) {
-
+                    $("#ar-loader").removeClass("loadershow");
                     $("#tag_submit").removeAttr("disabled");
                     var result = JSON.parse(response);
                     arSubmitResponse(result[0], result[1]);
@@ -263,6 +267,7 @@ $(function ($) {
         var tag_update = $('#tagup_submit').val();
 
         if (tagname != "") {
+            $("#ar-loader").addClass("loadershow");
             $.ajax({
                 type: "POST",
                 url: 'inc/ajax-handler.php',
@@ -270,9 +275,9 @@ $(function ($) {
                     "tagid": tagid,
                     "tag_update": tag_update,
                     "tagname": tagname,
-
                 },
                 success: function (response) {
+                    $("#ar-loader").removeClass("loadershow");
                     $("#tagup_submit").removeAttr("disabled");
                     var result = JSON.parse(response);
                     arSubmitResponse(result[0], result[1]);

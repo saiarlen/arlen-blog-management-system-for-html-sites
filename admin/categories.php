@@ -60,6 +60,7 @@ require_once("header.php");
                     <div class="border-top">
                         <div class="card-body">
                             <button id="cat_submit" type="submit" value="insert" class="btn btn-info">Add New</button>
+                            <div id="ar-loader" class="reverse-spinner"></div>
                         </div>
                     </div>
                 </form>
