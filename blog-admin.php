@@ -6,9 +6,9 @@
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-
+session_start();
 if (isset($_SESSION["arlenUserTest"])) {
-    header("location:" . "admin/home.php");
+    header("location: admin/home.php");
 }
 ?>
 
@@ -103,23 +103,26 @@ if (isset($_SESSION["arlenUserTest"])) {
                 <!-- ============================================================== -->
                 <div id="recoverform">
                     <div class="text-center m-t-10">
-                        <span class="text-white ">Enter your e-mail address below and we will send you instructions how to recover a password.</span>
+                        <span class="text-white ">Enter your registered e-mail address below and we will send you username and instructions to how recover a password.</span>
                     </div>
                     <div class="row m-t-20">
                         <!-- Form -->
-                        <form class="col-12" action="">
+                        <form class="col-12" method="POST">
                             <!-- email -->
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
                                 </div>
-                                <input type="text" class="form-control form-control-lg" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" id="recov-email" class="form-control form-control-lg" placeholder="Email Address">
                             </div>
                             <!-- pwd -->
                             <div class="row m-t-20 p-t-20 border-top border-secondary">
                                 <div class="col-12">
-                                    <a class="btn btn-success" href="#" id="to-login" name="action">Back To Login</a>
-                                    <button class="btn btn-info float-right" type="button" value="recover" id="arrecsub">Recover</button>
+                                    <a class="btn btn-success" href="javascript:void(0)" id="to-login" name="action">Back To Login</a>
+                                    <button class="btn btn-info float-right" id="arrecsub" type="submit" value="recover">Recover</button>
+                                </div>
+                                <div class="col-12 text-center min-ht">
+                                    <div id="arrecresponse"></div>
                                 </div>
                             </div>
                         </form>
@@ -128,20 +131,9 @@ if (isset($_SESSION["arlenUserTest"])) {
             </div>
         </div>
         <!-- ============================================================== -->
-        <!-- Login box.scss -->
+        <!-- Login box.css -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper scss in scafholding.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper scss in scafholding.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right Sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right Sidebar -->
-        <!-- ============================================================== -->
+
     </div>
 
     <!-- ============================================================== -->

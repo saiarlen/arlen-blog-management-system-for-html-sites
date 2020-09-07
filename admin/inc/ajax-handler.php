@@ -399,4 +399,38 @@ if (isset($_POST["aruserdel"])) { //for deleting User
 // Manage Profile page handle
 // ==============================================================
 
-?>
+// ============================================================== 
+//Forget password save page handle
+// ==============================================================
+if(isset($_POST["arpassnup"])) {
+
+    $arnuser = mysqli_real_escape_string($conn, trim($_POST['arnuser']));
+    $arrecnpass = mysqli_real_escape_string($conn, trim($_POST['arrecnpass']));
+
+    if (empty($arnuser) && empty($arrecnpass)) {
+        echo "NO";
+    } else {
+        $arrecnpass = md5($arrecnpass);
+        $passnquery = "SELECT ar_password FROM ar_admin WHERE ar_username='$arnuser'";
+        $passnresult = mysqli_query($conn, $passnquery);
+
+        if (mysqli_num_rows($passnresult) == 1) {
+            $passnsql = "UPDATE ar_admin SET ar_password='$arrecnpass' WHERE ar_username='$arnuser'";
+
+            if (!mysqli_query($conn, $passnsql)) {
+                echo "NO";
+            } else {
+                echo "YES";
+            }
+        } else {
+            echo "INVALID";
+        }
+        setcookie("arlenpr", "none", time()-900, '/');
+        //Close connection
+        mysqli_close($conn);
+    }
+}
+
+// ============================================================== 
+//End of Forget password save page handle
+// ==============================================================
