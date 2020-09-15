@@ -138,3 +138,8 @@ body {
     position: relative;
     z-index: 4;
   }
+
+  .min-ht {
+      min-height: 35px;
+      margin-top: 10px;
+  }
