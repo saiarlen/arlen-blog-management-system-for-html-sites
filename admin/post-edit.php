@@ -65,6 +65,7 @@ if ($_GET["type"] == "post") :
             $pos_update_img = $pos_update_row['post_img'];
             $pos_update_exp =  $pos_update_row['post_exp'];
             $pos_update_alt =  $pos_update_row['post_imgalt'];
+            $pos_update_author =  $pos_update_row['post_author'];
         }
 
         //Changing date format
@@ -248,7 +249,9 @@ if ($_GET["type"] == "post") :
                 <div class="row ">
 
                     <div class="col-md-12">
-
+                    <input type="hidden" name="pauthor" value="<?php arUserIdentifier($conn, $loginuser, 0) ?>">
+                    <span class="badge badge-light m-t-10">Added By <?php echo $pos_update_author ?></span>
+                    
                         <a href="all-posts.php" class="btn btn-secondary post-btn">View All Posts</a>
                         <button id="post_submit" type="submit" name="post_submit" value="post_insert"
                             class="btn btn-info post-btn">Update</button>

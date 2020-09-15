@@ -177,7 +177,8 @@ require_once("inc/post-handle.php");
                 <div class="row ">
 
                     <div class="col-md-12">
-
+                        <input type="hidden" name="pauthor" value="<?php arUserIdentifier($conn, $loginuser, 0) ?>">
+                        <span class="badge badge-light m-t-10">By <?php arUserIdentifier($conn, $loginuser, 0) ?></span>
                         <a href="all-posts.php" class="btn btn-secondary post-btn">View All Posts</a>
                         <button id="post_submit" type="submit" name="post_submit" value="post_insert"
                             class="btn btn-info post-btn">Add New</button>

@@ -176,7 +176,7 @@ require_once("header.php");
                                                 echo $date;
 
                                                 ?><br>
-                                                By: Admin
+                                                By: <?php echo $row["post_author"]; ?>
                                             </span>
                                             <a href="post-edit.php?type=post&id=<?php echo $row["post_id"]; ?>" class="btn btn-cyan btn-sm">Edit</a>
                                             <a href="#" class="btn btn-success btn-sm">View</a>

@@ -66,6 +66,8 @@ function arAddNewPost($conn){
         $p_url = preg_replace("/[\s-]+/", " ", $p_url);
         $p_url = preg_replace("/[\s_]/", "-", $p_url);
 
+        $p_author = $_POST["pauthor"];
+
 
         $psql = "INSERT INTO ar_posts (
         post_title, 
@@ -78,7 +80,8 @@ function arAddNewPost($conn){
         post_content, 
         post_img,
         post_exp,
-        post_imgalt) 
+        post_imgalt,
+        post_author) 
         VALUES (
             '$p_title', 
             '$p_url',
@@ -90,7 +93,8 @@ function arAddNewPost($conn){
             '$p_content',
             '$p_img',
             '$p_excerpt',
-            '$p_imalt')";
+            '$p_imalt',
+            '$p_author')";
 
         if (!mysqli_query($conn, $psql)) {
             echo  '<script>arSubmitResponse("error", "Something went wrong! Please try again.")</script>';
