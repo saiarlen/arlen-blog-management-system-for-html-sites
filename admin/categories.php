@@ -98,6 +98,7 @@ require_once("header.php");
                                         <tbody class="customtable">
 
                                             <?php
+                                            arCountQuery($conn,'caton','tagoff'); //init count of categories in posts 
                                             //Php script for retriving data from database
 
                                             $cat_query = "SELECT * FROM ar_categories ORDER BY cat_id DESC";
@@ -116,7 +117,7 @@ require_once("header.php");
                                                         </th>
                                                         <td><?php echo $row["cat_name"]; ?></td>
                                                         <td><?php echo $row["cat_slug"]; ?></td>
-                                                        <td>1</td>
+                                                        <td><?php arCount($ccontary, $row["cat_id"]) ?></td>
                                                         <th><a href="category-edit.php?type=category&id=<?php echo $row["cat_id"]; ?>" class="btn btn-dark btn-sm">Edit</a></th>
                                                     </tr>
 

@@ -7,7 +7,7 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-$page_title= "Tags"; //page-title
+$page_title = "Tags"; //page-title
 require_once("header.php");
 
 ?>
@@ -40,8 +40,7 @@ require_once("header.php");
                         <div class="form-group row">
                             <label for="tagname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="tagname" id="tagname"
-                                    placeholder="Tag Name Here" required>
+                                <input type="text" class="form-control" name="tagname" id="tagname" placeholder="Tag Name Here" required>
                                 <span class="f-span-text">The tag name is how it appears on your site. Special
                                     characters not allowed</span>
                             </div>
@@ -67,8 +66,7 @@ require_once("header.php");
                             <div class="table-responsive">
                                 <form method="POST" action="">
                                     <table id="zero_config" class="table table-striped table-bordered">
-                                        <button type="submit" value='Delete' name='tag_delete' id="tag_delete"
-                                            class="btn btn-light btn-sm ar-bt-pos">Delete</button>
+                                        <button type="submit" value='Delete' name='tag_delete' id="tag_delete" class="btn btn-light btn-sm ar-bt-pos">Delete</button>
                                         <thead>
                                             <tr>
                                                 <th>
@@ -85,32 +83,30 @@ require_once("header.php");
                                         </thead>
                                         <tbody class="customtable">
                                             <?php
-                                //Php script for retriving data from database
-                                
-                                    $tag_query = "SELECT * FROM ar_tags ORDER BY tag_id DESC";
-                                    $tag_final_all_data = mysqli_query($conn, $tag_query);
+                                            arCountQuery($conn, 'catoff', 'tagon'); //init count of categories in posts 
+                                            //Php script for retriving data from database
 
-                                    if (mysqli_num_rows($tag_final_all_data) > 0) {
-                                        // output data of each row
-                                        while($row = mysqli_fetch_assoc($tag_final_all_data)) {
-                                        ?>
+                                            $tag_query = "SELECT * FROM ar_tags ORDER BY tag_id DESC";
+                                            $tag_final_all_data = mysqli_query($conn, $tag_query);
 
-                                            <tr>
-                                                <th>
-                                                    <label class="customcheckbox">
-                                                        <input type="checkbox" name='delete[]' id="tagdel"
-                                                            value="<?php echo $row["tag_id"]; ?>" class="listCheckbox">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                </th>
-                                                <td><?php echo $row["tag_name"]; ?></td>
-                                                <td>1</td>
-                                                <th><a href="tag-edit.php?type=tag&id=<?php echo $row["tag_id"]; ?>"
-                                                        class="btn btn-dark btn-sm">Edit</a></th>
-                                            </tr>
+                                            if (mysqli_num_rows($tag_final_all_data) > 0) {
+                                                // output data of each row
+                                                while ($row = mysqli_fetch_assoc($tag_final_all_data)) {
+                                            ?>
+                                                    <tr>
+                                                        <th>
+                                                            <label class="customcheckbox">
+                                                                <input type="checkbox" name='delete[]' id="tagdel" value="<?php echo $row["tag_id"]; ?>" class="listCheckbox">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </th>
+                                                        <td><?php echo $row["tag_name"]; ?></td>
+                                                        <td><?php arCount($tcontary, $row["tag_id"]) ?></td>
+                                                        <th><a href="tag-edit.php?type=tag&id=<?php echo $row["tag_id"]; ?>" class="btn btn-dark btn-sm">Edit</a></th>
+                                                    </tr>
                                             <?php
-                                                    }
                                                 }
+                                            }
 
                                             ?>
                                         </tbody>
@@ -127,13 +123,13 @@ require_once("header.php");
 
 <!-- Js For the Above form -->
 <script>
-//For delete tags data in database
-$(".customtable :checkbox").change(function() {
-    $(this).parent().parent().parent().toggleClass('ar_cs_del');
-});
-$("#mainCheckbox:checkbox").change(function() {
-    $(".customtable tr").toggleClass('ar_cs_del');
-}); //Functions for toggle classes during checkbox select
+    //For delete tags data in database
+    $(".customtable :checkbox").change(function() {
+        $(this).parent().parent().parent().toggleClass('ar_cs_del');
+    });
+    $("#mainCheckbox:checkbox").change(function() {
+        $(".customtable tr").toggleClass('ar_cs_del');
+    }); //Functions for toggle classes during checkbox select
 </script>
 
 <?php require_once("footer.php"); ?>

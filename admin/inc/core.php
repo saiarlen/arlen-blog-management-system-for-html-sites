@@ -57,6 +57,39 @@ function arUserIdentifier($conn, $loginuser, $sel)
     }
 }
 
+/* ----------------------------- All tags and count function --------------------- */
+function arCountQuery($conn, $catstatus, $tagstatus){
+
+    if($catstatus === "caton"){
+        $querycont = mysqli_query($conn, "SELECT post_category FROM ar_posts");
+        $catcontary = [];
+        while($result = mysqli_fetch_array($querycont)){
+        $catcontary[] = explode(",", $result['post_category']);
+        }
+        $GLOBALS['ccontary'] = $catcontary;
+    }else if($tagstatus === "tagon"){
+        $tagcont = mysqli_query($conn, "SELECT post_tags FROM ar_posts");
+        $tagcontary = [];
+        while($tresult = mysqli_fetch_array($tagcont)){
+        $tagcontary[] = explode(",", $tresult['post_tags']);
+        }
+        $GLOBALS['tcontary'] = $tagcontary;
+    }
+    
+}
+
+function arCount($arrayin, $catnum){ // Count Calling function
+    $artot = 0;
+    foreach($arrayin as $cont){
+        foreach ($cont as $c){
+            if($c == $catnum){
+                $artot += 1; 
+            }
+        }
+    }
+
+    echo $artot;
+}
 
 //
 ?>
