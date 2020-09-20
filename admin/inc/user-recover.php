@@ -2,6 +2,7 @@
 /*
  * User pass Recover mail handle
  * This page used for Recover User pass functions
+ * @version   1.0.0
  * @author    Saiarlen
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html

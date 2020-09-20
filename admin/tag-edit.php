@@ -3,6 +3,7 @@
  * Tag edits page
  * This page used for editing tag page fields
  * @author    Saiarlen
+ * @version   1.0.0
  * @url       http://saiarlen.com
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
