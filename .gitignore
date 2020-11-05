@@ -1,7 +1,2 @@
 /admin/deps/fileman/tmp
 /admin/deps/fileman/Uploads
-.htaccess
-example-page-assets
-example-blogs.php
-example-index.php
-example-post-single.php
