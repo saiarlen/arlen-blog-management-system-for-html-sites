@@ -8,8 +8,13 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
+
 $page_title = "Media"; //page-title
 require_once("header.php");
+if (arUserIdentifier($conn, $loginuser, 3) !== "superadmin") { //role test
+    echo "<script>location.href='home.php'</script>";
+    die();
+}
 $loginuserid = arUserIdentifier($conn, $loginuser, 2);
 ?>
 <!-- ============================================================== -->
@@ -65,7 +70,7 @@ $loginuserid = arUserIdentifier($conn, $loginuser, 2);
                                 <?php else : ?>
                                     <span class="badge badge-pill badge-light user_right2">Super Admin</span>
                                 <?php endif; ?>
-                                
+
                                 <p><img class=" img-fluid" src="<?php echo $arSingleUser["ar_avatar"] ?>" alt="user image"></p>
                                 <h4 class="card-title"><?php echo ucfirst($arSingleUser["ar_authorname"]) ?></h4>
                                 <p class="card-text" style="margin-bottom:2px;"><?php echo $arSingleUser["ar_authemail"] ?></p>

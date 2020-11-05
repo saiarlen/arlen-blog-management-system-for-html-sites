@@ -557,21 +557,62 @@ $(function ($) {
     // End of Manage Profiles Page Ajax
     // ============================================================== 
 
+    // ============================================================== 
+    // Start of settings Page Ajax
+    // ============================================================== 
+
+    $("#config-save").on('click', function (e) {
+
+        var dashboard = $("#db-data").find("select, input").serializeArray().map(function (x) {
+            this[x.name] = x.value;
+            return this;
+        }.bind({}))[0];
+        var frontend = $("#fn-data").find("select, input").serializeArray().map(function (x) {
+            this[x.name] = x.value;
+            return this;
+        }.bind({}))[0];
+        var mail = $("#ml-data").find("select, input").serializeArray().map(function (x) {
+            this[x.name] = x.value;
+            return this;
+        }.bind({}))[0];
+        var configsave = $(this).val();
+
+        e.preventDefault();
+        $("#config-save").attr("disabled", "disabled");
+        $("#ar-loader").addClass("loadershow");
+
+        $.ajax({
+
+            type: "POST",
+            url: "inc/ajax-handler.php",
+            //dataType: "json",
+            //contentType: 'application/json;charset=utf-8',
+            data: {
+
+                'dashboard': JSON.stringify(dashboard),
+                'frontend': JSON.stringify(frontend),
+                'mail': JSON.stringify(mail),
+                'configsave': configsave,
+            },
+            success: function (response) {
+                $("#ar-loader").removeClass("loadershow");
+                if (response == "YES") {
+                    arSubmitResponse('success', 'Settings are Updated');
+                } else if (response == "NO") {
+                    arSubmitResponse('error', 'Something went wrong!');
+                }
+                //console.log(response);
+                $("#config-save").removeAttr("disabled");
+            },
+            cache: false
+        });
+        return false;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    })
+    // ============================================================== 
+    // End of settings Page Ajax
+    // ============================================================== 
 
 
 

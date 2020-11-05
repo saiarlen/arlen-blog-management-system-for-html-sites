@@ -245,7 +245,7 @@ if (isset($_POST["arnpfsub"])) {
         if (mysqli_num_rows($npfquery) > 0) {
 
             echo json_encode(array("alert", "Username already taken!"));
-        }elseif(mysqli_num_rows($npfemquery) > 0){
+        } elseif (mysqli_num_rows($npfemquery) > 0) {
             echo json_encode(array("alert", "This email is already registered, please choose another one."));
         } elseif (!mysqli_query($conn, $npfsql)) {
             echo json_encode(array("error", "Something went wrong!"));
@@ -283,10 +283,9 @@ if (isset($_POST["arupfsub"])) {
         $upemquery = mysqli_query($conn, "SELECT * FROM ar_admin WHERE ar_authemail='$arupfemail' AND ar_userid !=" . $arupfid);
         $upfsql = "UPDATE ar_admin SET ar_authemail='$arupfemail', ar_authorname='$arupfname', ar_company ='$arupfcomp', ar_avatar='$arupfimg' WHERE ar_userid=" . $arupfid;
 
-        if(mysqli_num_rows($upemquery) > 0){
+        if (mysqli_num_rows($upemquery) > 0) {
             echo json_encode(array("alert", "This email is already registered, please choose another one."));
-        }
-        else if (!mysqli_query($conn, $upfsql)) {
+        } else if (!mysqli_query($conn, $upfsql)) {
             echo json_encode(array("error", "Something went wrong!"));
         } else {
             echo json_encode(array("success", "Profile successfully Updated!"));
@@ -403,7 +402,7 @@ if (isset($_POST["aruserdel"])) { //for deleting User
 // ============================================================== 
 //Forget password save page handle
 // ==============================================================
-if(isset($_POST["arpassnup"])) {
+if (isset($_POST["arpassnup"])) {
 
     $arnuser = mysqli_real_escape_string($conn, trim($_POST['arnuser']));
     $arrecnpass = mysqli_real_escape_string($conn, trim($_POST['arrecnpass']));
@@ -426,7 +425,7 @@ if(isset($_POST["arpassnup"])) {
         } else {
             echo "INVALID";
         }
-        setcookie("arlenpr", "none", time()-900, '/');
+        setcookie("arlenpr", "none", time() - 900, '/');
         //Close connection
         mysqli_close($conn);
     }
@@ -434,4 +433,27 @@ if(isset($_POST["arpassnup"])) {
 
 // ============================================================== 
 //End of Forget password save page handle
+// ==============================================================
+
+// ============================================================== 
+//Settings page handle
+// ==============================================================
+if (isset($_POST["configsave"])) {
+
+    $fdashboard = mysqli_real_escape_string($conn, ($_POST["dashboard"]));
+    $ffrontend = mysqli_real_escape_string($conn, $_POST["frontend"]);
+    $fmail = mysqli_real_escape_string($conn, $_POST["mail"]);
+
+    $fquery = "UPDATE ar_meta SET dashboard='$fdashboard', frontend='$ffrontend', mail='$fmail' WHERE id= 1";
+    if (!mysqli_query($conn, $fquery)) {
+        echo "NO";
+    } else {
+        echo "YES";
+    }
+
+    mysqli_close($conn);
+}
+
+// ============================================================== 
+//End of Settings page handle
 // ==============================================================

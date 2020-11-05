@@ -21,10 +21,10 @@ $(document).ready(function () {
     // For Pagination Script
     // ==============================================================
 
-    pageSize = 2;
+   // pageSize = "<?php echo $appdboard['dashbpl'] ?>";
 
     $(function () {
-        var pageCount = $(".comment-row").length / pageSize;
+        var pageCount
 
         for (var i = 0; i < pageCount; i++) {
             if (i == 0) {

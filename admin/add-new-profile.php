@@ -10,6 +10,10 @@
 
 $page_title = "Profile"; //page-title
 require_once("header.php");
+if (arUserIdentifier($conn, $loginuser, 3) !== "superadmin") { //role test
+    echo "<script>location.href='home.php'</script>";
+    die();
+}
 
 ?>
 <!-- ============================================================== -->
@@ -38,11 +42,8 @@ require_once("header.php");
 
 <div class="container-fluid">
     <!-- Button trigger modal -->
-
     <div class="row justify-content-center">
-
         <div class="col-md-6 ar-common-minheight">
-
             <div class="card">
                 <form id="authform" class="form-horizontal" method="POST">
                     <div class="card-body">
@@ -54,7 +55,6 @@ require_once("header.php");
                                 <input type="text" class="form-control" id="authname" placeholder="New Author Name Here" required>
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="authusername" class="col-md-3 text-right control-label col-form-label">User Name
                             </label>
@@ -136,7 +136,6 @@ require_once("header.php");
             </div>
         </div>
     </div>
-
 </div>
 
 <script>
@@ -190,6 +189,5 @@ require_once("header.php");
         }
     });
 </script>
-
 
 <?php require_once("footer.php"); ?>

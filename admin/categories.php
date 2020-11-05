@@ -32,7 +32,6 @@ require_once("header.php");
 </div>
 
 <div class="row">
-
     <div class="col-md-4">
         <div class="container-fluid">
             <div class="card" style="margin-bottom:0">
@@ -54,7 +53,6 @@ require_once("header.php");
                                 <span class="f-span-text">The “slug” is the URL-friendly version of the name. It is
                                     usually all lowercase and contains only letters, numbers, and hyphens. it can be
                                     same name as category.</span>
-
                             </div>
                         </div>
                     </div>
@@ -67,9 +65,7 @@ require_once("header.php");
                 </form>
             </div>
         </div>
-
     </div>
-
     <div class="col-md-8">
         <div class="container-fluid">
             <div class="row">
@@ -95,11 +91,9 @@ require_once("header.php");
 
                                             </tr>
                                         </thead>
-
                                         <tbody class="customtable">
-
                                             <?php
-                                            arCountQuery($conn,'caton','tagoff'); //init count of categories in posts 
+                                            arCountQuery($conn, 'caton', 'tagoff'); //init count of categories in posts 
                                             //Php script for retriving data from database
 
                                             $cat_query = "SELECT * FROM ar_categories ORDER BY cat_id DESC";

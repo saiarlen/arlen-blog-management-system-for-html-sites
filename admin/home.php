@@ -10,6 +10,7 @@
 
 $page_title = "Dashboard"; //page-title
 require_once("header.php");
+require_once("inc/visits-counter.php");
 ?>
 
 <!-- ============================================================== -->
@@ -55,7 +56,7 @@ require_once("header.php");
             <div class="card card-hover">
                 <div class="box bg-success text-center">
                     <h1 class="font-light text-white"><i class="mdi mdi-note-multiple"></i></h1>
-                    <h6 class="text-white">All Posts</h6>
+                    <h6 class="text-white">Posts: <?php arhomePage($conn, true, false, false) ?></h6>
                 </div>
             </div>
         </div>
@@ -64,7 +65,7 @@ require_once("header.php");
             <div class="card card-hover">
                 <div class="box bg-warning text-center">
                     <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
-                    <h6 class="text-white">Widgets</h6>
+                    <h6 class="text-white">Categories: <?php arhomePage($conn, false, true, false) ?></h6>
                 </div>
             </div>
         </div>
@@ -73,114 +74,84 @@ require_once("header.php");
             <div class="card card-hover">
                 <div class="box bg-danger text-center">
                     <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
-                    <h6 class="text-white">Tables</h6>
+                    <h6 class="text-white">Tags: <?php arhomePage($conn, false, false, true) ?></h6>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Latest Posts</h4>
                 </div>
+
                 <div class="comment-widgets scrollable">
-                    <!-- Comment Row -->
-                    <div class="d-flex flex-row comment-row m-t-0">
-                        <div class="p-2"><img src="deps/img/4.jpg" alt="user" width="50" class="rounded-circle"></div>
-                        <div class="comment-text w-100">
-                            <h6 class="font-medium">James Anderson</h6>
-                            <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type
-                                setting industry. </span>
-                            <div class="comment-footer">
-                                <span class="text-muted float-right">April 14, 2016</span>
-                                <button type="button" class="btn btn-cyan btn-sm">Edit</button>
-                                <button type="button" class="btn btn-success btn-sm">Publish</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                    <?php
+                    $post_query = "SELECT * FROM ar_posts ORDER BY post_id DESC LIMIT 3";
+                    $post_final_all_data = mysqli_query($conn, $post_query);
+
+                    if (mysqli_num_rows($post_final_all_data) > 0) {
+                        // output data of each row
+                        while ($row = mysqli_fetch_assoc($post_final_all_data)) {
+                    ?>
+                            <div class="d-flex flex-row comment-row-dsh m-t-0">
+                                <div class="p-2"><img src="<?php echo $row["post_img"]; ?>" alt="<?php echo $row["post_imgalt"]; ?>" width="50" height="50" class="rounded-circle">
+                                </div>
+                                <div class="comment-text w-100">
+                                    <h6 class="font-medium"><?php echo $row["post_title"]; ?></h6>
+                                    <span class="m-b-15 d-block"><?php echo arLimitExcerpt($row["post_exp"], 10); ?></span>
+                                    <div class="comment-footer">
+                                        <span class="text-muted float-right"><?php //echo $row["post_date"]; 
+                                                                                $dis_date = new DateTime($row["post_date"]);
+                                                                                $date = $dis_date->format("F d, Y");
+                                                                                echo $date;
+                                                                                ?></span>
+                                        <a href="post-edit.php?type=post&id=<?php echo $row["post_id"]; ?>" class="btn btn-cyan btn-sm">Edit</a>
+                                        <a href="post-view.php?id=<?php echo $row["post_id"]; ?>" target="_blank" class="btn btn-success btn-sm">View</a>
+                                        <button type="submit" id="del_btn_single" name="del_btn_single" value="<?php echo $row["post_id"]; ?>" class="btn btn-danger btn-sm">Delete</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Comment Row -->
-                    <div class="d-flex flex-row comment-row">
-                        <div class="p-2"><img src="deps/img/4.jpg" alt="user" width="50" class="rounded-circle"></div>
-                        <div class="comment-text active w-100">
-                            <h6 class="font-medium">Michael Jorden</h6>
-                            <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type
-                                setting industry. </span>
-                            <div class="comment-footer">
-                                <span class="text-muted float-right">May 10, 2016</span>
-                                <button type="button" class="btn btn-cyan btn-sm">Edit</button>
-                                <button type="button" class="btn btn-success btn-sm">Publish</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Comment Row -->
-                    <div class="d-flex flex-row comment-row">
-                        <div class="p-2"><img src="deps/img/4.jpg" alt="user" width="50" class="rounded-circle"></div>
-                        <div class="comment-text w-100">
-                            <h6 class="font-medium">Johnathan Doeting</h6>
-                            <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type
-                                setting industry. </span>
-                            <div class="comment-footer">
-                                <span class="text-muted float-right">August 1, 2016</span>
-                                <button type="button" class="btn btn-cyan btn-sm">Edit</button>
-                                <button type="button" class="btn btn-success btn-sm">Publish</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    }
+
+                    ?>
                 </div>
             </div>
 
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <!-- card -->
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title m-b-0">Progress Box</h4>
-                    <div class="m-t-20">
-                        <div class="d-flex no-block align-items-center">
-                            <span>81% Clicks</span>
-                            <div class="ml-auto">
-                                <span>125</span>
+                    <h4 class="card-title m-b-0">Blog Stats</h4>
+                    <div class="row m-t-20">
+                        <div class="col-6">
+                            <div class="bg-dark p-10 text-white text-center">
+                                <i class="fa fa-users m-b-5 font-16"></i>
+                                <h5 class="m-b-0 m-t-5"><?php echo arTotalViews($conn); ?></h5>
+                                <small class="font-light">Total Visits</small>
                             </div>
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 81%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="col-6">
+                            <div class="bg-dark p-10 text-white text-center">
+                                <i class="fas fa-bullseye m-b-5 font-16"></i>
+                                <h5 class="m-b-0 m-t-5"><?php echo arUniqueView($conn); ?></h5>
+                                <small class="font-light">unique Visits</small>
+                            </div>
                         </div>
+
                     </div>
-                    <div>
-                        <div class="d-flex no-block align-items-center m-t-25">
-                            <span>72% Uniquie Clicks</span>
-                            <div class="ml-auto">
-                                <span>120</span>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 72%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="d-flex no-block align-items-center m-t-25">
-                            <span>53% Impressions</span>
-                            <div class="ml-auto">
-                                <span>785</span>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 53%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="d-flex no-block align-items-center m-t-25">
-                            <span>3% Online Users</span>
-                            <div class="ml-auto">
-                                <span>8</span>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 3%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title m-b-0">Top News</h4>
+                    <div class="row m-t-20">
+                        <div class="col-12">
+                            <iframe src="http://us1.rssfeedwidget.com/getrss.php?time=1603044527284&amp;x=<?php arFn($appdboard['rssurl'], 'http%3A%2F%2Fnews.google.com%2Fnews%3Fned%3Dus%26topic%3Dt%26output%3Drss'); ?>&amp;w=100%&amp;h=700&amp;bc=333333&amp;bw=1&amp;bgc=transparent&amp;m=15&amp;it=false&amp;t=(default)&amp;tc=333333&amp;ts=15&amp;tb=transparent&amp;il=true&amp;lc=222222&amp;ls=14&amp;lb=false&amp;id=false&amp;dc=333333&amp;ds=14&amp;idt=true&amp;dtc=284F2D&amp;dts=12" border="0" hspace="0" vspace="0" frameborder="no" marginwidth="0" marginheight="0" style="border:0; padding:0; margin:0; width:100%; height:auto; min-height:188px;" id="rssOutput" class="feed-scbar">Reading RSS Feed ...</iframe>
                         </div>
                     </div>
                 </div>

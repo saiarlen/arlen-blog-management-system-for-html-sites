@@ -13,7 +13,7 @@
 <!-- footer -->
 <!-- ============================================================== -->
 <footer class="footer text-center">
-    All Rights Reserved by Saiarlen. Designed and Developed by <a href="https://saiarlen.com">Saiarlen</a>.
+    All Rights Reserved by Saiarlen. Designed and Developed by <a href="https://www.saiarlen.com">Saiarlen</a>.
 </footer>
 <!-- ============================================================== -->
 <!-- End footer -->

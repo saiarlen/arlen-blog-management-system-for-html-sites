@@ -11,10 +11,22 @@
 
 require_once("config.php");
 
-
 require_once('../deps/PHPMailer/src/PHPMailer.php');
 require_once('../deps/PHPMailer/src/SMTP.php');
 //require_once('../deps/PHPMailer/src/Exception.php');
+//Settings function init
+$msettings = mysqli_query($conn, "SELECT mail FROM ar_meta WHERE id=1");
+$final = mysqli_fetch_row($msettings);
+$mout = json_decode($final[0], true);
+
+function mailType($mout){
+    if($mout["smtptype"] == "google"){
+        return "smtp.gmail.com";
+    }else if($mout["smtptype"] == "other"){
+        return $mout["smtphost"];
+    }
+}
+
 
 $armailid = mysqli_real_escape_string($conn, trim($_POST["arrecemail"]));
 $armailcheck = mysqli_query($conn, "SELECT ar_username, ar_authorname, ar_company FROM ar_admin WHERE ar_authemail = '$armailid'");
@@ -26,7 +38,6 @@ if(mysqli_num_rows($armailcheck) == 1){
     }else {
         $cmpname = $armailresult['ar_company'];
     }
-
     function arUniqKey($c){// Random key
         $kcharacters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
         $krandomString = ''; 
@@ -40,7 +51,6 @@ if(mysqli_num_rows($armailcheck) == 1){
     $ar_key = arUniqKey(20);
 
     setcookie("arlenpr", md5($ar_key), time()+900, '/');
-
 
     $ar_url = ARLEN_BASE_URL . '/admin/recover.php?type=rpass&login=' . $armailresult['ar_username'] . '&key='. $ar_key;
  
@@ -56,15 +66,23 @@ if(mysqli_num_rows($armailcheck) == 1){
         //Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+        $mail->Host       = mailType($mout);                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'sai.xxxx@gmail.com';                     // SMTP username
-        $mail->Password   = 'xxxx';                               // SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-        $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        $mail->Username   = $mout['smtpuser'];                     // SMTP username
+        $mail->Password   = $mout['smtppass'];   
+        
+        if($mout["smtptype"] == "google"){
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
+        }else if($mout["smtptype"] == "other"){
+            $mail->SMTPSecure = $mout["smtpsec"];
+            $mail->Port = (int)$mout["smtpport"];
+        }                            // SMTP password
+                 // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                                           // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
         //Recipients
-        $mail->setFrom('no-replay@saiarlen.com', $cmpname);
+        $mail->setFrom($mout['smtpfrom'], $cmpname);
         $mail->addAddress($armailid, $armailresult['ar_authorname']);     // Add a recipient 
         //$mail->addReplyTo('no-replay@', $cmpname);
 

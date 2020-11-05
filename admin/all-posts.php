@@ -180,7 +180,7 @@ require_once("header.php");
                                                 By: <?php echo $row["post_author"]; ?>
                                             </span>
                                             <a href="post-edit.php?type=post&id=<?php echo $row["post_id"]; ?>" class="btn btn-cyan btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-success btn-sm">View</a>
+                                            <a href="post-view.php?id=<?php echo $row["post_id"]; ?>" target="_blank" class="btn btn-success btn-sm">View</a>
                                             <button type="submit" id="del_btn_single" name="del_btn_single" value="<?php echo $row["post_id"]; ?>" class="btn btn-danger btn-sm">Delete</button>
                                         </div>
                                     </div>
@@ -195,10 +195,8 @@ require_once("header.php");
             </form>
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm-12">
-
             <nav class="pg-nav" aria-label="Page navigation">
                 <span class="page-item">
                     <a class="pre page-link" href="javascript:void(0)" aria-label="Previous" disabled>
@@ -221,5 +219,7 @@ require_once("header.php");
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
-
+<script>
+    pageSize = "<?php arFn($appdboard['dashbpl'], 5); ?>";
+</script>
 <?php require_once("footer.php"); ?>

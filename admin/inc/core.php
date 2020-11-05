@@ -46,7 +46,7 @@ function arLimitExcerpt($text, $limit)
 /* ------------------------------ User handle function ----------------- */
 function arUserIdentifier($conn, $loginuser, $sel)
 { //fetching data for testing
-    $queryuid = "SELECT ar_authorname, ar_avatar, ar_userid FROM ar_admin WHERE ar_username= '$loginuser' limit 1";
+    $queryuid = "SELECT ar_authorname, ar_avatar, ar_userid, ar_role FROM ar_admin WHERE ar_username= '$loginuser' limit 1";
     $uidresult = mysqli_query($conn, $queryuid);
     $uidresult = mysqli_fetch_row($uidresult);
     if ($sel == 0) {
@@ -55,6 +55,8 @@ function arUserIdentifier($conn, $loginuser, $sel)
         echo $uidresult[1];
     } elseif ($sel == 2) {
         return $uidresult[2];
+    } elseif($sel == 3){
+        return $uidresult[3];
     }
 }
 
@@ -92,5 +94,96 @@ function arCount($arrayin, $catnum){ // Count Calling function
     echo $artot;
 }
 
+/* ----------------------------- For all counts in dashboard --------------------- */
+
+function arhomePage($conn, $vpost, $vcat, $vtag){ 
+    if($vpost == true){
+        $query = "SELECT post_id FROM ar_posts"; 
+        $result = mysqli_query($conn, $query); 
+      
+        if ($result) 
+        { 
+            $row = mysqli_num_rows($result); 
+              
+               if ($row) 
+                  { 
+                     echo $row; 
+                  } 
+            mysqli_free_result($result); 
+        } 
+    }elseif($vcat == true){
+        $query = "SELECT cat_id FROM ar_categories"; 
+        $result = mysqli_query($conn, $query); 
+      
+        if ($result) 
+        { 
+            $row = mysqli_num_rows($result); 
+              
+               if ($row) 
+                  { 
+                     echo $row; 
+                  } 
+            mysqli_free_result($result); 
+        } 
+    }elseif($vtag == true){
+        $query = "SELECT tag_id FROM ar_tags"; 
+        $result = mysqli_query($conn, $query); 
+      
+        if ($result) 
+        { 
+            $row = mysqli_num_rows($result); 
+              
+               if ($row) 
+                  { 
+                     echo $row; 
+                  } 
+            mysqli_free_result($result); 
+        } 
+    }
+}
+
+/* ----------------------------- For Settings retrive --------------------- */
+
+function arSettings($conn){
+    $dsettings = mysqli_query($conn, "SELECT dashboard, frontend, mail FROM ar_meta WHERE id=1");
+    $final = mysqli_fetch_row($dsettings);
+    return $final;
+}
+function arFn($input, $default){
+    if($input == ""){
+        echo $default;
+    }else {
+        echo $input;
+    }
+}
+
+ //for all comman site settings
+
+
+/* ----------------------------- URL Rewrite --------------------- */
+
+/* function arUrlWrite($conn){
+
+    $urlquery = mysqli_query($conn, "SELECT post_url FROM ar_posts");
+    if(mysqli_num_rows($urlquery) > 0){
+        $data = "#Blog management Generated code";
+        $data .= "<IfModule mod_rewrite.c> \r\n \r\n RewriteEngine on \r\n";
+        while($oneUrl = mysqli_fetch_assoc($urlquery)){ 
+
+            $data .= "\r\n RewriteRule ^". $oneUrl["post_url"] ." example-post-single.php?post_url=$1 [QSA,L] \r\n"; 
+        }
+        $data .= "\r\n </IfModule>";
+
+        return $data;
+
+    }
+    
+}
+function arUrlCall($conn){
+   // $juma = arUrlWrite($conn);
+    $filename = "../.htaccess";
+    file_put_contents($filename, arUrlWrite($conn) , LOCK_EX);
+}
+
+arUrlCall($conn); */
 //
-?>

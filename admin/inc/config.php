@@ -15,6 +15,7 @@ $database = "blogdata";
 //Base URL
 define("ARLEN_BASE_URL", "http://localhost/blog");
 
+
 //Main Connection
 function db_Connect($host, $user, $pass, $db){
     $mysqli = mysqli_connect($host, $user, $pass, $db);
@@ -34,4 +35,8 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
-error_reporting(E_ALL); //error reporting
+//error_reporting(E_ALL); //error reporting
+//ini_set('display_errors', '1');
+
+//blog single page switch for active and deactivate methods
+//define("AR_SNP_SWITCH", false);

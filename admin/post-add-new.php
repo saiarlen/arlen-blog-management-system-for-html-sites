@@ -8,7 +8,7 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-$page_title= "Add New Post"; //page-title
+$page_title = "Add New Post"; //page-title
 require_once("header.php");
 require_once("inc/post-handle.php");
 
@@ -46,44 +46,41 @@ require_once("inc/post-handle.php");
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="p-title">Add Title</label>
-                            <input type="text" class="form-control" name="p-title" id="p-title"
-                                placeholder="Post Title">
+                            <input type="text" class="form-control" name="p-title" id="p-title" placeholder="Post Title">
                         </div>
                         <div class="form-group row">
                             <label>Select Categories</label>
-                            <select class="select2 form-control m-t-15" multiple="multiple" name="p-cat[]" id="p-cat"
-                                style="height: 36px;width: 100%;">
-                                <?php 
+                            <select class="select2 form-control m-t-15" multiple="multiple" name="p-cat[]" id="p-cat" style="height: 36px;width: 100%;">
+                                <?php
                                 $cat_query = "SELECT * FROM ar_categories ORDER BY cat_id DESC";
                                 $cat_final_all_data = mysqli_query($conn, $cat_query);
 
                                 if (mysqli_num_rows($cat_final_all_data) > 0) {
                                     // output data of each row
-                                    while($row = mysqli_fetch_assoc($cat_final_all_data)) {
+                                    while ($row = mysqli_fetch_assoc($cat_final_all_data)) {
                                 ?>
-                                <option value="<?php echo $row["cat_id"]; ?>"><?php echo $row["cat_name"]; ?></option>
+                                        <option value="<?php echo $row["cat_id"]; ?>"><?php echo $row["cat_name"]; ?></option>
                                 <?php
-                                        }
                                     }
+                                }
                                 ?>
                             </select>
                         </div>
                         <div class="form-group row">
                             <label>Select Tags</label>
-                            <select class="select2 form-control m-t-15" multiple="multiple" name="p-tag[]" id="p-tag"
-                                style="height: 36px;width: 100%;">
+                            <select class="select2 form-control m-t-15" multiple="multiple" name="p-tag[]" id="p-tag" style="height: 36px;width: 100%;">
                                 <?php
-                                    $tag_query = "SELECT * FROM ar_tags ORDER BY tag_id DESC";
-                                    $tag_final_all_data = mysqli_query($conn, $tag_query);
+                                $tag_query = "SELECT * FROM ar_tags ORDER BY tag_id DESC";
+                                $tag_final_all_data = mysqli_query($conn, $tag_query);
 
-                                    if (mysqli_num_rows($tag_final_all_data) > 0) {
-                                        // output data of each row
-                                        while($row = mysqli_fetch_assoc($tag_final_all_data)) {
+                                if (mysqli_num_rows($tag_final_all_data) > 0) {
+                                    // output data of each row
+                                    while ($row = mysqli_fetch_assoc($tag_final_all_data)) {
                                 ?>
-                                <option value="<?php echo $row["tag_id"]; ?>"><?php echo $row["tag_name"]; ?></option>
+                                        <option value="<?php echo $row["tag_id"]; ?>"><?php echo $row["tag_name"]; ?></option>
                                 <?php
-                                        }
                                     }
+                                }
                                 ?>
                             </select>
                         </div>
@@ -96,8 +93,7 @@ require_once("inc/post-handle.php");
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="p-keywords">Add Page Keywords <small class="text-muted">Optional</small></label>
-                            <input type="text" class="form-control" name="p-keywords" id="p-keywords"
-                                placeholder="Keywords">
+                            <input type="text" class="form-control" name="p-keywords" id="p-keywords" placeholder="Keywords">
                         </div>
                         <div class="form-group row m-t-20">
                             <label for="p-des">Add Page Description <small class="text-muted">Optional</small></label>
@@ -106,8 +102,7 @@ require_once("inc/post-handle.php");
                         <div class="row">
                             <label>Select Post Date <small class="text-muted">Optional</small></label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="datepicker-autoclose"
-                                    id="datepicker-autoclose" placeholder="yyyy/dd/mm">
+                                <input type="text" class="form-control" name="datepicker-autoclose" id="datepicker-autoclose" placeholder="yyyy/dd/mm">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -138,21 +133,17 @@ require_once("inc/post-handle.php");
                             <div class="col-md-8">
                                 <label>Set Featured Image</label>
                                 <div class="input-group">
-                                    <input type="text" id="txtSelectedFile" name="p-image" placeholder="Post Image"
-                                        class="form-control">
+                                    <input type="text" id="txtSelectedFile" name="p-image" placeholder="Post Image" class="form-control">
 
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="basic-addon2"></span>
                                     </div>
                                     <div id="roxyCustomPanel2" style="display: none;">
-                                        <iframe
-                                            src="deps/fileman/media.html?integration=custom&type=files&txtFieldId=txtSelectedFile"
-                                            style="width:100%;height:100%" frameborder="0">
+                                        <iframe src="deps/fileman/media.html?integration=custom&type=files&txtFieldId=txtSelectedFile" style="width:100%;height:100%" frameborder="0">
                                         </iframe>
                                     </div>
                                 </div>
-                                <input class="alt-input" type="text" name="img-alt" id="img-alt"
-                                    placeholder="Image Alt Text">
+                                <input class="alt-input" type="text" name="img-alt" id="img-alt" placeholder="Image Alt Text">
                             </div>
                             <div class="col-md-4">
                                 <img src="deps/img/tumb.jpg" id="postTumb" alt="post">
@@ -181,8 +172,7 @@ require_once("inc/post-handle.php");
                         <input type="hidden" name="pauthor" value="<?php arUserIdentifier($conn, $loginuser, 0) ?>">
                         <span class="badge badge-light m-t-10">By <?php arUserIdentifier($conn, $loginuser, 0) ?></span>
                         <a href="all-posts.php" class="btn btn-secondary post-btn">View All Posts</a>
-                        <button id="post_submit" type="submit" name="post_submit" value="post_insert"
-                            class="btn btn-info post-btn">Add New</button>
+                        <button id="post_submit" type="submit" name="post_submit" value="post_insert" class="btn btn-info post-btn">Add New</button>
 
                     </div>
 
@@ -203,43 +193,42 @@ require_once("inc/post-handle.php");
 <script src="deps/ckeditor/ckeditor.js"></script>
 
 <script>
-$(".select2").select2();
-$('#datepicker-autoclose').datepicker({
-    autoclose: true,
-    todayHighlight: true,
-    format: 'dd-mm-yyyy',
-});
-
-//file browser init
-$('#txtSelectedFile').click(function() {
-    $('#roxyCustomPanel2').dialog({
-        modal: true,
-        width: 700,
-        height: 500
+    $(".select2").select2();
+    $('#datepicker-autoclose').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: 'dd-mm-yyyy',
     });
 
-});
+    //file browser init
+    $('#txtSelectedFile').click(function() {
+        $('#roxyCustomPanel2').dialog({
+            modal: true,
+            width: 700,
+            height: 500
+        });
 
-function closeCustomRoxy2() {
-    $('#roxyCustomPanel2').dialog('close');
-    var inputVal = $('#txtSelectedFile').val();
-    $('#postTumb').attr('src', inputVal);
-};
-
-//CKEDIT init
-var roxyFileman = 'deps/fileman/media.html';
-$(function() {
-    CKEDITOR.replace('editor1', {
-        filebrowserBrowseUrl: roxyFileman,
-        filebrowserImageBrowseUrl: roxyFileman + '?type=image',
-        removeDialogTabs: 'link:upload;image:upload'
     });
-});
 
+    function closeCustomRoxy2() {
+        $('#roxyCustomPanel2').dialog('close');
+        var inputVal = $('#txtSelectedFile').val();
+        $('#postTumb').attr('src', inputVal);
+    };
+
+    //CKEDIT init
+    var roxyFileman = 'deps/fileman/media.html';
+    $(function() {
+        CKEDITOR.replace('editor1', {
+            filebrowserBrowseUrl: roxyFileman,
+            filebrowserImageBrowseUrl: roxyFileman + '?type=image',
+            removeDialogTabs: 'link:upload;image:upload'
+        });
+    });
 </script>
 
-<?php 
+<?php
 
-require_once("footer.php"); 
+require_once("footer.php");
 arAddNewPost($conn); // Calling Post handle function
 ?>

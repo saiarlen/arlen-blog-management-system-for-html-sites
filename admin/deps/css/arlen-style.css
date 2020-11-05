@@ -7,7 +7,9 @@
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
-
+.btn:hover {
+  opacity: .9;
+}
 header.topbar {
   position: fixed;
   width: 100%;
@@ -117,9 +119,25 @@ div#cat_success {
 
 .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
   height: 0 !important;
-  top: -614.3px !important;
-  z-index: 10 !important;
+  top: 25% !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  z-index: 60 !important;
 }
+@media(max-width: 768px){
+  .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
+    height: 0 !important;
+    /* top: -733.3px !important; */
+    top: 276px !important;
+    bottom: 0 !important;
+    z-index: 50 !important;
+    position: absolute !important;
+    width: 93% !important;
+    left: 23px !important;
+    right: 0 !important;
+  }
+}
+
 
 button.ui-dialog-titlebar-close::before {
   content: "\F156";
@@ -145,6 +163,17 @@ button.ui-dialog-titlebar-close {
 }
 
 #basic-addon2::before {
+  content: "\F21F";
+  display: inline-block;
+  font: normal normal normal 24px/1 "Material Design Icons";
+  font-size: inherit;
+  text-rendering: auto;
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+.basic-addon2::before {
   content: "\F21F";
   display: inline-block;
   font: normal normal normal 24px/1 "Material Design Icons";
@@ -618,4 +647,24 @@ span.switch-label:after {
 }
 .mt-1 {
   margin-top: 10px;
+}
+
+.comment-widgets .comment-row-dsh {
+  border-bottom: 1px solid transparent;
+  padding: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0;
+}
+
+.comment-widgets .comment-row-dsh.active, .comment-widgets .comment-row-dsh:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+#rssOutput {
+  overflow-y: hidden;
+}
+.dlogic {
+  display: none;
 }

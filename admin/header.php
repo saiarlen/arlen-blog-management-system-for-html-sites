@@ -24,6 +24,10 @@ if (!isset($_SESSION["arlenUserTest"])) {
     header('Location: ../blog-admin.php');
 }
 
+//Settings function init
+$appSettings = arSettings($conn);
+$appdboard = json_decode($appSettings[0], true); //for all comman site settings
+
 ?>
 
 <!DOCTYPE html>
@@ -34,11 +38,11 @@ if (!isset($_SESSION["arlenUserTest"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Arlen Blog Management System For Static Sites">
     <meta name="author" content="Saiarlen">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="deps/img/fav.png">
-    <title>Arlen | <?php echo $page_title; ?></title>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php arFn($appdboard['favic'], 'deps/img/fav.png'); ?>">
+    <title><?php arFn($appdboard['titlepfx'], 'Arlen'); ?> | <?php echo $page_title; ?></title>
     <!-- Custom CSS -->
 
     <link href="deps/css/multicheck.css" rel="stylesheet">
@@ -88,19 +92,15 @@ if (!isset($_SESSION["arlenUserTest"])) {
                     <a class="navbar-brand" href="home.php">
                         <!-- Logo icon -->
                         <b class="logo-icon p-l-10">
-
                             <!-- Dark Logo icon -->
-                            <img src="deps/img/icon-logo.png" alt="homepage" class="light-logo" />
-
+                            <img src="<?php arFn($appdboard['iconlogo'], 'deps/img/icon-logo.png'); ?>" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="deps/img/text-logo.png" alt="homepage" class="light-logo" />
-
+                            <img src="<?php arFn($appdboard['iconlogo'], 'deps/img/text-logo.png'); ?>" alt="homepage" class="light-logo" />
                         </span>
-
                     </a>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -152,78 +152,22 @@ if (!isset($_SESSION["arlenUserTest"])) {
                         <!-- ============================================================== -->
 
                         <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Event today</h5>
-                                                        <span class="mail-desc">Just a reminder that event</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Settings</h5>
-                                                        <span class="mail-desc">You can customize this template</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Pavan kumar</h5>
-                                                        <span class="mail-desc">Just see the my admin!</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-danger btn-circle"><i class="fa fa-link"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Luanch Admin</h5>
-                                                        <span class="mail-desc">Just see the my new admin!</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
-
-                        <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
 
                             <a id="imgaload" class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img id="proimg" src="<?php arUserIdentifier($conn, $loginuser, 1); ?>" alt="user" class="rounded-circle" width="31" height="31">
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="my-profile.php"><i class="fas fa-user m-r-5 m-l-5"></i> My Profile</a>
-                                <a class="dropdown-item" href="manage-users.php"><i class="fas fa-users m-r-5 m-l-5"></i> Manage Users</a>
-                                <a class="dropdown-item" href="add-new-profile.php"><i class="fas fa-user-plus m-r-5 m-l-5"></i> Add New Author</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="settings.php"><i class=" fas fa-cog m-r-5 m-l-5"></i> Settings</a>
+                                <a class="dropdown-item" href="my-profile.php"><i class="fas fa-user m-r-5 m-l-5"></i>
+                                    My Profile</a>
+                                <?php if (arUserIdentifier($conn, $loginuser, 3) == "superadmin") : ?>
+                                    <a class="dropdown-item" href="manage-users.php"><i class="fas fa-users m-r-5 m-l-5"></i> Manage Users</a>
+                                    <a class="dropdown-item" href="add-new-profile.php"><i class="fas fa-user-plus m-r-5 m-l-5"></i> Add New Author</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="settings.php"><i class=" fas fa-cog m-r-5 m-l-5"></i>
+                                        Settings</a>
+                                <?php endif; ?>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="inc/logout.php"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
 
@@ -260,17 +204,25 @@ if (!isset($_SESSION["arlenUserTest"])) {
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="categories.php" aria-expanded="false"><i class="mdi mdi-view-column"></i><span class="hide-menu">Categories</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tags.php" aria-expanded="false"><i class="mdi mdi-tag-multiple"></i><span class="hide-menu">Tags</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-note-text"></i><span class="hide-menu">My
-                                    Blogs</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-puzzle"></i><span class="hide-menu">Addons</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Help </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="mdi mdi-file"></i><span class="hide-menu">Documentation</span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="mdi mdi-email"></i><span class="hide-menu"> Support </span></a></li>
-                            </ul>
-                        </li>
+                        <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-note-text"></i><span class="hide-menu">My
+                                    Blogs</span></a></li> -->
+                        <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-puzzle"></i><span class="hide-menu">Addons</span></a></li> -->
 
+                        <?php if ($appdboard['htab'] == 1) : ?>
+                            <?php if (arUserIdentifier($conn, $loginuser, 3) == "superadmin") : ?>
+                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Help </span></a>
+                                    <ul aria-expanded="false" class="collapse  first-level">
+                                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="mdi mdi-file"></i><span class="hide-menu">Documentation</span></a>
+                                        </li>
+                                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="mdi mdi-video"></i><span class="hide-menu"> Tutorials </span></a>
+                                        </li>
+                                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="mdi mdi-comment-question-outline"></i><span class="hide-menu"> FAQ's
+                                                </span></a></li>
+                                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="mdi mdi-email"></i><span class="hide-menu"> Support </span></a></li>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
